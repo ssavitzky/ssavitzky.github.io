@@ -1,3 +1,8 @@
+---
+layout: page
+title: Hire Me
+permalink: /hire-me/
+---
 Hire me
 =======
 
@@ -8,11 +13,11 @@ different ways until you understand it.  He has lots of great stories about
 the way things were in the old days, but his browser tabs have titles like
 "ReactJS", "Elm", "What's next for GitHub?", and "Linux Weekly News".
 
-"Curmudgeon" is usually defined as
-"[https://en.wiktionary.org/wiki/curmudgeon]{An ill-tempered (and frequently
-old) person full of stubborn ideas or opinions.}".  A _computer_ curmudgeon,
-on the other hand, tends to be shy around people and old enough to have
-learned that swearing at software rarely gets results.  Stubbornness,
+"Curmudgeon" is usually defined as "[An ill-tempered (and frequently old)
+person full of stubborn ideas or
+opinions.](https://en.wiktionary.org/wiki/curmudgeon)".  A _computer_
+curmudgeon, on the other hand, tends to be shy around people and old enough to
+have learned that swearing at software rarely gets results.  Stubbornness,
 however, usually does.
 
 Things <em>this</em> computer curmudgeon can do for you include:

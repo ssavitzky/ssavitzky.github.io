@@ -1,0 +1,10 @@
+# jekyll-specific ignores
+
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+
+# I'm guessing these get ignored, too; they have to do with bundler.
+.bundle
+vendor
