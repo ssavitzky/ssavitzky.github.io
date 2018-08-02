@@ -1,7 +1,8 @@
 ---
 layout: post
+title: Building a GitHub Pages website
 ---
-# Building a GitHub Pages website
+
 ## Step by step.
 
 ### Create the repository on GitHub.

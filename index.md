@@ -5,3 +5,5 @@
 layout: home
 #layout: landing-page
 ---
+See [Building a GitHub Site](building-a-github-site/) for the story so far.
+It will eventually become a post.
