@@ -5,5 +5,5 @@
 layout: home
 #layout: landing-page
 ---
-See [Building a GitHub Site](building-a-github-site/) for the story so far.
-It will eventually become a post.
+(see [about/](about) for the original about page that came with the Jekyll
+setup. 
