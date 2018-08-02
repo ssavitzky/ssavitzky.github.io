@@ -28,7 +28,7 @@ Eventually I'm going to use the site on my web host as a staging area.
 
 ### Make a working directory on my laptop
 
-```
+```bash
 cd ~/vv/web
 git clone savitzky@savitzky.net:git/web/ssavitzky.github.io.git
 cd ssavitzky.github.io.git
@@ -70,8 +70,10 @@ Ruby development directory.  The quick-start guide says:
 gem install jekyll bundler
 ```
 
-But you also need --user-install, and that says
-```(cygnus ssavitzky.github.io 552) gem install --user-install jekyll bundler
+But you also need `--user-install`, and that says
+
+```bash
+gem install --user-install jekyll bundler
 WARNING:  You don't have /home/steve/.gem/ruby/2.5.0/bin in your PATH,
 	  gem executables will not run.
 ```

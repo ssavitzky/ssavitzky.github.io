@@ -18,6 +18,11 @@ what we need:
 	  I want separate pages.  That makes it easy.
   * The nav stays put when the page scrolls.  That may cause trouble if I have
 	a lot of links -- which I probably will.
+  * The nav has a different presentation for active links.  Marking links
+	active can probably be done in the appropriate template rather than using
+	JS. 
+  * I want a top nav, too.  It should start out under the image, but stick at
+	the top of the page as it scrolls down.
   * There is a full-width image at the top of the page.  Looks like its height
 	is roughly equal to the nav's width.  I may want to replace that with
 	actual text similar to the header on the current
@@ -48,6 +53,8 @@ has a working site, but my guess is that it's using an older version of Jekyll
 landing-page, and the styles are in `/sass` instead of `/_sass`.  Only way to
 salvage it is to fork it and take an axe to it.  Real hackers use an axe.
 
-Alternatively, just say "inspired by" and fake it.  How hard can it be to
+### However...
+
+Alternatively, I might just say "inspired by" and fake it.  How hard can it be to
 style a green rectangle?  (Famous last words?)
 
