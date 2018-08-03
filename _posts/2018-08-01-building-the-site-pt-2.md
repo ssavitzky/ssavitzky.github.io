@@ -33,19 +33,19 @@ what we need:
 Found it by searching _GitHub_ and finding [mattvh/jekyllthemes: A directory
 of the best-looking themes for Jekyll
 blogs](https://github.com/mattvh/jekyllthemes).  The corresponding Google
-Pages site has 100 _pages_ of thumbnails, so the obvious thing to do was
-search the `_posts` directory, which is the _source_ for that gallery.
+Pages site has 100 _pages_ of thumbnails, so the (eventually) obvious thing to
+do was search the `_posts` directory, which is the _source_ for that gallery.
 Bingo: [jekyllthemes/2015-08-20-read-only.markdown at master ·
 mattvh/jekyllthemes](https://github.com/mattvh/jekyllthemes/blob/master/_posts/2015-08-20-read-only.markdown),
 which points to
-[old-jekyll-templates/Read-Only-Jekyll-Theme](https://github.com/old-jekyll-templates/Read-Only-Jekyll-Theme) 
+[old-jekyll-templates/Read-Only-Jekyll-Theme](https://github.com/old-jekyll-templates/Read-Only-Jekyll-Theme)
 	
 The instructions for actually _using_ it are pretty well hidden, but
 [benbalter/jekyll-remote-theme: Jekyll plugin for building Jekyll sites with
 any GitHub-hosted theme](https://github.com/benbalter/jekyll-remote-theme) 	
 appears to be the place for it.  Of course it doesn't work.
 
-There are 50-odd forks.  All of them appear tothave simply built a blog on top
+There are 50-odd forks.  All of them appear to have simply built a blog on top
 of it.  Most are ancient.
 [LiberLibrum/LiberLibrum.github.io](https://github.com/LiberLibrum/LiberLibrum.github.io)
 has a working site, but my guess is that it's using an older version of Jekyll
@@ -53,8 +53,34 @@ has a working site, but my guess is that it's using an older version of Jekyll
 landing-page, and the styles are in `/sass` instead of `/_sass`.  Only way to
 salvage it is to fork it and take an axe to it.  Real hackers use an axe.
 
+#### Ugh
+
+I did some further experimentation; not all of the standard gem themes have a
+"page" layout!  Flipping between themes seems to be something you can only do
+reliably if all you have is a blog.  In particular,
+[Minimal](https://github.com/pages-themes/minimal), which has a logo on the
+side so it looks easy to modify, does not.  (The only layouts are default and
+post.  Doesn't even have home.  Many of the others only have default.)
+
 ### However...
 
 Alternatively, I might just say "inspired by" and fake it.  How hard can it be to
-style a green rectangle?  (Famous last words?)
+style a green rectangle?  (Famous last words?)  The _right_ thing is, almost
+certainly, to clone (e.g.) Minima or Minimal, and hack it.  Or Read-Only,
+since the CSS in that thing is complicated.
+
+For reference, though, here's the css that makes the round avatar:
+
+```scss
+		&.avatar {
+			border-radius: 100%;
+			overflow: hidden;
+			
+			img {
+				border-radius: 100%;
+				display: block;
+				width: 100%;
+			}
+		}
+```
 
