@@ -16,6 +16,9 @@
 title: Stephen R. Savitzky
 email: steve@savitzky.net
 description: >- # this means to ignore newlines until "baseurl:"
+  Computer Curmudgeon for hire
+
+long_description:
   Consultant with half a century of experience
   developing software, configuring computers, teaching, mentoring, and writing
   songs.  He is available for hire.
@@ -26,8 +29,12 @@ github_username:  ssavitzky
 
 # Build settings  
 markdown: kramdown
-theme: minima #jekyll-theme-minimal #read-mostly-jekyll-theme
+theme: minima
+#theme: jekyll-theme-minimal
+#theme: read-mostly-jekyll-theme
 #remote_theme: old-jekyll-templates/Read-Only-Jekyll-Theme
+
+repository: "ssavitzky/ssavitzky.github.io"
 
 plugins:
   - jekyll-feed
@@ -49,4 +56,8 @@ plugins:
 
 header_pages:
     - about-me.md
+    - hire-me.md
+
+sidebar_pages:
+    - about.md
     - hire-me.md

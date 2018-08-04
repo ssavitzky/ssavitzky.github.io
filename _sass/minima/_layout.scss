@@ -28,6 +28,8 @@
   float: right;
   line-height: $base-line-height * $base-font-size * 2.25;
 
+  background-color: $background-color;
+  color: $text-color;
   .nav-trigger {
       display: none;
   }
@@ -84,6 +86,122 @@
     }
 
     input:checked ~ .trigger {
+      display: block;
+      padding-bottom: 5px;
+    }
+
+    .page-link {
+      display: block;
+      padding: 5px 10px;
+
+      &:not(:last-child) {
+        margin-right: 0;
+      }
+      margin-left: 20px;
+    }
+  }
+}
+
+
+
+/**
+ * Sidebar
+ */
+.sidebar {
+  border-top: 5px solid $grey-color-dark;
+  border-bottom: 1px solid $grey-color-light;
+  width: 220px;
+  height: 100%;
+  background-color: $sb-background-color;
+  color: $sb-text-color;
+  float: right;
+  //display: block;
+
+  // Positioning context for the mobile navigation icon
+  position: relative;
+}
+
+.sb-title {
+  @include relative-font-size(1.625);
+  font-weight: 300;
+  line-height: $base-line-height * $base-font-size * 2.25;
+  letter-spacing: -1px;
+  margin-bottom: 0;
+  float: left;
+  color: $sb-text-color;
+  line-height: $base-line-height
+		   
+  &,;
+  &:visited {
+    color: $grey-color-dark;
+  }
+}
+
+.sb-nav {
+    float: right;
+    height: 100%;
+    width: auto;
+  line-height: $base-line-height * $base-font-size * 2.25;
+
+  background-color: $sb-background-color;
+  color: $sb-text-color;
+  
+  .sb-trigger {
+      display: none;
+  }
+
+  .menu-icon {
+    display: none;
+  }
+
+  .sb-page-link {
+    color: $sb-text-color;
+    line-height: $base-line-height;
+
+    // Gaps between nav items, but not on the last one
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+
+  @include media-query($on-palm) {
+    position: absolute;
+    top: 9px;
+    right: $spacing-unit / 2;
+    background-color: $sb-background-color;
+    border: 1px solid $grey-color-light;
+    border-radius: 5px;
+    text-align: right;
+
+    label[for="sb-trigger"] {
+      display: block;
+      float: right;
+      width: 36px;
+      height: 36px;
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    .menu-icon {
+      display: block;
+      float: right;
+      width: 36px;
+      height: 26px;
+      line-height: 0;
+      padding-top: 10px;
+      text-align: center;
+
+      > svg {
+        fill: $grey-color-dark;
+      }
+    }
+
+    input ~ .sb-trigger {
+      clear: both;
+      display: none;
+    }
+
+    input:checked ~ .sb-trigger {
       display: block;
       padding-bottom: 5px;
     }
