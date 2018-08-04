@@ -56,4 +56,28 @@ clone minima again (to get the history), rename the origin remote to upstream
 (to get updates), make a patch set for the changes we're making to the
 directories we've copied, and we'll be good to go.
 
+### Frustration
 
+It doesn't help that I'm still learning my around CSS and SASS (which compiles
+into CSS).  It _didn't_ help that bugs involving missing punctuation (dollar signs,
+semicolons, etc.) and misplaced prefixes (`sb-` prefixing sidebar variables)
+are hard to find.
+
+It also didn't help one bit that I didn't realize that the browser was caching
+style sheets, so _of course_ many of the changes I made while experimenting
+didn't seem to make any difference.  :P
+
+Turns out there's a clever workaround:  append a question mark and time stamp
+to the stylesheet's URL.  In this site's `_includes/head.html` it looks like:
+
+{% raw %}
+```html
+  <!-- timestamp tricks the browser into reloading scss on every refresh -->
+  <link rel="stylesheet" 
+        href="{{ "/assets/main.css" | relative_url 
+              }}?{{ site.time | date: "%Y-%m-%dt%H:%M" }}">
+```
+{% endraw %}
+
+As for the CSS, I finally managed to cobble up something that almost worked,
+but it's going to require more work tomorrow.
