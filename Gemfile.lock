@@ -245,7 +245,8 @@ DEPENDENCIES
   github-pages
   jekyll-feed (~> 0.6)
   jekyll-remote-theme
-  jekyll-theme-minimal
+  jekyll-seo-tag
+  minima
   tzinfo-data
 
 BUNDLED WITH

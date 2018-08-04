@@ -102,7 +102,16 @@
   }
 }
 
-
+/**
+ * The left-hand, scrollable column
+ */
+.scrollable {
+    display: block;
+    float: left;
+    padding-right: 23em; // this is cheating.
+    display: flex;
+    flex-direction: column;
+}
 
 /**
  * Sidebar
@@ -110,15 +119,22 @@
 .sidebar {
   border-top: 5px solid $grey-color-dark;
   border-bottom: 1px solid $grey-color-light;
-  width: 220px;
+  width: 22em;
   height: 100%;
   background-color: $sb-background-color;
   color: $sb-text-color;
+  text-align: center;
+  position:  fixed;
+		top: 0;
+		width: 23em;
+		right: 0;
   float: right;
   //display: block;
 
+    display: flex;
+    flex-direction: column;
   // Positioning context for the mobile navigation icon
-  position: relative;
+  //position: relative;
 }
 
 .sb-title {
@@ -127,13 +143,26 @@
   line-height: $base-line-height * $base-font-size * 2.25;
   letter-spacing: -1px;
   margin-bottom: 0;
-  float: left;
+  //float: left;
   color: $sb-text-color;
-  line-height: $base-line-height
-		   
-  &,;
+  line-height: $base-line-height;
+	
   &:visited {
-    color: $grey-color-dark;
+    color: darken($sb-text-color, 15%);
+  }
+}
+
+.sb a {
+
+  color: $sb-text-color;
+  line-height: $base-line-height;
+  &:visited {
+    color: darken($sb-text-color, 15%);
+  }
+
+  &:hover {
+    color: $sb-text-color;
+    text-decoration: underline;
   }
 }
 
@@ -196,12 +225,12 @@
       }
     }
 
-    input ~ .sb-trigger {
+    input ~ .trigger {
       clear: both;
       display: none;
     }
 
-    input:checked ~ .sb-trigger {
+    input:checked ~ .trigger {
       display: block;
       padding-bottom: 5px;
     }

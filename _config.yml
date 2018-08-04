@@ -29,7 +29,7 @@ github_username:  ssavitzky
 
 # Build settings  
 markdown: kramdown
-theme: minima
+theme: 
 #theme: jekyll-theme-minimal
 #theme: read-mostly-jekyll-theme
 #remote_theme: old-jekyll-templates/Read-Only-Jekyll-Theme
@@ -37,6 +37,7 @@ theme: minima
 repository: "ssavitzky/ssavitzky.github.io"
 
 plugins:
+  - jekyll-seo
   - jekyll-feed
   - jekyll-remote-theme
 

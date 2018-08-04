@@ -11,8 +11,8 @@ source "https://rubygems.org"
 #gem "jekyll", "~> 3.8.3"
 
 # This is the default theme for new Jekyll sites. You may change this to anything you like.
-gem "jekyll-theme-minimal";
-# gem "minima";
+
+gem "minima";
 #gem "read-mostly-jekyll-theme", :path => "../Read-Only-Jekyll-Theme"
 
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
@@ -33,3 +33,6 @@ gem "wdm", "~> 0.1.0" if Gem.win_platform?
 # This allows us to use any theme hosted on GitHub
 gem "jekyll-remote-theme"
 
+# used by minima, which we aren't using
+
+gem "jekyll-seo-tag"

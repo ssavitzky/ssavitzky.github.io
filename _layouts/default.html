@@ -4,18 +4,16 @@
   {%- include head.html -%}
 
   <body>
-    <div class="wrapper"> <!-- new -->
+
     {%- include sidebar.html -%}
-    
-    <!--div class="wrapper"-->
+
+    <div  class="scrollable">
     {%- include header.html -%}
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
         {{ content }}
       </div>
     </main>
-
-    <!--/div-->
     {%- include footer.html -%}
     </div>
   </body>
