@@ -22,6 +22,7 @@ I'm going to be flipping back and forth a lot between here and Read-Only, so
 I'm making shell variables RM and RO.  Note the upper case.  I don't want to
 inadvertantly type `rm` and messs stuff up.
 
+
 ```bash
  cd ../Read-Only-Jekyll-Theme
  RM=`pwd`
@@ -34,3 +35,9 @@ take an axe to the old one.  My guess is the latter, actually.  The main thing
 you need for a gem-based theme is a gemspec, and that copies over just fine.
 
 
+### As it turns out...
+
+... neither option gets one anyplace useful.  It's evidently a lot of work
+converting an old template into a new one, and minima (the default) appears to
+be way different from even the other GitHub Pages themes.  Using it tempts one
+to actually _use_ its layouts.
