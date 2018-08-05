@@ -3,7 +3,9 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 layout: home
-#layout: landing-page
+subtitle: Computer Curmudgeon for Hire
+is_home_page: 1
+banner_image: Cat-and-Mouse.jpg
 ---
-(see [about/](about) for the original about page that came with the Jekyll
-setup. 
+
+{{ site.long_description }}

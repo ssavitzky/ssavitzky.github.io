@@ -1,3 +1,15 @@
+{%- if page.is_home_page || page.layout == "home" -%}
+  <div class="home-page-banner" role="banner">
+       <img src="{{ "/assets/" | relative_url
+			   }}{{page.banner_image}}" >
+       Playing cat-and-mouse with a computer problem?
+  </div>
+{%- elsif page_banner_image -%}
+  <div class="page-banner-image" role="banner">
+       <img src="{{ "/assets/" | relative_url
+			   }}{{page.banner_image}}" >
+  </div>
+{%- endif -%}
 <header class="site-header" role="banner">
 
   <div class="wrapper">

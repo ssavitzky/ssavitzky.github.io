@@ -1,10 +1,22 @@
 <section class="sidebar" role="banner">
 
+  <div class=sb-logo>
+      {% if site.logo_image %}
+	  <div class="sb-logo-box">
+	     <div class="sb-logo-frame">
+	      <img src="{{ "/assets/" | relative_url
+			   }}{{site.logo_image}}" >
+	     </div>
+	  </div>
+	      <a class="sb-subtitle" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
+      {% else %}
+	  <a class="sb-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
+      {% endif %}
+  </div>
+
   <header class="sb-header">
     {%- assign sb_default_paths = site.pages | map: "path" -%}
     {%- assign sb_page_paths = site.sidebar_pages | default: sb_default_paths -%}
-    <a class="sb-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
-
     {%- if sb_page_paths -%}
       <nav class="sb-nav"> 
         <input type="checkbox" id="sb-trigger" class="sb-trigger" />
@@ -15,7 +27,7 @@
             </svg>
           </span>
         </label>
-        <div class="trigger">
+        <div class="sb-triggered">
           {%- for path in sb_page_paths -%}
             {%- assign my_page = site.pages | where: "path", path | first -%}
             {%- if my_page.title -%}
@@ -27,6 +39,6 @@
     {%- endif -%}
   </header>
   <footer class="sb-footer">
-    bottom stuff goes here eventually
+    {{ site.sb_footer_text }}
   </footer>
 </section>

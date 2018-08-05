@@ -26,7 +26,31 @@ body {
     display: flex;
     flex-direction: column;
     width: $sb-width;
-    float: right;
+    //float: right;
+}
+
+/**
+ * Banner image
+ */
+.home-page-banner {
+    width: 100%;
+    height: $sb-width;
+    overflow: hidden;
+    display: inline;
+    align-items: center;
+    background-color: $background-color;
+    whitespace: wrap;
+}
+
+
+.home-page-banner >   img {
+    margin: auto;
+	
+}
+
+.page-banner {
+    width: 100%;
+    overflow: hidden;
 }
 
 /**
@@ -39,12 +63,11 @@ body {
   z-index: 2;
   position: sticky;
   top: 0px;
+  // you have to set a background color for an element with sticky
+  // positioning, otherwise it is transparent and looks like heck.
   background-color: $background-color;
   // Positioning context for the mobile navigation icon
   // position: relative;
-  // sticky positioning requires an opaque background to work, or something.
-  //position: sticky;
-  //top: 5px;
 }
 
 .site-title {
@@ -142,18 +165,40 @@ body {
 /**
  * Sidebar
  */
+
+/*
+ * TODO:  what we need to do for the sidebar when it doesn't fit is shrink it down to a stripe.
+ *        When clicked, pop out the sidebar _contents_ 
+ */
 .sidebar {
   border-top: 1px solid $grey-color-dark;
   border-bottom: 1px solid $grey-color-light;
   height: 100%;
+  width: $sb-width;
   background-color: $sb-background-color;
   color: $sb-text-color;
   text-align: center;
-
-  display: flex;
-  flex-direction: column;
+  align-items: center;
+  display: block;
   // Positioning context for the mobile navigation icon
-  //position: relative;
+  position: relative;
+}
+
+.sb-logo-frame {
+    height: $sb-width / 1.75;
+    width: $sb-width / 1.75;
+    border-radius: 100%;
+    overflow: hidden;
+    display: block;
+    margin: auto;
+}
+
+.sb-logo-box {
+    height: $sb-width;
+    display: flex;
+    flex-direction: column;
+    //display: block;
+    align-items: center;
 }
 
 .sb-title {
@@ -162,7 +207,6 @@ body {
   line-height: $base-line-height * $base-font-size * 2.25;
   letter-spacing: -1px;
   margin-bottom: 0;
-  //float: left;
   color: $sb-text-color;
   line-height: $base-line-height;
 	
@@ -171,7 +215,21 @@ body {
   }
 }
 
-.sb a {
+.sb-subtitle {
+  @include relative-font-size(1.25);
+  font-weight: 300;
+  line-height: $base-line-height * $base-font-size * 2.25;
+  letter-spacing: -1px;
+  margin-top: 0px;
+  color: $sb-text-color;
+  line-height: $base-line-height;
+	
+  &:visited {
+    color: darken($sb-text-color, 15%);
+  }
+}
+
+.sb-nav a {
 
   color: $sb-text-color;
   line-height: $base-line-height;
@@ -185,12 +243,21 @@ body {
   }
 }
 
-.sb-nav {
-    //float: right;
-    height: 100%;
-    //width: auto;
-  line-height: $base-line-height * $base-font-size * 2.25;
+.sb-header {
+    // we probably need a media query to make sure we can show everything
+    position: sticky;
+    top: 0px;
+}
 
+.sb-nav {
+    //height: 100%;
+    //width: auto;
+    align-items: center;
+    display: block;
+    
+    //border: 1px solid red;
+  line-height: $base-line-height * $base-font-size * 2.25;
+    
   background-color: $sb-background-color;
   color: $sb-text-color;
   
@@ -204,13 +271,11 @@ body {
 
   .sb-page-link {
     color: $sb-text-color;
-    line-height: $base-line-height;
+    line-height: $base-line-height * $base-font-size * 1.25;
+    display: block;
 
-    // Gaps between nav items, but not on the last one
-    &:not(:last-child) {
-      margin-right: 20px;
-    }
   }
+  
 
   @include media-query($on-palm) {
     position: absolute;
@@ -244,17 +309,17 @@ body {
       }
     }
 
-    input ~ .trigger {
+    input ~ .sb-triggered {
       clear: both;
       display: none;
     }
 
-    input:checked ~ .trigger {
+    input:checked ~ .sb-triggered {
       display: block;
       padding-bottom: 5px;
     }
 
-    .page-link {
+    .sb-page-link {
       display: block;
       padding: 5px 10px;
 
