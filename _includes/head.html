@@ -3,8 +3,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- %- seo -% -->
-<!-- timestamp supposedly tricks the browser into reloading css on every refresh -->
-  <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}?{{ site.time | date: "%Y-%m-%dt%H:%M" }}">
+  {%- if jekyll.environment == 'production' -%}
+      <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}
+  {%- else -%}
+      {%- comment -%}
+        The timestamp tricks the browser into reloading the stylesheet every
+        time you reload the page.  Very useful during development.
+      {%- endcomment -%}
+      <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url
+                                   }}?{{ "now" | date: "%Y-%m-%dt%H:%M" }}">
+  {%- endif -%}
   {%- feed_meta -%}
   {%- if jekyll.environment == 'production' and site.google_analytics -%}
     {%- include google-analytics.html -%}
