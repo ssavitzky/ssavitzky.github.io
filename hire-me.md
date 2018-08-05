@@ -3,8 +3,6 @@ layout: page
 title: Hire Me
 permalink: /hire-me/
 ---
-Hire me
-=======
 
 Sometimes you just need a curmudgeon -- the old guy who sits at that desk in
 the corner with his laptop and his coffee, knows the answer to almost every
@@ -19,6 +17,8 @@ opinions.](https://en.wiktionary.org/wiki/curmudgeon)".  A _computer_
 curmudgeon, on the other hand, tends to be shy around people and old enough to
 have learned that swearing at software rarely gets results.  Stubbornness,
 however, usually does.
+
+### What I do:
 
 Things <em>this</em> computer curmudgeon can do for you include:
 

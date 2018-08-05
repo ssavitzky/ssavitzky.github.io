@@ -4,9 +4,6 @@ title: About Me
 permalink: /about-me/
 ---
 
-About me
-========
-
 Programming is a _craft_ -- one of the so-called "[useful
 arts](http://en.wikipedia.org/wiki/Useful_arts)" -- and I have been practicing
 that craft for about half a century -- I learned to program when I was in high
