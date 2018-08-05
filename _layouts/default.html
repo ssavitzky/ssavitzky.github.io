@@ -3,11 +3,9 @@
 
   {%- include head.html -%}
 
-  <body>
-
-    {%- include sidebar.html -%}
-
-    <div  class="scrollable">
+<body>
+<div class="outer-box">
+  <div class="content-column"> 
     {%- include header.html -%}
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
@@ -15,7 +13,10 @@
       </div>
     </main>
     {%- include footer.html -%}
-    </div>
-  </body>
-
+  </div>
+  <div class="sidebar-column">
+    {%- include sidebar.html -%}
+  </div>
+</div>
+</body>
 </html>

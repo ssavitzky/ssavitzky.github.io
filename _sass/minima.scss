@@ -18,9 +18,10 @@ $grey-color:       #828282 !default;
 $grey-color-light: lighten($grey-color, 40%) !default;
 $grey-color-dark:  darken($grey-color, 25%) !default;
 
-// sidebar colors
+// sidebar colors and width
 $sb-text-color:    #ffffff !default;
 $sb-background-color:    #22aa22 !default;
+$sb-width:         200px;
 
 $table-text-align: left !default;
 

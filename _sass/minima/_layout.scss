@@ -1,4 +1,29 @@
 /**
+ * Layout with sidebar and main column.
+ */
+.outer-box {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    max-width: 960px;
+    border: 2p solid red;
+}
+
+.content-column {
+    //flex: 3;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid green;
+}
+
+.sidebar-column {
+    display: flex;
+   // flex: 1;
+    flex-direction: column;
+    width: $sb-width;
+}
+
+/**
  * Site header
  */
 .site-header {
@@ -7,7 +32,10 @@
   min-height: $spacing-unit * 1.865;
 
   // Positioning context for the mobile navigation icon
-  position: relative;
+  // position: relative;
+  // sticky positioning requires an opaque background to work, or something.
+  //position: sticky;
+  //top: 5px;
 }
 
 .site-title {
@@ -103,33 +131,18 @@
 }
 
 /**
- * The left-hand, scrollable column
- */
-.scrollable {
-    display: block;
-    float: left;
-    padding-right: 23em; // this is cheating.
-    display: flex;
-    flex-direction: column;
-}
-
-/**
  * Sidebar
  */
 .sidebar {
   border-top: 5px solid $grey-color-dark;
   border-bottom: 1px solid $grey-color-light;
-  width: 22em;
+  //width: 22em;
   height: 100%;
   background-color: $sb-background-color;
   color: $sb-text-color;
   text-align: center;
-  position:  fixed;
-		top: 0;
-		width: 23em;
-		right: 0;
-  float: right;
-  //display: block;
+  //position:  sticky;
+  //top: 5px;
 
     display: flex;
     flex-direction: column;
@@ -167,9 +180,9 @@
 }
 
 .sb-nav {
-    float: right;
+    //float: right;
     height: 100%;
-    width: auto;
+    //width: auto;
   line-height: $base-line-height * $base-font-size * 2.25;
 
   background-color: $sb-background-color;
