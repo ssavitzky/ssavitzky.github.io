@@ -33,6 +33,7 @@ gem "wdm", "~> 0.1.0" if Gem.win_platform?
 # This allows us to use any theme hosted on GitHub
 gem "jekyll-remote-theme"
 
-# used by minima, which we aren't using
+# SEO
 
+gem "jekyll-sitemap"
 gem "jekyll-seo-tag"

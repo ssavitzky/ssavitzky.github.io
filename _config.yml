@@ -37,14 +37,15 @@ theme:
 repository: "ssavitzky/ssavitzky.github.io"
 
 plugins:
-  - jekyll-seo
+  - jekyll-seo-tag
   - jekyll-feed
-  - jekyll-remote-theme
+  - jekyll-remote-themet
+  - jekyll-sitemap
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
-# exclude:
+# exclude:trigger finger
 #   - Gemfile
 #   - Gemfile.lock		
 #   - node_modules
