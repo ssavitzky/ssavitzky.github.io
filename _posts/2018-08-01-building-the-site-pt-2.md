@@ -6,10 +6,10 @@ layout: post
 
 ### Theme
 
-Unfortunately, the theme I want to use, [https://html5up.net/read-only](HTML5
-UP's Read Only), isn't a Jekyll theme, and on investigation it looks like
-converting it will be a nightmare.  So let's just copy the design.  Here's
-what we need:
+Unfortunately, the theme I want to use, [HTML5 UP's Read
+Only](https://html5up.net/read-only), isn't a Jekyll theme, and on
+investigation it looks like converting it will be a nightmare.  So let's just
+copy the design.  Here's what we need:
 
   * The nav is a large green rectangle on the right-hand side of the screen.
     * it has a large round avatar image at the top, 
