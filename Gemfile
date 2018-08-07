@@ -35,5 +35,5 @@ gem "jekyll-remote-theme"
 
 # SEO
 
-gem "jekyll-sitemap"
+#gem "jekyll-sitemap"
 gem "jekyll-seo-tag"
