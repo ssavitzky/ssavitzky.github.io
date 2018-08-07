@@ -2,7 +2,11 @@
 title: Building a GitHub Pages website, part 4
 layout: post
 ---
-### Overriding a theme
+**Overriding a theme**  Wherein our intrepid programmer decides to develop his
+new Jekyll theme by taking an axe to the best example he could find, which
+happens to be the default.
+
+### Let's try this again
 
 It turns out that if you follow these instructions in the `Gemfile`
 Pages, it sucks in _all_ of the Pages-specific themes.

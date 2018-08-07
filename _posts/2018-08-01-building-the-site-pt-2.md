@@ -1,8 +1,11 @@
 ---
 title: Building a GitHub Pages website, part 2
 layout: post
+tags: [ software, blogging, web, jekyll, github ]
 ---
-## ... and one step back
+**... and one step back**  Wherein our intrepid programmer begins to run into
+difficulties.  This will be an ongoing, um... _theme_ in most of the rest of
+the series.
 
 ### Theme
 

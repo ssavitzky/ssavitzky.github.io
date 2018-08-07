@@ -3,7 +3,7 @@ title: Building a GitHub Pages website, part 6
 layout: post
 ---
 Wherein our intrepid blogger reflects on the current state of the siite.
-At this point, things are pretty much the way I want them.
+At this point, things are pretty much the way he wants them.
 
 - There's space for a fixed-size banner (with height equal to the sidebar's
   width) on the home page, and a (presumably shorter) banner elsewhere.  These

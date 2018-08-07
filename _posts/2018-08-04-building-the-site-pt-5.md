@@ -3,6 +3,9 @@ title: Building a GitHub Pages website, part 5
 layout: post
 ---
 
+Wherein our intrepid programmer gets a nice feeling of accomplishment.  There
+is a sidebar, and he explains how to make one of your own.  Sort of.
+
 ### CSS notes
 
 [Learn web development |

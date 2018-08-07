@@ -2,7 +2,8 @@
 title: Building a GitHub Pages website, part 3
 layout: post
 ---
-## Read-Mostly
+**Read-Mostly** Wherein our intrepid programmer begins to get a bad feeling
+about this.
 
 So... the way forward appears to be re-building Read-Only as a gem-based
 theme.  I'm mostly following the instructions in [Creating Gem Based Themes

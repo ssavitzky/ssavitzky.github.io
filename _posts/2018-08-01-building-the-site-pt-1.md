@@ -1,9 +1,21 @@
 ---
 layout: post
 title: Building a GitHub Pages website, part 1
+tags: [ software, blogging, web, jekyll, github ]
+# not clear whether the tags are working, but it's a start.
 ---
 
-## Step by step
+**Step by step.** Wherein our intrepid programmer embarks on the seemingly
+simple journey from a straightforward but boring and hard-to-maintain website
+written in raw HTML, to a shiny new website based on Jekyll and hosted on
+GitHub Pages.  We'll see how simple it _really_ is in the next installment or
+two.
+
+(Aside:  it must be said that between a good editing mode in emacs and a good
+set of Makefiles, pushing content to the old site was never the issue.  The
+real problem was the blasted sidebar, which had to be cut-and-paste-and-edited
+onto _every_ new page.  Most of the time, I just punted on everything below
+what was linked from the home page.  And that was bad enough.)
 
 ### Create the repository on GitHub.
 
