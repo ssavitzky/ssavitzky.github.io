@@ -1,4 +1,4 @@
-# https://ssavitzky.github.io/
+# ssavitzky.github.io/
 Computer curmudgeon for hire.
 
 [This site](https://ssavitzky.github.io/) may eventually
