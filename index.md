@@ -1,7 +1,4 @@
 ---
-# Feel free to add content and custom Front Matter to this file.
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-
 layout: home
 subtitle: Computer Curmudgeon for Hire
 banner_image: Cat-and-Mouse.jpg
@@ -15,5 +12,5 @@ of great stories about the way things were in the old days, but his browser
 tabs have titles like "ReactJS", "Elm", "What's next for GitHub?", and "Linux
 Weekly News".
 
-A Computer Curmudgeon is someone who gets annoyed at computers so you don't
-have to.
+A Computer Curmudgeon is someone who gets annoyed at your computer so you
+don't have to.

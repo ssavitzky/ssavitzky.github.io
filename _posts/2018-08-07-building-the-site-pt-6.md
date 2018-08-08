@@ -2,7 +2,7 @@
 title: Building a GitHub Pages website, part 6
 layout: post
 ---
-Wherein our intrepid blogger reflects on the current state of the siite.
+Wherein our intrepid blogger reflects on the current state of the site.
 At this point, things are pretty much the way he wants them.
 
 - There's space for a fixed-size banner (with height equal to the sidebar's
