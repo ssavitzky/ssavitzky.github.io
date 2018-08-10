@@ -1,0 +1,24 @@
+# Data for the sidebar.  Data is a mix of local links, external links, and
+# text headers.  Some of the links are headings
+
+- link: /
+  text: Stephen Savitzky
+  style: heading
+- link: /about-me/
+  text: About Me
+- link: /services/
+  text: Services
+- link: /resume/
+  text: Resume
+- hr
+- link: /portfolio/
+  text: Portfolio
+  style: heading
+- link: /software/
+  text: Software
+- link: /writing/
+  text: Writing
+- link: /websites/
+  text: Websites
+- link: /patents/
+  text: Patents

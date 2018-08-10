@@ -223,16 +223,22 @@ body {
   margin-top: 0px;
   color: $sb-text-color;
   line-height: $base-line-height;
-	
+  
   &:visited {
     color: darken($sb-text-color, 15%);
   }
+}
+
+.sb-nav hr {
+    top-padding: $base-line-height;
+  line-height: $base-line-height * $base-font-size * 2.25;
 }
 
 .sb-nav a {
 
   color: $sb-text-color;
   line-height: $base-line-height;
+  display: block;
   &:visited {
     color: darken($sb-text-color, 15%);
   }
@@ -241,6 +247,17 @@ body {
     color: $sb-text-color;
     text-decoration: underline;
   }
+
+}
+.sb-nav a.active {
+    background-color: $sb-text-color;
+    color: $sb-background-color;
+}
+
+.sb-nav span {
+    // this doesn't work if we try to use a class -- no idea why.
+  @include relative-font-size(1.25);
+  font-weight: 300;
 }
 
 .sb-header {
@@ -365,19 +382,21 @@ body {
   padding-left: $spacing-unit / 2;
 }
 
+/* This should really be done with flexboxes */
+
 .footer-col-1 {
+  width: -webkit-calc(45% - (#{$spacing-unit} / 2));
+  width:         calc(45% - (#{$spacing-unit} / 2));
+}
+
+.footer-col-2 {
   width: -webkit-calc(35% - (#{$spacing-unit} / 2));
   width:         calc(35% - (#{$spacing-unit} / 2));
 }
 
-.footer-col-2 {
+.footer-col-3 {
   width: -webkit-calc(20% - (#{$spacing-unit} / 2));
   width:         calc(20% - (#{$spacing-unit} / 2));
-}
-
-.footer-col-3 {
-  width: -webkit-calc(45% - (#{$spacing-unit} / 2));
-  width:         calc(45% - (#{$spacing-unit} / 2));
 }
 
 @include media-query($on-laptop) {

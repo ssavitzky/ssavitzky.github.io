@@ -6,9 +6,8 @@
 	     <div class="sb-logo-frame">
 	      <img src="{{ "/assets/" | relative_url
 			   }}{{site.logo_image}}" >
-	     </div>
+              </div>
 	  </div>
-	      <a class="sb-subtitle" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
       {% else %}
 	  <a class="sb-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
       {% endif %}
@@ -28,12 +27,15 @@
           </span>
         </label>
         <div class="sb-triggered">
+          {% include sidebar-links.html %}
+          {% comment %}
           {%- for path in sb_page_paths -%}
             {%- assign my_page = site.pages | where: "path", path | first -%}
             {%- if my_page.title -%}
-            <a class="sb-page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
+            <a class="active" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
             {%- endif -%}
           {%- endfor -%}
+          {% endcomment %}
         </div>
       </nav>
     {%- endif -%}
