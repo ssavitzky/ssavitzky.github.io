@@ -4,13 +4,6 @@ title: Hire Me
 permalink: /hire-me/
 ---
 
-Sometimes you just need a curmudgeon -- the old guy who sits at that desk in
-the corner with his laptop and his coffee, knows the answer to almost every
-question, and is stubborn and patient enough to _keep_ answering in six
-different ways until you understand it.  He has lots of great stories about
-the way things were in the old days, but his browser tabs have titles like
-"ReactJS", "Elm", "What's next for GitHub?", and "Linux Weekly News".
-
 "Curmudgeon" is usually defined as "[An ill-tempered (and frequently old)
 person full of stubborn ideas or
 opinions.](https://en.wiktionary.org/wiki/curmudgeon)".  A _computer_
@@ -18,7 +11,14 @@ curmudgeon, on the other hand, tends to be shy around people and old enough to
 have learned that swearing at software rarely gets results.  Stubbornness,
 however, usually does.
 
-### What I do:
+{%-comment-%} 
+
+This stuff really might work better as a "stuff I can do" page, or even a
+gallery of little cards.
+
+{%-endcomment-%}
+
+### Some of the things I can do for you:
 
 Things <em>this</em> computer curmudgeon can do for you include:
 
@@ -29,10 +29,11 @@ Things <em>this</em> computer curmudgeon can do for you include:
 * Helping you set up a new computer, with awesome free software that runs on
   whatever operating system you like, and a desktop that works the way you
   expect it to.  I specialize in Linux, but I've been using -- and programming
-  -- PCs since before Windows, and Macs since the Mac II.
+  -- PCs since NS-DOS and CP/M, and Macs since the Mac II.
 * Helping you install Linux, or repair a broken upgrade.
 * Helping you set up regular backups, 
 * Helping you set up your printer.
+* Helping you set up a Raspberry Pi.
 * Helping you set up your web browser to keep sites from tracking you.
 * Helping you set up a website with WordPress, Weebly, or GitHub Pages, and
   teaching you to how add your own content.
