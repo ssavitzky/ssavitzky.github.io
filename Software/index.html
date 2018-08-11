@@ -1,0 +1,49 @@
+---
+title: Software
+layout: page
+path: /Software/
+---
+<!-- TODO: rewrite as an aggregator for paragraphs in separate files -->
+<p> Selected code, either open source or written by me on my own time back in
+    the days before "open source" was defined.
+<br>
+<dl>
+  <dt> &nbsp; </dt>
+  <dt> <b><a href="https://github.com/ssavitzky/pia-server" >PIA</a></b> (1999-2001)
+  </dt>
+  <dd> A web server and templating engine for HTML and XML, with
+       functional-programming semantics and XML syntax.  It makes a
+       single pass through the input file, making it suitable for
+       low-memory applications.  Ugly, but remarkably efficient.
+       Originally written in Perl, rewritten in Java, partially
+       rewritten to use the newly-defined DOM, and later ported to
+       C.  Note that the earliest versions were roughly contemporary
+       with the development of PHP, and predated both XML and the DOM.
+    <br />
+       &nbsp;&nbsp;&nbsp;I designed the language and wrote the XML/HTML
+       parser, the interpreter, and the DOM library.  This will also give
+       you a good idea of how I like to organize a project, with
+       HEADER.html files in most if not all directories.  (These are
+       gradually being replaced with README.md as things get moved to
+       GitHub.)  The HEADER.html files work really well if you're serving the
+       project with Apache, with auto-indexing turned on.
+       <!-- TODO:  provide a link back to the Apache version. -->
+  <dt> &nbsp; </dt>
+  <dt> <a href="https://github.com/ssavitzky/MakeStuff" >MakeStuff</a>
+  <dd> These are the tools I use to manage multiple websites, songbooks,
+       recording projects, blogs, remote <code>git</code> repositories, and so
+       on.  Also a good example of how I organize projects and use Makefiles
+       as a way of aggregating commonly-used code snippets.
+  <dt> &nbsp; </dt>
+  <dt> <b><a href="https://github.com/ssavitzky/Silvermine-Resources"
+       >Silvermine Resources products</a></b> </dt>
+  <dd> I wrote this suite of programs for my late <a
+       href="http://en.wikipedia.org/wiki/Abraham_Savitzky"
+       >father's</a> now-defunct consulting company.  They ran under
+       MS-DOS, and provide a simple <code>mc</code>-like interface for
+       transferring and converting files written by a variety of
+       different Perkin-Elmer spectrophotometers and other devices.  The
+       project involved writing drivers for several different
+       filesystems, and used <code>make</code> for incremental backups
+       and production as well as compilation.
+</dl>
