@@ -7,19 +7,20 @@ body {
 }
 
 .outer-box {
-    min-height: 100%;
+    width: 100%;
+    min-height: 100vh;
     align: center;
     display: flex;
     flex-direction: row;
     max-width: 960px;
-    width: 100%;
     border: 2px solid green;
 }
 
 .content-column {
     width: 100%;
-    display: flex;
+    display: block;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 .sidebar-column {
@@ -362,12 +363,15 @@ body {
  */
 .site-footer {
   border-top: 1px solid $grey-color-light;
-  padding: $spacing-unit 0;
+  padding: 0; //$spacing-unit 0;
+  float: bottom;
+  margn-bottom: 0;
 }
 
 .footer-heading {
   @include relative-font-size(1.125);
   margin-bottom: $spacing-unit / 2;
+  margin-top: 0;
 }
 
 .contact-list,
@@ -380,12 +384,13 @@ body {
   @include relative-font-size(0.9375);
   color: $grey-color;
   margin-left: -$spacing-unit / 2;
+  margin-bottom: 0;
   @extend %clearfix;
 }
 
 .footer-col {
   float: left;
-  margin-bottom: $spacing-unit / 2;
+  //margin-bottom: $spacing-unit / 2;
   padding-left: $spacing-unit / 2;
 }
 
@@ -397,8 +402,10 @@ body {
 }
 
 .footer-col-2 {
-  width: -webkit-calc(35% - (#{$spacing-unit} / 2));
-  width:         calc(35% - (#{$spacing-unit} / 2));
+    align-items: center;
+    text-align: center;
+    width: -webkit-calc(35% - (#{$spacing-unit} / 2));
+    width:         calc(35% - (#{$spacing-unit} / 2));
 }
 
 .footer-col-3 {
