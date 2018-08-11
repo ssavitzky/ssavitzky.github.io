@@ -1,13 +1,15 @@
-# Data for the sidebar.  Data is a mix of local links, external links, and
-# text headers.  Some of the links are headings
+# Data for the sidebar.
+
+# Data is a mix of local links and text headings.  At some point we may add
+#  external links.  That suggests a rename: link =external, page = internal
 
 - link: /
   text: Stephen Savitzky
   style: heading
 - link: /about-me/
   text: About Me
-- link: /Services/
-  text: Services
+- link: /hire-me/
+  text: What I Do
 - hr
 - 
   text: Portfolio

@@ -2,7 +2,7 @@
 
 {% for item in site.data.sidebar %}
   {%- if item == "hr"-%}
-    <hr>
+    <p><hr>
   {%- elsif item.link -%}
     <a href="{{ item.link }}" {% if item.link == page.url %}class="active"{% endif %}>
       {%- if item.style -%}
@@ -12,10 +12,12 @@
       {%- endif -%}
     </a>
   {%- else -%}
+    <p><a name="sb-heading" class="sb-text">
       {%- if item.style %}
          <span class="{{%- item.style -%}}">{{ item.text }}</span>
       {%- else -%}
          {{ item.text }}
       {%- endif -%}
+    </a>
   {%- endif -%}
 {% endfor %}

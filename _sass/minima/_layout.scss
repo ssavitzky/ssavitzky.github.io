@@ -231,7 +231,7 @@ body {
 
 .sb-nav hr {
     top-padding: $base-line-height;
-  line-height: $base-line-height * $base-font-size * 2.25;
+    line-height: $base-line-height * $base-font-size * 2.25;
 }
 
 .sb-nav a {
@@ -249,9 +249,16 @@ body {
   }
 
 }
+
 .sb-nav a.active {
     background-color: $sb-text-color;
     color: $sb-background-color;
+}
+
+.sb-nav a.sb-text:hover {
+    top-margin: 10px;
+    color: $sb-text-color;
+    text-decoration: none;
 }
 
 .sb-nav span {
