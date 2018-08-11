@@ -6,19 +6,19 @@
   style: heading
 - link: /about-me/
   text: About Me
-- link: /services/
+- link: /Services/
   text: Services
-- link: /resume/
-  text: Resume
 - hr
-- link: /portfolio/
+- 
   text: Portfolio
   style: heading
-- link: /software/
+- link: /Software/
   text: Software
-- link: /writing/
+- link: /Writing/
   text: Writing
 - link: /websites/
   text: Websites
-- link: /patents/
+- link: /Patents/
   text: Patents
+- link: /Resume/
+  text: Resume
