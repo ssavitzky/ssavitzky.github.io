@@ -198,7 +198,6 @@ body {
     height: $sb-width;
     display: flex;
     flex-direction: column;
-    //display: block;
     align-items: center;
 }
 
@@ -272,6 +271,7 @@ body {
     // we probably need a media query to make sure we can show everything
     position: sticky;
     top: 0px;
+    height: 100%;
 }
 
 .sb-nav {
@@ -356,16 +356,17 @@ body {
   }
 }
 
-
-
 /**
  * Site footer
  */
 .site-footer {
   border-top: 1px solid $grey-color-light;
   padding: 0; //$spacing-unit 0;
-  float: bottom;
-  margn-bottom: 0;
+  margin-top: $spacing-unit / 4;
+  
+  // there doesn't appear to be any way to keep the footer at the bottom
+  // of the screen if the text is short.
+  
 }
 
 .footer-heading {

@@ -10,9 +10,9 @@
   text: About Me
 - link: /hire-me/
   text: What I Do
+- p
 - hr
-- 
-  text: Portfolio
+- text: Portfolio
   style: heading
 - link: /Software/
   text: Software
@@ -24,3 +24,8 @@
   text: Patents
 - link: /Resume/
   text: Resume
+- p
+- hr
+- link: /colophon/
+  text: About Site
+- hr
