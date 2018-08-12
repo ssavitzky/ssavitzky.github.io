@@ -1,6 +1,6 @@
 ---
 title: About This Site
-path:  /colophon/
+permalink:  /colophon/
 ---
 
 The theme of this site is an extremely hacked-up version of the default Jekyll
