@@ -2,8 +2,15 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {%- seo -%}
   {%- if jekyll.environment != 'production' -%}
+      {%- comment -%}
+        We're in the development environment, so set the page title to
+        something that's easy to recognize in a browser tab.  Otherwise, the
+        title is provided by the seo tag.  The title also gives you a clear
+        indication (double colons) if page.title is empty.  Normally this
+        should only be the case for the home page.
+      {%- endcomment -%}
+      <title>DEV : {{page.title}} : {{ site.title }} </title>
       {%- comment -%}
         The timestamp tricks the browser into reloading the stylesheet every
         time you reload the page.  Very useful during development.
@@ -11,6 +18,7 @@
       <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url
                                    }}?{{ "now" | date: "%Y-%m-%dt%H:%M" }}">
   {%- else -%}
+      {%- seo -%}
       <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}" >
   {%- endif -%}
   {%- feed_meta -%}
