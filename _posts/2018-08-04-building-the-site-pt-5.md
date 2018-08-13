@@ -1,6 +1,7 @@
 ---
 title: Building a GitHub Pages website, part 5
 layout: post
+tags: [ software, blogging, web, jekyll, github ]
 ---
 
 Wherein our intrepid programmer gets a nice feeling of accomplishment.  There

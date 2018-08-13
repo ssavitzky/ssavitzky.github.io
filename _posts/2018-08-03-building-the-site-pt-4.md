@@ -1,6 +1,7 @@
 ---
 title: Building a GitHub Pages website, part 4
 layout: post
+tags: [ software, blogging, web, jekyll, github ]
 ---
 **Overriding a theme**  Wherein our intrepid programmer decides to develop his
 new Jekyll theme by taking an axe to the best example he could find, which
