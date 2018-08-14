@@ -29,7 +29,9 @@ GitHub doesn't support them.  People have developed three solutions:
 
 * The pure Liquid solution (pun acknowledged) is to generate a page that
   simply lists _all_ posts, grouped by tag.  Not too bad, actually, and with
-  this site's current meager set of posts, probably the simplest.
+  this site's current meager set of posts, it would work okay.  It's
+  _definitely_ the simplest.  There is a version of it [here on
+  StackOverflow](https://stackoverflow.com/questions/1408824/an-easy-way-to-support-tags-in-a-jekyll-blog)
 * Manually make a page for each new tag.  It doesn't have to have any actual
   content, just front matter with the layout and the tag name.
 * Grovel (that's a technical term -- it's in the Jargon File) over the site
