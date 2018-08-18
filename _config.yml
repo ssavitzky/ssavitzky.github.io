@@ -30,7 +30,7 @@ twitter_username: ssavitzky
 github_username:  ssavitzky
 linkedin_username: ssavitzky
 
-# Build settings  
+# Build settings (same as GitHub, which can't be changed)
 markdown: kramdown
 safe: true
 
@@ -48,17 +48,17 @@ plugins:
 #  - jekyll-avatar  # doesn't work, at least not in the dev environment
 
 # Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock		
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
-
+#   This is the default list plus Makefile
+exclude:
+  - Gemfile
+  - Gemfile.lock	
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - Makefile
+  
 ##### added #####
 
 # blog settings
