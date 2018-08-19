@@ -1,16 +1,27 @@
-### Honu/Makefile
+### Makefile for Jekyll blogs
 #
 # Targets:
 #	draft	make a draft post -- requires name=SLUG
 #	post	move draft to _posts
 #	publish	push to GitHub
+#	serve	serve on localhost (with drafts)
+#	build	build the site
+#	imports	copy in files from outside the tree
 #
 
 ###
 SHELL=/bin/bash
 GIT = git
 
-.PHONY: draft post publish report-vars name-required draft-required
+# TARGETS has all of the targets a user is likely to make
+#	  there are some internal ones not listed here.
+TARGETS = draft post publish serve build imports
+
+all::
+	@echo targets: $(TARGETS)
+	@echo usage:  'make draft name=SLUG title="TITLE"; edit; make post'
+
+.PHONY:  $(TARGETS) report-vars name-required draft-required 
 
 ifdef name
     DRAFT:=$(subst .md.md,.md,_drafts/$(name).md)
@@ -32,6 +43,7 @@ draft:  name-required $(DRAFT)
 $(DRAFT): 
 	echo '---' 		 > $@
 	echo title: $(TITLE)	>> $@
+	echo tags:  '[ ]'	>> $@
 	echo layout: post	>> $@
 	echo '---'		>> $@
 	$(GIT) add $@
@@ -62,6 +74,10 @@ draft-required:
 publish:
 	@[ -z "`git status --short`" ] || ($(GIT) status --short; false)
 	$(GIT) push github
+
+# make serve includes drafts
+serve:
+	bundle exec jekyll serve --drafts
 
 ### If we're using the MakeStuff package, chain in its Makefile
 #	This is optional -- it doesn't affect basic functionality -- but it
