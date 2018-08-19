@@ -60,6 +60,7 @@ draft-required:
 
 # make publish will fail if there are modified files present
 publish:
+	@[ -z "`git status --short`" ] || ($(GIT) status --short; false)
 	$(GIT) push github
 
 ### If we're using the MakeStuff package, chain in its Makefile
