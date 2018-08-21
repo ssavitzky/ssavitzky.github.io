@@ -73,8 +73,8 @@ categories:
 # header
 
 header_pages:
-    - blog.md
     - about-me.md
+    - what-i-do.md
     - hire-me.md
 
 #sidebar:

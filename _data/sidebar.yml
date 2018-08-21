@@ -26,6 +26,8 @@
   text: Resume
 - p
 - hr
+- link: /Blog/
+  text: Blog
 - link: /colophon/
   text: About Site
 - hr

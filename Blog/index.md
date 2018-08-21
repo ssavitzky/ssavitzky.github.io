@@ -1,6 +1,7 @@
 ---
 layout: blog
 title:  Blog
+permalink: /Blog/
 ---
 
 I've been blogging for quite a long time, under several different names.  This
