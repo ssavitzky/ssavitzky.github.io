@@ -51,8 +51,8 @@ $(DRAFT):
 
 post: 	draft-required $(POST)
 $(POST):
-	$(GIT) mv $(DRAFT) $(ENTRY)
-	$(GIT) commit -m "posted $(ENTRY)" $(ENTRY)
+	$(GIT) mv $(DRAFT) $(POST)
+	$(GIT) commit -m "posted $(ENTRY)" $(POST)
 
 name-required:
 	@if [ -z $(name) ]; then \
