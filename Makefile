@@ -13,6 +13,10 @@
 SHELL=/bin/bash
 GIT = git
 
+# Are we using real jekyll, or gojekyll?
+JEKYLL = bundle exec jekyll
+#JEKYLL = gojekyll
+
 # TARGETS has all of the targets a user is likely to make
 #	  there are some internal ones not listed here.
 TARGETS = draft post publish serve build imports
@@ -35,7 +39,7 @@ else ifneq (x$(wildcard _drafts/*),x)
 endif
 
 
-# In Jekyll, a post is _posts/yyyy-mm-dd-name.md
+# In Jekyll, a post is _posts/yyyy-mm-dd-name.m544d
 DATESTAMP = $(shell date "+%Y-%m-%d")
 POST = _posts/$(DATESTAMP)-$(subst _drafts/,,$(DRAFT))
 
@@ -77,7 +81,11 @@ publish:
 
 # make serve includes drafts
 serve:
-	bundle exec jekyll serve --drafts
+	$(JEKYLL) serve --drafts
+
+# build with JEKYLL_ENV=production
+build:
+	JEKYLL_ENV=production $(JEKYLL) build --drafts
 
 ### If we're using the MakeStuff package, chain in its Makefile
 #	This is optional -- it doesn't affect basic functionality -- but it
