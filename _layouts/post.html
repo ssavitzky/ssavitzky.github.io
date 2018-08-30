@@ -18,13 +18,18 @@ layout: default
     <!--/p-->
   </header>
 
+  <hr />
   <nav class="post-nav">
     {% if page.previous.url %}
       <a href="{{ page.previous.url }}">&laquo; {{ page.previous.title }}</a>
-    {% endif %}
-    {% if page.next.url %}
+    {%- else -%}
+      <span> first post</span>
+    {%- endif -%}
+    {%- if page.next.url -%}
       <a href="{{ page.next.url }}" style="float:right">{{ page.next.title }} &raquo;</a>
-    {% endif %}
+    {%- else -%}
+      <span  style="float:right"> last post</span>
+    {%- endif -%}
   </nav>
   <hr />
   <div class="post-content e-content" itemprop="articleBody">
@@ -34,11 +39,16 @@ layout: default
   <nav class="post-nav">
     {% if page.previous.url %}
       <a href="{{ page.previous.url }}">&laquo; {{ page.previous.title }}</a>
+    {%- else -%}
+      <span> first post</span>
     {% endif %}
     {% if page.next.url %}
       <a href="{{ page.next.url }}" style="float:right">{{ page.next.title }} &raquo;</a>
+    {%- else -%}
+      <span  style="float:right"> last post</span>
     {% endif %}
   </nav>
+  <hr />
 
   {%- if site.disqus.shortname -%}
     {%- include disqus_comments.html -%}
