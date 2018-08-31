@@ -58,7 +58,14 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - Makefile
-  
+
+include:
+  - .htaccess
+
+# for some reason it won't include the .well-known directory
+keep_files:
+  - .well-known/
+
 ##### added #####
 
 # blog settings
