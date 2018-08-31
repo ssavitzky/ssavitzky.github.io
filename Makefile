@@ -86,9 +86,16 @@ publish:
 serve:
 	$(JEKYLL) serve --drafts
 
-# build with JEKYLL_ENV=production
+# build with JEKYLL_ENV=production.
+#	gojekyll neither copies nor keeps the .well-known subdirectory,
+#	so just copy it from here if we have one.  It's used by our web
+#	host for renewing Let's Encrypt certs.  It also contains an empty
+#	subdirectory, so we can't easily keep it in git either.
 build:
 	JEKYLL_ENV=production $(JEKYLL) build
+	if [ ! -d _site/.well-known ] && [ -d .well-known ]; then \
+		cp -r .well-known _site;			  \
+	fi
 
 ### If we're using the MakeStuff package, chain in its Makefile
 #	This is optional -- it doesn't affect basic functionality -- but it
@@ -98,7 +105,7 @@ build:
 #
 #	Normally Makefile is a symlink to Makestuff/Makefile, and
 #	local dependencies go into depends.make.  We do it differently
-#	here because we want 
+#	here because we want this to be stand-alone.
 #
 CHAIN = $(wildcard ../MakeStuff/Makefile)
 include $(CHAIN)
