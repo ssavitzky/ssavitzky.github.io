@@ -14,8 +14,11 @@ SHELL=/bin/bash
 GIT = git
 
 # Are we using real jekyll, or gojekyll?
-JEKYLL = bundle exec jekyll
-#JEKYLL = gojekyll
+ifeq ($(wildcard .bundle),.bundle)
+  JEKYLL = bundle exec jekyll
+else
+  JEKYLL = gojekyll
+endif
 
 # TARGETS has all of the targets a user is likely to make
 #	  there are some internal ones not listed here.
@@ -85,7 +88,7 @@ serve:
 
 # build with JEKYLL_ENV=production
 build:
-	JEKYLL_ENV=production $(JEKYLL) build --drafts
+	JEKYLL_ENV=production $(JEKYLL) build
 
 ### If we're using the MakeStuff package, chain in its Makefile
 #	This is optional -- it doesn't affect basic functionality -- but it
