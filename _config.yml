@@ -62,9 +62,10 @@ exclude:
 include:
   - .htaccess
 
-# for some reason it won't include the .well-known directory
+# for some reason gojekyll won't include the .well-known directory
+# and it won't leave it alone, either.
 keep_files:
-  - .well-known/
+  - .well-known
 
 ##### added #####
 
