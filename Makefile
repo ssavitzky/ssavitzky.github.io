@@ -22,7 +22,7 @@ endif
 
 # TARGETS has all of the targets a user is likely to make
 #	  there are some internal ones not listed here.
-TARGETS = draft post publish serve build imports
+TARGETS = draft post publish serve build imports upload
 
 all::
 	@echo targets: $(TARGETS)
@@ -96,6 +96,13 @@ build:
 	if [ ! -d _site/.well-known ] && [ -d .well-known ]; then \
 		cp -r .well-known _site;			  \
 	fi
+
+# upload _site to a website that doesn't run Jekyll
+#	At some point we ought to try doing this with a branch
+#
+upload: build
+	rsync -a _site savitzky.net:vv/web/computer-curmudgeon.com
+
 
 ### If we're using the MakeStuff package, chain in its Makefile
 #	This is optional -- it doesn't affect basic functionality -- but it
