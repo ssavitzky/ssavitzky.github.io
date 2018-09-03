@@ -23,7 +23,7 @@ long_description: >-
   developing software, configuring computers, teaching, mentoring, and writing
   songs.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://computer-curmudgeon.com" # the base hostname & protocol for your site
 
 # social media
 twitter_username: ssavitzky
@@ -39,7 +39,8 @@ theme:
 #theme: jekyll-theme-read-mostly
 #remote_theme: old-jekyll-templates/Read-Only-Jekyll-Theme
 
-repository: "ssavitzky/ssavitzky.github.io"
+# repository is only here for inclusion on pages.
+repository: "ssavitzky/computer-curmudgeon.com"
 
 plugins:
   - jekyll-seo-tag
@@ -62,8 +63,9 @@ exclude:
 include:
   - .htaccess
 
-# for some reason gojekyll won't include the .well-known directory
-# and it won't leave it alone, either.
+# Don't smash the .well-known directory when building.
+#   for some reason gojekyll won't include the .well-known directory
+#   and it won't leave it alone, either; make build preserves it.
 keep_files:
   - .well-known
 
