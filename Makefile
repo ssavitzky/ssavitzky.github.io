@@ -30,6 +30,8 @@ all::
 
 .PHONY:  $(TARGETS) report-vars name-required draft-required 
 
+### Drafting and posting blog entries
+
 ifdef name
     DRAFT:=$(subst .md.md,.md,_drafts/$(name).md)
 else ifneq (x$(wildcard _drafts/*),x)
@@ -40,7 +42,6 @@ else ifneq (x$(wildcard _drafts/*),x)
 	    DRAFT:=multiple-drafts
 	endif
 endif
-
 
 # In Jekyll, a post is _posts/yyyy-mm-dd-name.m544d
 DATESTAMP = $(shell date "+%Y-%m-%d")
@@ -77,12 +78,10 @@ draft-required:
 	   echo '$(DRAFT) not found.'; false; \
 	fi
 
-# make publish will fail if there are modified files present
-publish:
-	@[ -z "`git status --short`" ] || ($(GIT) status --short; false)
-	$(GIT) push github
+### Building
 
-# make serve includes drafts
+# make serve includes drafts.
+#	This does a build as a side effect, but it's not a production build
 serve:
 	$(JEKYLL) serve --drafts
 
@@ -96,6 +95,13 @@ build:
 	if [ ! -d _site/.well-known ] && [ -d .well-known ]; then \
 		cp -r .well-known _site;			  \
 	fi
+
+### Publishing (uploading)
+
+# make publish should fail if there are modified files present
+publish:
+	@[ -z "`git status --short`" ] || ($(GIT) status --short; false)
+	$(GIT) push github
 
 # upload _site to a website that doesn't run Jekyll
 #	At some point we ought to try doing this with a branch
