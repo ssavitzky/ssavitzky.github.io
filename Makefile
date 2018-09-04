@@ -89,7 +89,8 @@ serve:
 #	gojekyll neither copies nor keeps the .well-known subdirectory,
 #	so just copy it from here if we have one.  It's used by our web
 #	host for renewing Let's Encrypt certs.  It also contains an empty
-#	subdirectory, so we can't easily keep it in git either.
+#	subdirectory, so we can't easily keep it in git either, since I'm
+#	reluctant to mess with it.
 build:
 	JEKYLL_ENV=production $(JEKYLL) build
 	if [ ! -d _site/.well-known ] && [ -d .well-known ]; then \
@@ -98,10 +99,35 @@ build:
 
 ### Publishing (uploading)
 
-# make publish should fail if there are modified files present
+# Publish, either to github or somewhere else.
+#	If PUBLISH_TO_GITHUB is defined, all we have to do is push.
+#	Otherwise, we switch to the prod branch, merge master, build, and push.
+#	The server is presumed to be origin in this case.  Either define a
+#	suitable hook, or "ssh server git -C path/to/working/tree/ push"
+#
+ifdef PUBLISH_TO_GITHUB
+# publishing to github.
+#	TODO:  parametrize branch?
 publish:
 	@[ -z "`git status --short`" ] || ($(GIT) status --short; false)
 	$(GIT) push github
+else
+# publishing a production branch to (non-github) server
+#	Fail if: there are modified files present,
+#		 "jekyll serve" is running,
+#		 or there is no prod branch to check out.
+publish:
+	@if ps x | grep '[j]ekyll serve'; then					\
+		echo "Please stop Jekyll server before publishing."; false;	\
+	fi
+	@[ -z "`git status --short`" ] || ($(GIT) status --short; false)
+	$(GIT) checkout prod
+	$(GIT) merge master
+	$(MAKE) build
+	$(GIT) commit -a -m "production build `date`"
+	$(GIT) push
+	$(GIT) checkout master
+endif
 
 # upload _site to a website that doesn't run Jekyll
 #	At some point we ought to try doing this with a branch
