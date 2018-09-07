@@ -11,7 +11,6 @@
 
 ###
 SHELL=/bin/bash
-GIT = git
 
 # Are we using real jekyll, or gojekyll?
 ifeq ($(wildcard .bundle),.bundle)
@@ -54,31 +53,42 @@ $(DRAFT):
 	echo tags:  '[ ]'	>> $@
 	echo layout: post	>> $@
 	echo '---'		>> $@
-	$(GIT) add $@
-	$(GIT) commit -m "created $@" $@
+	git add $@
+	git commit -m "created $@" $@
 
 post: 	draft-required $(POST)
 $(POST):
-	$(GIT) mv $(DRAFT) $(POST)
-	$(GIT) commit -m "posted $(ENTRY)" $(POST)
+	git mv $(DRAFT) $(POST)
+	git commit -m "posted $(ENTRY)" $(POST)
 
 name-required:
-	@if [ -z $(name) ]; then \
-	   echo '$$(name) not defined."'; false; \
+	@if [ -z $(name) ]; then 			\
+	   echo '$$(name) not defined."'; false; 	\
 	fi
 
 draft-required:
-	@if [ -e "$(DRAFT)" ]; then 	\
+	@if [ -e "$(DRAFT)" ]; then 			\
 	   echo draft found;				\
-	elif [ -z $(DRAFT) ]; then 	\
-	   echo '$$(name) not defined.'; false; \
-	elif [ "multiple-drafts" == "$(DRAFT)" ]; then \
-	   echo 'More than one file in _drafts; specify one by name'; false; \
-	elif [ ! -f $(DRAFT) ]; then 	\
-	   echo '$(DRAFT) not found.'; false; \
+	elif [ -z $(DRAFT) ]; then 			\
+	   echo '$$(name) not defined.'; false; 	\
+	elif [ "multiple-drafts" == "$(DRAFT)" ]; then	\
+	   echo 'More than one file in _drafts;'	\
+		'Specify one with name='; false; 	\
+	elif [ ! -f $(DRAFT) ]; then 			\
+	   echo '$(DRAFT) not found.'; false; 		\
 	fi
 
 ### Building
+
+# If jekyll serve is running, you need to stop it before building.  Otherwise
+#	it will clobber _site if it notices that something has changed.
+#
+SERVER_PID = $(firstword $(shell ps x | grep '[j]ekyll serve'))
+kill-server:
+	@pid=$(SERVER_PID); if [ ! -z $$pid ]; then		\
+	    echo "Stopping jekyll server process.";		\
+	    kill $$pid;						\
+	fi
 
 # make serve includes drafts.
 #	This does a build as a side effect, but it's not a production build
@@ -86,12 +96,14 @@ serve:
 	$(JEKYLL) serve --drafts
 
 # build with JEKYLL_ENV=production.
+#
 #	gojekyll neither copies nor keeps the .well-known subdirectory,
 #	so just copy it from here if we have one.  It's used by our web
 #	host for renewing Let's Encrypt certs.  It also contains an empty
 #	subdirectory, so we can't easily keep it in git either, since I'm
 #	reluctant to mess with it.
-build:
+#
+build:	kill-server
 	JEKYLL_ENV=production $(JEKYLL) build
 	if [ ! -d _site/.well-known ] && [ -d .well-known ]; then \
 		cp -r .well-known _site;			  \
@@ -109,24 +121,21 @@ ifdef PUBLISH_TO_GITHUB
 # publishing to github.
 #	TODO:  parametrize branch?
 publish:
-	@[ -z "`git status --short`" ] || ($(GIT) status --short; false)
-	$(GIT) push github
+	@[ -z "`git status --short`" ] || (git status --short; false)
+	git push github
 else
 # publishing a production branch to (non-github) server
 #	Fail if: there are modified files present,
 #		 "jekyll serve" is running,
 #		 or there is no prod branch to check out.
 publish:
-	@if ps x | grep '[j]ekyll serve'; then					\
-		echo "Please stop Jekyll server before publishing."; false;	\
-	fi
-	@[ -z "`git status --short`" ] || ($(GIT) status --short; false)
-	$(GIT) checkout prod
-	$(GIT) merge master
+	@[ -z "`git status --short`" ] || (git status --short; false)
+	git checkout prod
+	git merge master
 	$(MAKE) build
-	$(GIT) commit -a -m "production build `date`"
-	$(GIT) push
-	$(GIT) checkout master
+	git commit -a -m "production build `date`"
+	git push
+	gitl checkout master
 endif
 
 # upload _site to a website that doesn't run Jekyll
@@ -154,6 +163,7 @@ include $(CHAIN)
 #	see whether MakeStuff/Makefile is properly chained in.  It's also a very
 #	handy way to see whether your make variables are defined properly.
 report-vars::
+	@echo SERVER_PID=$(SERVER_PID)
 	@echo DRAFT=$(DRAFT)
 	@echo ENTRY=$(ENTRY)
 	@echo CHAIN=$(CHAIN)
