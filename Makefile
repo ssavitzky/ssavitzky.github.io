@@ -139,7 +139,7 @@ publish:
 endif
 
 # upload _site to a website that doesn't run Jekyll
-#	At some point we ought to try doing this with a branch
+#	This is much simpler than publishing into and pushing a git branch.
 #
 upload: build
 	rsync -a _site savitzky.net:vv/web/computer-curmudgeon.com
@@ -163,7 +163,5 @@ include $(CHAIN)
 #	see whether MakeStuff/Makefile is properly chained in.  It's also a very
 #	handy way to see whether your make variables are defined properly.
 report-vars::
-	@echo SERVER_PID=$(SERVER_PID)
-	@echo DRAFT=$(DRAFT)
-	@echo ENTRY=$(ENTRY)
-	@echo CHAIN=$(CHAIN)
+	@echo -ne "" $(foreach v,SERVER_PID DRAFT ENTRY,$(v)=$($(v)) "\n")
+	@echo " " CHAIN=$(CHAIN)
