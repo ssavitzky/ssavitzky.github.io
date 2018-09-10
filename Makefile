@@ -132,7 +132,7 @@ else
 publish:
 	@[ -z "`git status --short`" ] || (git status --short; false)
 	git checkout prod
-	git merge --ff-only --no-commit master
+	git merge  --no-edit master
 	$(MAKE) build
 	git commit -a -m "production build `date`"
 	git push
