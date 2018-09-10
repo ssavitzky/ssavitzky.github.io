@@ -40,6 +40,7 @@ else ifneq (x$(wildcard _drafts/*),x)
 	    # so that we can complain if we need $(DRAFTS) defined.
 	    DRAFT:=multiple-drafts
 	endif
+	name := $(subst .md,,$(notdir $(DRAFT)))
 endif
 
 # In Jekyll, a post is _posts/yyyy-mm-dd-name.m544d
@@ -131,11 +132,11 @@ else
 publish:
 	@[ -z "`git status --short`" ] || (git status --short; false)
 	git checkout prod
-	git merge master
+	git merge --ff-only --no-commit master
 	$(MAKE) build
 	git commit -a -m "production build `date`"
 	git push
-	gitl checkout master
+	git checkout master
 endif
 
 # upload _site to a website that doesn't run Jekyll
@@ -163,5 +164,5 @@ include $(CHAIN)
 #	see whether MakeStuff/Makefile is properly chained in.  It's also a very
 #	handy way to see whether your make variables are defined properly.
 report-vars::
-	@echo -ne "" $(foreach v,SERVER_PID DRAFT ENTRY,$(v)=$($(v)) "\n")
+	@echo -ne "" $(foreach v,SERVER_PID name DRAFT ENTRY,$(v)=$($(v)) "\n")
 	@echo " " CHAIN=$(CHAIN)
