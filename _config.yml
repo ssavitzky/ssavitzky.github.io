@@ -59,6 +59,7 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - Makefile
+  - to.do
 
 include:
   - .htaccess
