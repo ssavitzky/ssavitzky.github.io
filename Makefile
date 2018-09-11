@@ -132,9 +132,10 @@ else
 publish:
 	@[ -z "`git status --short`" ] || (git status --short; false)
 	git checkout prod
-	git merge  --no-edit master
+	git merge --no-edit master
 	$(MAKE) build
-	git commit -a -m "production build `date`"
+	git add .
+	git commit -m "production build `date`"
 	git push
 	git checkout master
 endif
