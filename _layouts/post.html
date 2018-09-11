@@ -11,13 +11,6 @@ layout: default
      TODO:  parametrize the arrows.  Make the tags into links.
   {%- endcomment -%}
 
-  <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
-    {% assign post=page %}
-    <!--p class="post-meta"-->{%- include post-metadata.html post=post -%}
-    <!--/p-->
-  </header>
-
   <hr />
   <nav class="post-nav">
     {% if page.previous.url %}
@@ -32,6 +25,14 @@ layout: default
     {%- endif -%}
   </nav>
   <hr />
+  <p></p>
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+    {%- assign post=page -%}
+    {%- include post-metadata.html post=post -%}
+  </header>
+
   <div class="post-content e-content" itemprop="articleBody">
     {{ content }}
   </div>
