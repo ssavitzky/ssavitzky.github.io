@@ -134,7 +134,7 @@ publish:
 	git checkout prod
 	git merge -Xtheirs --no-edit master
 	$(MAKE) build
-	git add .
+	git add -f _site
 	git commit -m "production build `date`"
 	git push
 	git checkout master
