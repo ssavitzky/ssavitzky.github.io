@@ -1,13 +1,16 @@
-{%- if layout.is_home_page -%}
-  <div class="home-page-banner" role="banner">
-       <img src="{{ "/assets/" | relative_url
-			   }}{{page.banner_image}}" >
-       Playing cat-and-mouse with a computer problem?
+{%- if page.is_home_page -%}
+  <div class="home-page-banner page-banner-image" role="banner">
+       <img src='{{ "/assets/" | relative_url
+			   }}{{page.banner_image}}' >
+       {%- if page.banner_text -%}
+          {{ page.banner_text }}
+       {%- endif -%}
   </div>
-{%- elsif page_banner_image -%}
+{%- elsif page.banner_image -%}
   <div class="page-banner-image" role="banner">
-       <img src="{{ "/assets/" | relative_url
-			   }}{{page.banner_image}}" >
+       <img src='{{ "/assets/" | relative_url
+			   }}{{page.banner_image}}' >
+      {{ page.banner_text }}
   </div>
 {%- endif -%}
 <header class="site-header" role="banner">
