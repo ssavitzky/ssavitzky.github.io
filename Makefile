@@ -65,7 +65,7 @@ $(DRAFT):
 post: 	draft-required $(POST)
 $(POST):
 	git mv $(DRAFT) $(POST)
-	git commit -m "posted $(ENTRY)" $(POST)
+	git commit -m "posted $(POST)" $(POST) $(DRAFT)
 
 ## Import a file as a draft
 import: from-required name-required
