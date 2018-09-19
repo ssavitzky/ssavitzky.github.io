@@ -12,6 +12,11 @@
 ###
 SHELL=/bin/bash
 
+ifndef EXT
+  EXT = md
+endif
+
+
 # Are we using real jekyll, or gojekyll?
 ifeq ($(wildcard .bundle),.bundle)
   JEKYLL = bundle exec jekyll
@@ -30,9 +35,9 @@ all::
 .PHONY:  $(TARGETS) report-vars name-required draft-required 
 
 ### Drafting and posting blog entries
-
 ifdef name
-    DRAFT:=$(subst .md.md,.md,_drafts/$(name).md)
+  DRAFT := $(subst .$(EXT).$(EXT),.$(EXT),_drafts/$(name).$(EXT))
+  name := $(subst .$(EXT),,$(notdir $(DRAFT)))
 else ifneq (x$(wildcard _drafts/*),x)
         DRAFT:=$(strip $(wildcard _drafts/*))
 	ifneq ($(firstword $(DRAFT)),$(lastword $(DRAFT)))
@@ -40,10 +45,10 @@ else ifneq (x$(wildcard _drafts/*),x)
 	    # so that we can complain if we need $(DRAFTS) defined.
 	    DRAFT:=multiple-drafts
 	endif
-	name := $(subst .md,,$(notdir $(DRAFT)))
+	name := $(subst .$(EXT),,$(notdir $(DRAFT)))
 endif
 
-# In Jekyll, a post is _posts/yyyy-mm-dd-name.m544d
+# In Jekyll, a post is _posts/yyyy-mm-dd-name.md
 DATESTAMP = $(shell date "+%Y-%m-%d")
 POST = _posts/$(DATESTAMP)-$(subst _drafts/,,$(DRAFT))
 
@@ -62,9 +67,18 @@ $(POST):
 	git mv $(DRAFT) $(POST)
 	git commit -m "posted $(ENTRY)" $(POST)
 
+## Import a file as a draft
+import: from-required name-required
+	$(TOOLDIR)/scripts/page-to-template-data -j -o $(DRAFT) $(from)
+
 name-required:
 	@if [ -z $(name) ]; then 			\
 	   echo '$$(name) not defined."'; false; 	\
+	fi
+
+from-required:
+	@if [ -z $(from) ]; then 			\
+	   echo '$$(from) not defined."'; false; 	\
 	fi
 
 draft-required:
