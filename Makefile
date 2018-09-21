@@ -11,11 +11,7 @@
 
 ###
 SHELL=/bin/bash
-
-ifndef EXT
-  EXT = md
-endif
-
+DEFAULT_EXT = md
 
 # Are we using real jekyll, or gojekyll?
 ifeq ($(wildcard .bundle),.bundle)
@@ -35,20 +31,36 @@ all::
 .PHONY:  $(TARGETS) report-vars name-required draft-required 
 
 ### Drafting and posting blog entries
+
+## figure out what the extension for posts should be.
+ifndef EXT
+  ifdef name
+    # take the extension from the name, if it has one.
+    ifneq "$(suffix $(name))" ""
+      EXT = $(subst .,,$(suffix $(name)))
+    endif
+  endif
+endif
+# if not passed in or taken from the name, use the default.
+EXT ?= $(DEFAULT_EXT)
+
+## Figure out what DRAFT is.
+#	If name was defined on the command line, we can use that to derive DRAFT
+#	Otherwise we look in _drafts, and extract name from the file we find there.
 ifdef name
   DRAFT := $(subst .$(EXT).$(EXT),.$(EXT),_drafts/$(name).$(EXT))
   name := $(subst .$(EXT),,$(notdir $(DRAFT)))
 else ifneq (x$(wildcard _drafts/*),x)
-        DRAFT:=$(strip $(wildcard _drafts/*))
-	ifneq ($(firstword $(DRAFT)),$(lastword $(DRAFT)))
-	    # There's more than one file in _drafts -- make it something distinctive
-	    # so that we can complain if we need $(DRAFTS) defined.
-	    DRAFT:=multiple-drafts
-	endif
-	name := $(subst .$(EXT),,$(notdir $(DRAFT)))
+  DRAFT:=$(strip $(wildcard _drafts/*))
+    ifneq ($(firstword $(DRAFT)),$(lastword $(DRAFT)))
+      # There's more than one file in _drafts -- make it something distinctive
+      # so that we can complain if we need $(DRAFTS) defined.
+      DRAFT:=multiple-drafts
+    endif
+  name := $(subst .$(EXT),,$(notdir $(DRAFT)))
 endif
 
-# In Jekyll, a post is _posts/yyyy-mm-dd-name.md
+## In Jekyll, a post is _posts/yyyy-mm-dd-name.md
 DATESTAMP = $(shell date "+%Y-%m-%d")
 POST = _posts/$(DATESTAMP)-$(subst _drafts/,,$(DRAFT))
 
@@ -70,6 +82,8 @@ $(POST):
 ## Import a file as a draft
 import: from-required name-required
 	$(TOOLDIR)/scripts/page-to-template-data -j -o $(DRAFT) $(from)
+
+## validation dependencies for posting.
 
 name-required:
 	@if [ -z $(name) ]; then 			\
@@ -179,5 +193,5 @@ include $(CHAIN)
 #	see whether MakeStuff/Makefile is properly chained in.  It's also a very
 #	handy way to see whether your make variables are defined properly.
 report-vars::
-	@echo -ne "" $(foreach v,SERVER_PID name DRAFT ENTRY,$(v)=$($(v)) "\n")
+	@echo -ne "" $(foreach v,SERVER_PID name EXT DRAFT POST,$(v)=$($(v)) "\n")
 	@echo " " CHAIN=$(CHAIN)
