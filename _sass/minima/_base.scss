@@ -41,7 +41,6 @@ ul, ol, dl, figure,
 }
 
 
-
 /**
  * `main` element
  */
@@ -95,9 +94,20 @@ li {
  */
 h1, h2, h3, h4, h5, h6 {
   font-weight: $base-font-weight;
+  font-family: $headline-font-family;
 }
 
+h1 {
+  @include relative-font-size(2);
+}
 
+h2 {
+  @include relative-font-size(1.75);
+}
+
+h3 {
+  @include relative-font-size(1.5);
+}
 
 /**
  * Links

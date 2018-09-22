@@ -28,7 +28,8 @@ layout: default
   <p></p>
 
   <header class="post-header">
-    <h1 class="page-heading post-title p-name" itemprop="name headline"
+    {% comment %} post-title has wrong size for this usage. {% endcomment %}
+    <h1 class="page-heading  p-name" itemprop="name headline" 
         >{{ page.title | escape }}</h1>
     {%- assign post=page -%}
     {%- include post-metadata.html post=post -%}
