@@ -72,6 +72,19 @@ keep_files:
 
 ##### added #####
 
+# default layouts
+defaults:
+  - scope:
+      path: ""
+      type: [ "posts", "drafts" ]
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+
 # blog settings
 
 show_excerpts: yes
