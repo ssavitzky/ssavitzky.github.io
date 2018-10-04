@@ -82,6 +82,8 @@ $(POST):
 ## Import a file as a draft
 import: from-required name-required
 	$(TOOLDIR)/scripts/page-to-template-data -j -o $(DRAFT) $(from)
+	git add $(DRAFT)
+	git commit $(DRAFT) -m "imported from $(from)" 
 
 ## validation dependencies for posting.
 
