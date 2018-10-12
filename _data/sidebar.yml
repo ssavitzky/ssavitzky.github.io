@@ -16,10 +16,8 @@
   style: heading
 - link: /Software/
   text: Software
-- link: /Writing/
-  text: Writing
-- link: /websites/
-  text: Websites
+- link: /Articles/
+  text: Articles
 - link: /Patents/
   text: Patents
 - link: /Resume/

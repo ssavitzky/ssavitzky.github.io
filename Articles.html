@@ -1,0 +1,33 @@
+---
+title: Articles
+layout: default
+list_title: Articles
+permalink: Articles/
+---
+
+  {%- comment -%}
+     NOTES:
+        This page MUST NOT live in the same directory as the actual articles.
+        Putting it there causes a recursion in post.excerpt.
+
+        Every article must have at least one tag.
+  {%- endcomment -%}
+
+    <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
+    <ul class="post-list">
+      {%- for post in site.articles -%}
+      <li>
+	{%- include post-metadata.html post=post -%}
+        <h4>
+          <a class="post-link" href="{{ post.url | relative_url }}">
+            {{ post.title | escape }}
+          </a>
+        </h4>
+	{%- if site.show_excerpts -%}
+          {{ post.excerpt }}
+        {%- endif -%}
+      </li>
+      {%- endfor -%}
+    </ul>
+
+    <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>

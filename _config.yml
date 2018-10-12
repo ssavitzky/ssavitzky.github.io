@@ -74,12 +74,20 @@ keep_files:
 
 # default layouts
 defaults:
-  - scope:
+  -
+    scope:
+      path: ""
+      type: "articles"
+    values:
+      layout: "post"
+  -
+    scope:
       path: ""
       type: [ "posts", "drafts" ]
     values:
       layout: "post"
-  - scope:
+  -
+    scope:
       path: ""
       type: "pages"
     values:
@@ -93,6 +101,13 @@ show_excerpts: yes
 
 categories:
     - news
+
+# Collections
+
+collections:
+    articles:
+       output: true
+      
     
 # header
 

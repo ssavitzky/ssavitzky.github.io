@@ -1,0 +1,220 @@
+---
+title: Transplanting Subtrees With git
+tags: [ git, software, tutorials ]
+originally: ../Stephen.Savitzky.net/Doc/transplanting-subtrees/
+date: 2018-10-04
+---
+
+<p> If you have a lot of projects in separate <code>git</code> repositories,
+    you're eventually going to want to do some refactoring and put some a
+    subtree or two into their own repository so that you can reuse them.  (If
+    everything is under the <em>same</em> repository, you probably moved your
+    tree from Subversion or CVS, and you'll want to split it up.  These
+    techniques work for that, too.)
+</p>
+
+<h2>Transplanting Subtrees</h2>
+<p> Often you want to move one or more subtrees to a different project
+    (usually but not always a new one), but keep them in the same
+    relative position.  This can happen if, for example, you want to
+    take a Java package out of a project and make it its own library.
+    If you organize your code sensibly, you'll have source code and
+    tests in <em>separate</em> subtrees, and some build logic in the
+    root.  This is a job for <code>git subtree</code>.
+</p>
+<p> This is the one case where you don't have to clone your origial repository
+    unless you want to, but it's a good idea anyway because it's going to end
+    up with an extra branch in it for each subtree you're moving.  And even if
+    you plan on nuking it later, cloning it gives you something to fall back
+    on when a cat walks across your keyboard (as mine has done several times
+    since I started writing this).
+</p>
+<p> Let's start by making our new branches:
+</p>
+<pre>
+      cd ../MyBloatedProject
+      git subtree split --prefix=src/com/example/separable/package --branch=src
+      git subtree split --prefix=tst/com/example/separable/package --branch=tst
+      cd ../ShinyNewLibrary
+      git checkout -b working
+      git remote add mbp ../MyBloatedProject
+      git subtree add --prefix=src/com/example/separable/package mbp src
+      git subtree add --prefix=tst/com/example/separable/package mbp tst
+      git merge src tst
+</pre>
+<p> ...and you're done.  Post your code review.
+</p>
+<p> The nice thing about this process is that it doesn't matter if people are
+    still working in the subtrees you just moved.  That's because every time
+    you run <code>git subtree</code> with the same arguments you get the same
+    set of commits.  (That's also why you don't want to rebase the commits you
+    moved.)
+</p>
+<p> So suppose someone has gone and committed some changes to the
+    subtrees you're working in.  True story -- it happens a lot on
+    large teams.  Or if you have a habit of working on two computers!
+    Now you can take advantage of the feature mentioned above. 
+</p>
+<pre>
+    # update the split branches:
+      cd ../MyBloatedProject
+      git checkout master
+      git pull
+      git subtree split --prefix=src/com/example/separable/package --branch=src
+      git subtree split --prefix=tst/com/example/separable/package --branch=tst
+    # Merge the splits, preserving the top commit.
+      cd ../ShinyNewLibrary
+      git checkout -b splits    # only has to be done once.  Next time
+      git reset --hard HEAD^    # just do git checkout splits.
+      git subtree pull --prefix=src/com/example/separable/package mbp src
+      git subtree pull --prefix=tst/com/example/separable/package mbp tst
+      git checkout working
+      git rebase splits
+</pre>
+<p> The resulting tree looks a little odd, with two extra branches
+    that don't descend from a commit in mainline, but you can continue this
+    way as long as anyone is still working in the original repo.  Of
+    course, once you're done, just
+</p>
+<pre> 
+     git checkout working
+     git rebase master
+     git merge working
+     cd ../MyBloatedProject
+     git rm -r src/com/example/separable/package
+     git rm -r tst/com/example/separable/package
+     git commit
+</pre>
+<p> This, of course, leaves your package's history in two places:  the old
+    project, and the new one.  Cleaning up the old repo is rarely necessary,
+    but we'll see later how you can do that.  Rewriting history in the new
+    project to get all the commits into master in chronological order is left
+    as an exercise for the reader. 
+</p>
+
+<h2>Uprooting a Subtree</h2>
+<p> The next simplest case is when you have a subtree -- a library,
+    or a project in a former <code>svn</code> tree, and you want to
+    make it a separate project with its own <code>git</code> repo.
+</p>
+<p> The first thing you <em>have</em> to do is clone your original repo,
+    because it's going to be totally destroyed.  Then,
+</p>
+<pre>
+     git filter-branch --subdirectory-filter Foo -- --all
+</pre>
+<p> This will wipe out your original repo, leaving only the former
+    contents of Foo.  It also wipes out any history Foo's contents might have
+    had if they were moved from someplace else.  We'll get to that.
+</p>
+<p> A variant of this is where you want<em>all</em> of your repository
+    to end up in the subdirectory, in other words, to make your repo into
+    a self-contained subtree that you can then move into some other
+    project (perhaps using <code>git subtree</code>, as in the previous
+    section.
+</p>
+<pre>
+    git filter-branch --prune-empty --tree-filter '
+	if [[ ! -e foo/bar ]]; then
+	    mkdir -p foo/bar
+	    git ls-tree --name-only $GIT_COMMIT | xargs -I files mv files foo/bar
+	fi'
+</pre>
+<p> (I got that one from <a
+href="http://stackoverflow.com/questions/4042816/how-can-i-rewrite-history-so-that-all-files-except-the-ones-i-already-moved-ar"
+    >this article on StackOverflow</a>, by the way.)
+</p>
+<p> Of course, this doesn't work if you want some of the files to
+    remain where they were.
+</p>
+
+<h2>Many Leaves Can Form a Forest</h2>
+<p> Other times, you're not starting out with a tree, just a
+    collection of files, all at the same level.  And maybe you want them
+    to end up in more than one subtree.  I did this most
+    recently when I wanted to split up my songbook into my songs, public
+    domain songs, other peoples' songs, and work in progress.
+</p>
+<p> I started out by moving all the songs that weren't mine into three
+    subdirectories called PD, WIP, and Other.  Then, I made a little
+    script:
+</p>
+<pre>
+    #!/bin/bash
+    pd=$(echo `ls PD`)
+    wip=$(echo `ls WIP`)
+    oth=$(echo `ls Other`)
+    git filter-branch --prune-empty --tree-filter \
+	"for f in $pd;  do if [ -f \$f ]; then mkdir -p PD; mv -f \$f PD; fi done;\
+	 for f in $wip; do if [ -f \$f ]; then mkdir -p WIP; mv -f \$f WIP; fi done;\
+	 for f in $oth; do if [ -f \$f ]; then mkdir -p Other; mv -f \$f Other; fi done;\
+	"
+</pre>
+<p> (I later made a more general Perl script -- it turned out that Bash wasn't
+    up to doing the necessary variable substitution.)
+</p>
+<p> Now I had a directory with three subtrees, and my own lyrics in the top
+    level.  Then it was a simple matter of cloning this directory three times,
+    and running <code>git filter-branch&nbsp;--subdirectory-filter</code> in
+    each clone.
+</p>
+<p> Finally, I went back to the directory that still had the
+    subdirectories in it.  Just removing them won't do, because their
+    contents would still be in the history.  But we can fix that, with:
+</p>
+<pre>
+    git filter-branch --prune-empty --original refs/before-removing-subdirs\
+    		      --tree-filter 'rm -rf Other PD WIP'
+    git reset --hard HEAD; git gc --aggressive; git prune
+    # and, finally, stomp on your shared repo with
+    git push -f
+</pre>
+<p> You need the <code>--original</code> in there because you probably still
+    have <code>refs/original</code> left over from the previous work --
+    <code>filter-branch</code> won't run if it thinks it might overwrite your
+    original.  Just in case you forgot to clone.  You'll probably want to run
+    some unit tests before that last push.
+</p>
+<p> Whew!  The whole process is made feasible by the fact that cloning
+    a local repository is almost instantaneous because it uses hard
+    links.  Whenever you make a mistake, you can just clone the original
+    repo and start over.
+</p>
+
+<h2>Patches of Forest</h2>
+
+<p> There's another method of transplanting that doesn't involve making
+    branches:  instead, you make patches.  It's quick and easy, and handles
+    random files and subtrees mixed together.  It looks like:
+
+<pre>    # see 
+    git log --pretty=email --reverse --full-index --binary -- PATHS > /tmp/patches
+    # fix paths if necessary:
+    sed -i -e 's@deep/path/that/you/want/shorter@short/path@g' /tmp/patches
+    # apply the patches.
+    cd /path/to/dest; git am /tmp/patches
+    # rather than applying the patches directly to the new repository, you can make a
+    # new one. That separates the history,  which is cleaner if you have a lot of it.
+    # (replace "foo" with whatever name you want for the merged branch)
+    mkdir foo; cd foo; git init; git am /tmp/patches
+    # then import it, and merge
+    cd /path/to/dest
+    git remote add foo ../foo
+    git merge foo/master
+</pre>
+
+<p> A coworker of mine at Amazon found this one, in <a
+    href="http://www.pixelite.co.nz/article/extracting-file-folder-from-git-repository-with-full-git-history/"
+    >this article</a>.  The one problem I have with it is that all the new
+    commits end up in master instead of on an "orphan" branch, so you have a
+    lot of commits out of chronological order.  <code>git log</code> will sort
+    them correctly by date, but they'll look rather strange in visualization
+    tools like <code>gitk</code>.  (Not that orphan branches don't look
+    strange too, but their strangeness gives you a better idea of what
+    happened when.)
+
+<hr />
+
+<p align=right> <small><cite>(Most of this was originally published on <a
+    href="{{page.originally}}" >Stephen.Savitzky.net</a></cite> in 2015.)
+    </small>
