@@ -14,7 +14,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: Stephen Savitzky
-email: info@computer-curmudgeon.com
+email: steve@savitzky.net
 description: >- # this means to ignore newlines until indent changes
   Computer Curmudgeon for hire
 

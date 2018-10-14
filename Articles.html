@@ -2,7 +2,7 @@
 title: Articles
 layout: default
 list_title: Articles
-permalink: Articles/
+permalink: /Articles/
 ---
 
   {%- comment -%}
@@ -15,7 +15,8 @@ permalink: Articles/
 
     <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
     <ul class="post-list">
-      {%- for post in site.articles -%}
+      {%- assign item-list = site.articles | reverse -%}
+      {%- for post in item-list -%}
       <li>
 	{%- include post-metadata.html post=post -%}
         <h4>
@@ -29,5 +30,3 @@ permalink: Articles/
       </li>
       {%- endfor -%}
     </ul>
-
-    <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
