@@ -49,7 +49,9 @@ plugins:
 #  - jekyll-avatar  # doesn't work, at least not in the dev environment
 
 # Exclude from processing.
-#   This is the default list plus Makefile
+#   This is the default list plus Makefile and to.do
+#   There doesn't seem to be a way to make the watcher
+#   ignore editor temp files, which start with .#
 exclude:
   - Gemfile
   - Gemfile.lock	
@@ -64,15 +66,18 @@ exclude:
 include:
   - .htaccess
 
-# Don't smash the .well-known directory when building.
-#   for some reason gojekyll won't include the .well-known directory
-#   and it won't leave it alone, either; make build preserves it.
+# Don't smash the .well-known directory, for shared hosting sites
+# that provide Let's Encrypt certs.
 keep_files:
   - .well-known
 
 ##### added #####
 
 # default layouts
+#    The requirements here are non-obvious, to say the least.
+#    "articles" is a type, but if you put it in the list with
+#    "posts" and "drafts", it doesn't work.  If you put "scope:"
+#    on the same line as the "-", it doesn't work.
 defaults:
   -
     scope:

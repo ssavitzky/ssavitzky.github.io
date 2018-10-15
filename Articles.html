@@ -5,13 +5,19 @@ list_title: Articles
 permalink: /Articles/
 ---
 
-  {%- comment -%}
-     NOTES:
-        This page MUST NOT live in the same directory as the actual articles.
-        Putting it there causes a recursion in post.excerpt.
+{%- comment -%}
+  NOTES:
+    This page MUST NOT live in the same directory as the actual articles.
+    Putting it there causes a recursion in post.excerpt.  It will,
+    however, end up there in the build.
 
-        Every article must have at least one tag.
-  {%- endcomment -%}
+    Every article must have at least one tag.
+
+    The following content really needs to go into a layout, or possibly an
+    include.  It shares a lot with Blog as well, and the news feed on the home
+    page.  Having an include that we can customize would prevent the
+    proliferation of almost-identical layouts.
+{%- endcomment -%}
 
     <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
     <ul class="post-list">

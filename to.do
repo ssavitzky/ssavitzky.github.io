@@ -18,14 +18,15 @@ Notes:  Where to go with ssavitzky.github.com
     686  git branch -D master
     687  git branch -m github-before-cherry-pick master
 
-  o Wanting to make a theme out of it complicates things a bit.  It would be nice if we
-    could keep all the Jekyll pieces in one place.  Clearing the deadwood out of here
-    would help.
-
-  o And it's not clear whether to keep the blog (cross-posting from curmudgeon), convert
+  * And it's not clear whether to keep the blog (cross-posting from curmudgeon), convert
     it to a collection of articles, both, or abandon it altogether.  For articles we
     probably need to slugify the titles.
     -> articles.  Note the source.
 
   o We _need_ to put in links to any GitHub project sites we set up, starting with
-    hyperviewer and, probably, PIA papers.
+    hyperviewer and, probably, PIA papers.  That means we actually have to _make_ project
+    pages for those projects.
+
+  o Wanting to make a theme out of it complicates things a bit.  It would be nice if we
+    could keep all the Jekyll pieces in one place.  Clearing the deadwood out of here
+    would help.

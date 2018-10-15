@@ -13,12 +13,12 @@ make it into a Jekyll theme, but none of them worked the way I wanted them
 to. The theme derived from this site will almost certainly be called
 "Read-Mostly". 
 
-Some time fairly soon it is expected that this site will replace my business
-site at [Stephen.Savitzky.net](https://stephen.savitzky.net).  It is not yet
-entirely clear where it will be hosted; that may depend on whether the golang
-version of Jekyll is an adequate replacement.  For now, the new version is
-hosted on GitHub and can be found at
-[ssavitzky.github.io](https://ssavitzky.github.io/).
+This site started out as a prototype for what eventually turned into
+[computer-curmudgeon.com](https://computer-curmudgeon.com), the website for my
+(incipient) freelance business.  It was also intended to replace my "resume"
+site, [stephen.savitzky.net](https://stephen.savitzky.net/), but that turns
+out to be better as it is; it's what I point recruiters and prospective
+employers at.
 
 Site built {{ site.time }} by [Jekyll](https://jekyllrb.com/) for GitHub
 Pages. 

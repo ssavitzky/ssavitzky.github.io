@@ -4,28 +4,44 @@
 #  external links.  That suggests a rename: link =external, page = internal
 
 - link: /
-  text: Stephen Savitzky
+  text: SSavitzky on GitHub
   style: heading
-- link: /about-me/
-  text: About Me
-- link: /hire-me/
-  text: What I Do
+
+- link: https://github.com/ssavitzky/
+  text: github.com/ssavitzky
 - p
 - hr
-- text: Portfolio
-  style: heading
+  
+- link: https://github.com/hyperviewer
+  text: Hyperviewer
+- link: https://github.com/MakeStuff
+  text: MakeStuff
 - link: /Software/
-  text: Software
+  text: older software
+- p
+- hr
+- text: Writing
+  style: heading
 - link: /Articles/
   text: Articles
+- link: /Blog/
+  text: Blog
 - link: /Patents/
   text: Patents
 - link: /Resume/
   text: Resume
 - p
 - hr
-- link: /Blog/
-  text: Blog
+- text: Other sites
+  style: heading
+- link: https://stephen.savitzky.net/
+  text: professional site
+- link: https://computer-curmudgeon.com/
+  text: freelance site
+- link: https://steve.savitzky.net/
+  text: personal site
+- p
+- hr
 - link: /colophon/
   text: About Site
 - hr
