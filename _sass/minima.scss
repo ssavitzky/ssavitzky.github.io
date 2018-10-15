@@ -2,8 +2,9 @@
 
 // Define defaults for each variable.
 
-$base-font-family: Rubik, Spectral, Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
-$headline-font-family: Spectral, serif !default;
+$base-font-family: Roboto, "Meriweather Sans", Rubik, Spectral, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$headline-font-family: Meriweather, Spectral, serif !default;
+$code-font-family: "Roboto Mono", monospace !default;
 
 $base-font-size:   16px !default;
 $base-font-weight: 400 !default;
