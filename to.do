@@ -1,5 +1,16 @@
 Notes:  Where to go with ssavitzky.github.com
 
+  o We _need_ to put in links to any GitHub project sites we set up, starting with
+    hyperviewer and, probably, PIA papers.  That means we actually have to _make_ project
+    pages for those projects.
+
+  o Wanting to make a theme out of it complicates things a bit.  It would be nice if we
+    could keep all the Jekyll pieces in one place.  Clearing the deadwood out of here
+    would help.
+
+
+==Done-v================================================================================>|
+
   * GitHub is way behind master, and there's some messy stuff at the branch point.  If we
     can figure out where we want to go with it, the right thing is to chop it off at that
     point and cherry-pick/rebase -i to get the parts we want to keep.
@@ -23,10 +34,7 @@ Notes:  Where to go with ssavitzky.github.com
     probably need to slugify the titles.
     -> articles.  Note the source.
 
-  o We _need_ to put in links to any GitHub project sites we set up, starting with
-    hyperviewer and, probably, PIA papers.  That means we actually have to _make_ project
-    pages for those projects.
+  * 1115 should have pulled the changes to Makefile as well.  Admittedly most of it is
+    going into MakeStuff soon, but in the mean time...
 
-  o Wanting to make a theme out of it complicates things a bit.  It would be nice if we
-    could keep all the Jekyll pieces in one place.  Clearing the deadwood out of here
-    would help.
+  & 1116 Articles.html -> Articles.md and _layouts/collection.html

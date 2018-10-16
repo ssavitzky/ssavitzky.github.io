@@ -1,13 +1,11 @@
 ---
-title: Articles
 layout: default
-list_title: Articles
-permalink: /Articles/
+collection: articles
 ---
 
 {%- comment -%}
   NOTES:
-    This page MUST NOT live in the same directory as the actual articles.
+    An index page MUST NOT live in the same directory as the actual articles.
     Putting it there causes a recursion in post.excerpt.  It will,
     however, end up there in the build.
 
@@ -19,9 +17,18 @@ permalink: /Articles/
     proliferation of almost-identical layouts.
 {%- endcomment -%}
 
-    <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
+<div class="home">
+  {%- if page.title -%}
+    <h1 class="page-heading">{{ page.title }}</h1>
+  {%- endif -%}
+
+  {{ content }}
+
+  {%- if page.list_title -%}
+    <h2 class="post-list-heading">{{ page.list_title }}</h2>
+  {%- endif -%}
     <ul class="post-list">
-      {%- assign item-list = site.articles | reverse -%}
+      {%- assign item-list = site[page.collection] | reverse -%}
       {%- for post in item-list -%}
       <li>
 	{%- include post-metadata.html post=post -%}
@@ -36,3 +43,5 @@ permalink: /Articles/
       </li>
       {%- endfor -%}
     </ul>
+
+</div>
