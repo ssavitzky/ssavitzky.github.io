@@ -12,6 +12,9 @@
 ###
 SHELL=/bin/bash
 DEFAULT_EXT = md
+# comment out for the default bahavior of committing the draft.
+# Can be useful if you don't want to clutter master.
+DONT_COMMIT_DRAFT = true
 
 # Are we using real jekyll, or gojekyll?
 ifeq ($(wildcard .bundle),.bundle)
@@ -22,7 +25,7 @@ endif
 
 # TARGETS has all of the targets a user is likely to make
 #	  there are some internal ones not listed here.
-TARGETS = draft post publish serve build imports upload
+TARGETS += draft post publish serve build imports upload
 
 all::
 	@echo targets: $(TARGETS)
@@ -72,18 +75,20 @@ $(DRAFT):
 	echo layout: post	>> $@
 	echo '---'		>> $@
 	git add $@
-	git commit -m "created $@" $@
+	[ ! -z $(DONT_COMMIT_DRAFT) ] || git commit -m "created $@" $@
 
+# Posting should no longer require the draft to have been committed.
 post: 	draft-required $(POST)
 $(POST):
-	git mv $(DRAFT) $(POST)
+	git mv $(DRAFT) $(POST) || ( mv  $(DRAFT) $(POST); git add $(POST) )
 	git commit -m "posted $(POST)" $(POST) $(DRAFT)
 
 ## Import a file as a draft
 import: from-required name-required
 	$(TOOLDIR)/scripts/page-to-template-data -j -o $(DRAFT) $(from)
 	git add $(DRAFT)
-	git commit $(DRAFT) -m "imported from $(from)" 
+	[ ! -z $(DONT_COMMIT_DRAFT) ] || \
+	  git commit $(DRAFT) -m "imported from $(from)" 
 
 ## validation dependencies for posting.
 
