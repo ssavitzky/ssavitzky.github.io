@@ -21,7 +21,7 @@ about computers or software, this is the place to look.
 
 It is, of course, also the place to look for my [open-source
 software](/Software/).  Some of those projects will eventually have GitHub
-project pages
+project pages of their own, which will be linked from here.
 
 Blog posts on this site will generally be either site-related news (seen
 below), or cross-posts related to the software here.

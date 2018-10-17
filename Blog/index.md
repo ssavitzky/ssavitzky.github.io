@@ -5,6 +5,6 @@ permalink: /Blog/
 ---
 
 I've been blogging for quite a long time, under several different names.  This
-blog collects my computer-related posts.
+blog collects posts about my open source software and other projects.
 
 [Posts listed by tag]({{baseurl}}/tags)
