@@ -3,15 +3,12 @@ title: About This Site
 permalink:  /colophon/
 ---
 
-The theme of this site is an extremely hacked-up version of the default Jekyll
-theme, [minima](https://github.com/jekyll/minima); it is hoped that it will
-eventually be turned into a theme in its own right.
-
-The design was inspired by [Read-Only, by
-HTML5-Up](https://html5up.net/read-only).  Several attempts have been made to
-make it into a Jekyll theme, but none of them worked the way I wanted them
-to. The theme derived from this site will almost certainly be called
-"Read-Mostly". 
+The design was inspired by [ HTML5-Up](https://html5up.net/)'s
+[Read-Only](https://html5up.net/read-only).  Several attempts have been made
+to make it into a Jekyll theme, but none of them worked the way I wanted them
+to, so I started with [minima](https://github.com/jekyll/minima), the default
+theme, and used that as a base. The theme derived from this site will almost
+certainly be called "Read-Mostly", when it's finished.
 
 This site started out as a prototype for what eventually turned into
 [computer-curmudgeon.com](https://computer-curmudgeon.com), the website for my
