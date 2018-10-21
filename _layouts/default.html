@@ -5,7 +5,7 @@
 
 <body>
 <div class="outer-box" id="outer-box">
- {% if site.sidebar-location == "left" -%}
+ {% if site.sidebar_location == "left" -%}
   <div class="sidebar-column" id="sidebar-column">
     {%- include sidebar.html -%}
   </div>
@@ -19,7 +19,7 @@
     </main>
     {%- include footer.html -%}
   </div>
- {% if site.sidebar-location != "left" -%}
+ {% if site.sidebar_location != "left" -%}
   <div class="sidebar-column" id="sidebar-column">
     {%- include sidebar.html -%}
   </div>

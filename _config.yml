@@ -125,7 +125,7 @@ header_pages:
 logo_image:  freas-headshot.png
 
 # Uncomment to move the sidebar to the left-hand side
-#sidebar_location: left
+//sidebar_location: left
 
 # Sidebar data.  This is used if _data/sidebar.yml is missing.
 

@@ -26,8 +26,6 @@ body {
 #sidebar-column {
     display: flex;
     flex-direction: column;
-    //width: $sb-width;
-    //float: right;
 }
 
 /**
@@ -176,7 +174,6 @@ body {
   border-top: 1px solid $grey-color-dark;
   border-bottom: 1px solid $grey-color-light;
   height: 100%;
-  width: $sb-width;
   background-color: $sb-background-color;
   color: $sb-text-color;
   text-align: center;
@@ -184,6 +181,79 @@ body {
   display: block;
   // Positioning context for the mobile navigation icon
   position: relative;
+  
+  .sb-trigger {
+      display: none;
+  }
+
+  .menu-icon {
+    display: none;
+  }
+
+
+  @include media-query($on-palm) {
+    //position: absolute;
+    top: 9px;
+    right: 0; //$spacing-unit / 2;
+    background-color: $sb-background-color;
+    border: 1px solid $grey-color-light;
+    border-radius: 5px;
+
+    label[for="sb-trigger"] {
+      display: block;
+      float: right;
+      width: 36px;
+      height: 36px;
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    .menu-icon {
+      display: block;
+      //float: right;
+      width: 36px;
+      height: 26px;
+      line-height: 0;
+      padding-top: 10px;
+      text-align: center;
+
+      > svg {
+          fill: $sb-text-color;//$grey-color-dark;
+      }
+    }
+
+    input ~ .sb-triggered {
+      clear: both;
+      display: none;
+    }
+
+    input:checked ~ .sb-triggered {
+      display: block;
+      padding-bottom: 5px;
+    }
+
+    .sb-page-link {
+      display: block;
+      padding: 5px 10px;
+
+      &:not(:last-child) {
+        margin-right: 0;
+      }
+      margin-left: 20px;
+    }
+  }
+}
+
+.sb-logo-box {
+    height: $sb-width;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  @include media-query($on-palm) {
+      // no logo on small devices.
+      display: none;
+  }
 }
 
 .sb-logo-frame {
@@ -195,16 +265,10 @@ body {
     margin: auto;
 }
 
-.sb-logo-box {
-    height: $sb-width;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .sb-title {
   @include relative-font-size(1.625);
   font-weight: 300;
+  font-family: $headline-font-family;
   line-height: $base-line-height * $base-font-size * 2.25;
   letter-spacing: -1px;
   margin-bottom: 0;
@@ -219,6 +283,7 @@ body {
 .sb-subtitle {
   @include relative-font-size(1.25);
   font-weight: 300;
+  font-family: $headline-font-family;
   line-height: $base-line-height * $base-font-size * 2.25;
   letter-spacing: -1px;
   margin-top: 0px;
@@ -229,6 +294,11 @@ body {
     color: darken($sb-text-color, 15%);
   }
 }
+
+.heading {
+      font-family: $headline-font-family;
+  }
+  
 
 .sb-nav hr {
     //top-padding: $base-line-height;
@@ -241,7 +311,7 @@ body {
   line-height: $base-line-height;
   display: block;
   &:visited {
-    color: darken($sb-text-color, 15%);
+    color: darken($sb-text-color, 5%);
   }
 
   &:hover {
@@ -277,6 +347,7 @@ body {
 }
 
 .sb-nav {
+  width: $sb-width;
     //height: 100%;
     //width: auto;
     align-items: center;
@@ -288,14 +359,6 @@ body {
   background-color: $sb-background-color;
   color: $sb-text-color;
   
-  .sb-trigger {
-      display: none;
-  }
-
-  .menu-icon {
-    display: none;
-  }
-
   .sb-page-link {
     color: $sb-text-color;
     line-height: $base-line-height * $base-font-size * 1.25;
@@ -303,59 +366,6 @@ body {
 
   }
   
-
-  @include media-query($on-palm) {
-    position: absolute;
-    top: 9px;
-    right: $spacing-unit / 2;
-    background-color: $sb-background-color;
-    border: 1px solid $grey-color-light;
-    border-radius: 5px;
-    text-align: right;
-
-    label[for="sb-trigger"] {
-      display: block;
-      float: right;
-      width: 36px;
-      height: 36px;
-      z-index: 2;
-      cursor: pointer;
-    }
-
-    .menu-icon {
-      display: block;
-      float: right;
-      width: 36px;
-      height: 26px;
-      line-height: 0;
-      padding-top: 10px;
-      text-align: center;
-
-      > svg {
-        fill: $grey-color-dark;
-      }
-    }
-
-    input ~ .sb-triggered {
-      clear: both;
-      display: none;
-    }
-
-    input:checked ~ .sb-triggered {
-      display: block;
-      padding-bottom: 5px;
-    }
-
-    .sb-page-link {
-      display: block;
-      padding: 5px 10px;
-
-      &:not(:last-child) {
-        margin-right: 0;
-      }
-      margin-left: 20px;
-    }
-  }
 }
 
 /**
