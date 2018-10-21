@@ -128,7 +128,7 @@ kill-server:
 
 # make serve includes drafts.
 #	This does a build as a side effect, but it's not a production build
-serve:
+serve:  kill-server
 	$(JEKYLL) serve --drafts
 
 # build with JEKYLL_ENV=production.
