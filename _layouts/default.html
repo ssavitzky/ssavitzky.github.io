@@ -4,8 +4,13 @@
   {%- include head.html -%}
 
 <body>
-<div class="outer-box">
-  <div class="content-column"> 
+<div class="outer-box" id="outer-box">
+ {% if site.sidebar-location == "left" -%}
+  <div class="sidebar-column" id="sidebar-column">
+    {%- include sidebar.html -%}
+  </div>
+ {%- endif %}
+  <div class="content-column" id="content-column"> 
     {%- include header.html -%}
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
@@ -14,9 +19,11 @@
     </main>
     {%- include footer.html -%}
   </div>
-  <div class="sidebar-column">
+ {% if site.sidebar-location != "left" -%}
+  <div class="sidebar-column" id="sidebar-column">
     {%- include sidebar.html -%}
   </div>
+ {% endif -%}
 </div>
 </body>
 </html>

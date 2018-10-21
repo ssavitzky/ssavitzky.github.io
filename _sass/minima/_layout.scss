@@ -6,7 +6,7 @@ body {
     align-items: center;
 }
 
-.outer-box {
+#outer-box {
     width: 100%;
     min-height: 100vh;
     align: center;
@@ -16,17 +16,17 @@ body {
     border: 2px solid green;
 }
 
-.content-column {
+#content-column {
     width: 100%;
     display: block;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.sidebar-column {
+#sidebar-column {
     display: flex;
     flex-direction: column;
-    width: $sb-width;
+    //width: $sb-width;
     //float: right;
 }
 
@@ -231,8 +231,8 @@ body {
 }
 
 .sb-nav hr {
-    top-padding: $base-line-height;
-    line-height: $base-line-height * $base-font-size * 2.25;
+    //top-padding: $base-line-height;
+    //line-height: $base-line-height * $base-font-size * 2.25;
 }
 
 .sb-nav a {
@@ -245,8 +245,9 @@ body {
   }
 
   &:hover {
-    color: $sb-text-color;
-    text-decoration: underline;
+      color: $sb-background-color;
+      background-color: $sb-text-color;
+      text-decoration: underline;
   }
 
 }
