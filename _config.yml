@@ -73,6 +73,8 @@ keep_files:
 
 ##### added #####
 
+permalink: /Blog/:categories/:year/:month/:day/:title/
+
 # default layouts
 #    The requirements here are non-obvious, to say the least.
 #    "articles" is a type, but if you put it in the list with
@@ -117,8 +119,8 @@ collections:
 # header
 
 header_pages:
-    - what-i-do.md
-    - hire-me.md
+
+top_nav: none
 
 #sidebar:
 

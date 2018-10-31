@@ -22,7 +22,7 @@
 - hr
 - text: Writing
   style: heading
-- link: /Articles/
+- link: /articles/
   text: Articles
 - link: /Blog/
   text: Blog
@@ -43,5 +43,5 @@
 - p
 - hr
 - link: /colophon/
-  text: About Site
+  text: colophon
 - hr

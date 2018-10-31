@@ -1,11 +1,11 @@
 ---
 title: Articles
 layout: collection
-permalink: /Articles/
+permalink: /articles/
 collection: articles
 ---
 
-Most of these [Articles](/articles) first appeared as blog posts, either on my
+Most of these [articles](/articles) first appeared as blog posts, either on my
 personal blog (on [Dreamwidth](https://dreamwidth.org/), an excellent
 journaling community, under a different user id) or on
 [computer-curmudgeon.com](https://computer-curmudgeon.com).  They have been
