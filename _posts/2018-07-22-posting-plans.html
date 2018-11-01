@@ -1,0 +1,144 @@
+---
+title: Blog posting software planning
+tags: [ computers, programming, projects, blogging, software, makestuff ]
+picture: technonerdmonster
+music: 'Savitzky: "Cicero in the 21st Century"'
+mood: didactic
+location: Somewhere in cyberspace
+layout: post
+posted: Sun Jul 22 21:25:11 PDT 2018
+---
+<p> In <a
+    href="https://mdlbear.dreamwidth.org/1631371.html?thread=4766603#cmt4766603"
+    >comments on "Done Since 2018-07-15"</a> we started having a discussion of
+    mirroring and cross-posting DW blog entries, and in particular what my
+    plans are for implementing personal blog sites that mirror all or some of
+    a -- <em>this</em> -- Dreamwidth journal.
+
+<p> Non-techie readers might conceivably want to skip this post.
+
+<h3>Where I am now:</h3>
+
+<p> Right now, my blog posting process is, well, let's just say
+    <em>idiosyncratic</em>.  Up until sometime late last year, I was posting
+    using an Emacs major mode called <code>lj-update-mode</code>; it was
+    pretty good.  It had only two significant problems:
+<ol>
+  <li> It could only create one post at a time, and there was no good way to
+       save a draft and come back to it later.  I could live with that.
+  <li> It stopped working when DW switched to all HTTPS.  It was using an
+       obsolete http library, and noone was maintaining either of them.
+</ol>
+<p> My current system is much better.
+<ol>
+  <li> I run a command, either <code>make&nbsp;draft</code> or, if I'm pretty
+       sure I'm going to post immediately, <code>make&nbsp;entry</code>.  I
+       pass the filename, without the yyyy/mm/dd prefix, along with an
+       optional title.  If I don't pass the title I can add it later.  The
+       draft gets checked in with git; I can find out when I started by using
+       <code>git&nbsp;log</code>. 
+  <li> I edit the draft.  It can sit around for days or months; doesn't
+       matter.  It' an ordinary html file except that it has an email-like
+       header with the metadata in it.
+  <li> When I'm done, I <code>make&nbsp;post</code>.  Done.  If I'm posting a
+       draft I have to pass the filename again to tell it <em>which</em>
+       draft; <code>make&nbsp;entry</code> makes a symlink to the entry, which
+       is already in a file called
+       <code>yyyy/mm/dd-<em>filename</em>.html</code>.  It gets posted,
+       and committed in git with a suitable commit message.
+</ol>
+<p> You can see the code in <a
+    href="https://github.com/ssavitzky/MakeStuff/tree/master/blogging"
+    >MakeStuff/blogging</a> on GitHub.  It depends on a Python client called
+    <a href="https://github.com/ssavitzky/charm" ><code>charm</code></a>,
+    which I forked to add the Location: header and some sane defaults like not
+    auto-formatting.  Charm is mostly useless -- it does almost everything
+    using a terminal-based text editor.  Really?  But it does have a
+    "quick-post" mode that takes metadata on the command line, and a "sync"
+    mode that you can use to sync your journal with an archive.  Posts in the
+    archive are almost, but not quite, in the same format as the MakeStuff
+    archive; the main difference is that the filenames look like
+    <code>yyyy/mm/dd_HHMM</code>.  Close, but not quite there.
+
+<p> There's another advantage that isn't apparent in the code: you can add
+    custom make targets that set up your draft using a template.  For example,
+    my "Done since ..." posts are started with <code>make&nbsp;done</code>,
+    and my "<a href="https://mdlbear.dreamwidth.org/tag/curmudgeon" >Computer
+    Curmudgeon</a>" posts are started with <code>make&nbsp;curmudgeon</code>.
+    There are other shortcuts for River and S4S posts.  I also have multiple
+    directories for drafts, separated roughly by subject, but all posting into
+    the same archive.
+
+<h3>Where I want to go:</h3>
+
+<p> Here's what I want next:
+
+<ul>
+  <li> The ability to post in either HTML or markdown -- markdown has a great
+       toolchain, including the ability to syntax-color your code blocks.
+  <li> The ability to <em>edit</em> posts by editing the archived post and
+       uploading it.  Right now it's a real pain to keep them in sync.
+  <li> A unified archive, with <em>actual URLs in the metadata</em> rather
+       than just the date and time in the filename.
+  <li> The ability to put all or part of my blog on <em>different sites.</em>
+       I really want the computer-related posts to go on <a
+       href="https://stephen.savitzky.net/">Stephen.Savitzky.net</a> (usually
+       shortened to S.S.net in my notes), and a complete mirror on <a
+       href="https://steve.savitzky.net/">steve.savitzky.net</a> (s.s.net).
+  <li> Cross-links in both directions between my sites and DW.
+</ul>
+
+<h3>How to get there:</h3>
+
+<p> Here's a very brief sketch of what needs to be done.  It's only vaguely in
+    sequence, and I've undoubtedly left parts out.  But it's a start.
+
+<h4>Posting, editing, and archiving</h4>
+<ul>
+  <li> Posting in HTML or markdown is a pretty easy one; I can do that just by
+       modifying the makefiles and (probably) changing the final extension
+       from <code>.html</code> to <code>.posted</code> so that make can apply
+       its usual dependency-inference magic.
+  <li> Editing and a unified archive will <em>both</em> require a new
+       command-line client.  There aren't any.  There <em>are</em> libraries,
+       in Ruby, Haskell, and Javascript, that I can wrap a program around.
+       (The Python code in <code>charm</code> doesn't look worth saving.)  I
+       wanted to learn Ruby anyway.
+  <li> The unified archive will also require a program that can go back in
+       time and match up archived posts with the right URLs, reconcile the two
+       file naming conventions, and remove the duplicates that are due to
+       archiving posts both in <code>charm</code> and <code>MakeStuff</code>.
+       Not too hard, and it only has to be done once.
+  <li> It would be nice to be able to archive comments, too.  The old
+       <code>ljbackup</code> program can do it, so it's feasible.  It's in
+       Perl, so it might be a good place to start.
+</ul>
+
+<h4>Mirror, mirror, on the server...</h4>
+
+<p> This is a separate section because it's mostly orthogonal to the posting,
+    archiving, etc.  
+<ul>
+  <li> The only part of the posting section that really needs to be done first
+       is the first one, changing the extension of archived posts to
+       <code>.posted</code>.  (That's because <code>make</code> uses
+       extensions to figure out what rules to apply to get from one to
+       another.  Remind me to post about <code>make</code> some time.)
+  <li> The post archive may want to have its own git repository.
+  <li> Templating and styling.  My websites are starting to show their age;
+       there's nothing really wrong with a retro look, but they also aren't
+       responsive (to different screen sizes -- that's important when most
+       people are reading websites on their phones), or accessible
+       (screen-reader friendly and navigable by keyboard; having different
+       font sizes helps here, too).  Any respectable static site generator can
+       do it -- you may remember <a
+       href="https://mdlbear.dreamwidth.org/1618191.html" >this post on The
+       Joy of Static Sites</a> -- but the way I'm formatting my metadata will
+       require some custom work.  Blosxom and nanoblogger are probably the
+       closest, but they're ancient.  I probably ought to resist the
+       temptation to roll my own.
+</ul>
+
+<p> Yeah.  Right.
+
+

@@ -1,0 +1,280 @@
+---
+title: Scripting Languages
+tags: [ computers, languages, programming, scripting ]
+picture: technonerdmonster
+music: 
+mood: didactic
+location: Somewhere in cyberspace
+layout: post
+posted: Thu Jul 26 17:46:18 PDT 2018
+---
+<p> Today in my continuing series on programming languages I'm going to talk
+    about "scripting languages".  "Scripting" is a rather fuzzy category,
+    because unlike the kinds of languages we've discussed before, scripting
+    languages are really distinguished by how they are <em>used</em>, and
+    they're used in two very different ways.  It's also confusing because most
+    scripting languages are interpreted, and people tend to use "scripting"
+    when they should be using "interpreted".  In my opinion it's more correct
+    to say that a language is <em>being used as</em> a scripting language,
+    rather than to say that it <em>is</em> a scripting language.  As we'll
+    see, this is particularly true when the language is being used to
+    customize some application.
+
+<p> But first, let's define <cite>scripts.</cite> A script is basically a
+    sequence of <em>commands</em> that a user could type at a terminal[1] --
+    often called "the command line" -- that have been put together in a file
+    so that they can be run automatically.  The script then becomes a
+    new command.  In Linux, and before that Unix, the program that interprets
+    user commands is called a "shell", possibly because it's the visible outer
+    layer of the operating system.  The quintessential script is a <cite>shell
+    script</cite>.  We'll dive into the details later.
+
+<blockquote style="font-size:small">
+[1] okay, a terminal <em>emulator.</em>  Hardly anyone uses physical terminals
+anymore.  Or remembers that the "tty" in <code>/dev/tty</code> stands for
+"teletype"'.
+</blockquote>
+
+<p> The second kind of scripting language is used to implement commands inside
+    some interactive program that <em>isn't</em> a shell.  (These languages
+    are also called <cite>extension</cite> languages, because they're
+    extending the capabilities of their host program, or sometimes
+    <cite>configuration</cite> languages.)  Extension languages generally look
+    nothing at all like something you'd type into a shell -- they're really
+    just programming languages, and often are just the programming language
+    the application was written in.  The commands of an interactive program
+    like a text editor or graphics editor tend to be things like single
+    keystrokes and mouse gestures, and in most cases you wouldn't want to --
+    or even be able to -- write programs with them.  I'll use "extension
+    languages" for languages used in this way.  There's some overlap in
+    between, and I'll talk about that later.
+
+<h3>Shell scripting languages</h3>
+
+<p> Before there was Unix, there were mainframes.  At first, you would punch
+    out decks of Hollerith cards, hand them to the computer operator, and they
+    would (eventually) put it in the reader and push the start button, and you
+    would come back an hour or so later and pick up your deck with a pile of
+    listings from the printer.
+
+<p> Computers were <em>expensive</em> in those days, so to save time the
+    operator would pile a big batch of card decks on top of one another with
+    a couple of "job control" cards in between to separate the jobs.  Job
+    control languages were really the first scripting languages.  (And the old
+    terminology lingers on, as such things do, in the ".bat" extension of
+    MS/DOS (later Windows) "batch files".  Which are shell scripts.)
+
+<p> By far the most sophisticated job control language ran on the Burroughs
+    5000 and 6000 series computers, which were designed to run Algol very
+    efficiently.  (So efficiently that they used Algol as what amounted to
+    their assembly language!  Programs in other languages, including Fortran
+    and Cobol, were compiled by first translating them into Algol.)  The job
+    control language was a somewhat extended version of Algol in which some
+    variables had files as their values, and programs were simply
+    subroutines.  Don't let anyone tell you that all scripting languages are
+    interpreted.
+
+<p> Side note:  the Burroughs machines' operating system was called MCP, which
+    stands for Master Control Program.  Movie fans may find that name familiar.
+
+<p> Even DOS batch files had control-flow statements (conditionals and loops)
+    and the ability to substitute variables into commands.  But these features
+    were clumsy to use.  In contrast, the Unix shell written by Stephen Bourne
+    at Bell Labs was <em>designed</em> as a scripting language.  The syntax of
+    the control structures was, in fact, derived from Algol 68, which
+    introduced the "if...fi" and "do...done" syntax.
+
+<p> Bourne's shell was called <code>sh</code> in Unix's characteristically
+    terse style.  The version of Unix developed at Berkeley, (BSD, for
+    Berkeley System Distribution -- I'll talk about the history of operating
+    systems some time) had a shell called the C shell, <code>csh</code>, which
+    had a syntax derived from the C programming language.  That immediately
+    gave rise to the popular tongue-twister "she sells cshs by the cshore".
+
+<p> The GNU (GNU's Not Unix) project, started by Richard Stallman with the
+    goal of producing a completely free replacement for Unix, naturally had
+    its own rewrite of the Bourne Shell called <code>bash</code> -- the Bourne
+    Again Shell.  It's a considerable improvement over the original, pulling
+    in features from <code>csh</code> and some other shell variants.
+
+<p> Let's look at shell scripting a little more closely.  The basic statement
+    is a command -- the name of a program followed by its arguments, just as
+    you would type it on the command line.  If the command isn't one of the
+    few built-in ones, the shell then looks for a file that matches the name
+    of the command, and runs it.  The program eventually produces some output,
+    and exits with a result code that indicates either success or failure.
+
+<p> There are a few really brilliant things going on here.
+<ul>
+  <li> Each program gets run in a separate process.  Unix was originally a
+       <cite>time-sharing</cite> operating system, meaning that many people
+       could use the computer at the same time, each typing at their own
+       terminal, and the OS would run all their commands at once, a little at
+       a time.
+  <li> That means that you can pipe the output of one command into the input
+       of another.  That's called a "pipeline"; the commands are separated by
+       vertical bars, like | this, so the '|' character is often called "pipe"
+       in other contexts.  It's a lot shorter than saying "vertical bar".
+  <li> You can "redirect" the output of a command into a file.  There's even a
+       "pipe fitting" command called <code>tee</code> that does both:  copies
+       its input into a file, and also passes it along to the next command in
+       the pipeline.
+  <li> The shell uses the command's result code for control -- there's a
+       program called <code>true</code> that does nothing but immediately
+       returns success, and another called <code>false</code> that immediately
+       fails.  There's another one, <code>test</code>, which can perform
+       various tests, for example to see whether two strings are equal, or a
+       file is writable.  There's an alias for it:  <code>[</code>.  Unix
+       allows all sorts of characters in filenames.  Anyway, you can say
+       things like <code>if&nbsp;[&nbsp;-w&nbsp;$f&nbsp;];&nbsp;then...</code>
+  <li> You can also use a command's output as part of another command line, or
+       put it into a variable.  <code>today=`date`</code> takes the result of
+       running the <code>date</code> program and puts it in a variable called
+       <code>today</code>.
+</ul>
+
+<p> This is basically functional programming, with programs as functions and
+    files as variables.  (Of course, you can define variables and functions in
+    the shell as well.)  In case you were wondering whether Bash is a "real"
+    programming language, take a look at <a
+    href="https://github.com/mrstegeman/nanoblogger-mod" >nanoblogger</a> and
+    <a href="https://abcde.einval.com/wiki/" >Abcde</a> (A Better CD Encoder).
+
+<p> Sometime later in this series I'll devote a whole post to an introduction
+    to shell scripting.  For now, I'll just show you a couple of my favorite
+    one-liners to give you a taste for it.  These are tiny but useful scripts
+    that you might type off the top of your head.  Note that comments in shell
+    -- almost all Unix scripting languages, as a matter of fact -- start with
+    an octothorpe.  (I'll talk about octothorpe/sharp/hash/pound later, too.)
+
+<blockquote style="font-size:small"><pre
+># wait until nova (my household server) comes back up after a reboot
+until ping -c1 nova; do sleep 10; done
+
+# count my blog posts.  wc counts words, lines, and/or characters.
+find $HOME/.ljarchive -type f -print | wc -l
+
+# find all posts that were published in January.
+# grep prints lines in its input that match a pattern.
+find $HOME/.ljarchive -type f -print | grep /01/ | sort</pre></blockquote>
+
+<h3>Other scripting languages</h3>
+
+<p> As you can see, shell scripts tend to be a bit cryptic.  That's partly
+    because shells are also meant to have commands typed at them directly, so
+    brevity is often favored over clarity.  It's also because all of the
+    operations that work on files are <em>programs</em> in their own right;
+    they often have dozens of options and were written at different times by
+    different people.  The <code>find</code> program is often cited as a good
+    (or bad) example of this -- it has a very different set of options from
+    any other program, because you're trying to express a rather complicated
+    combination of tests on its command line.
+
+<p> Some things are just too complicated to express on a single line, at least
+    with anything resembling readability,  so many other programs besides
+    shells are designed to run scripts.  Some of the first of these in Unix
+    were <code>sed</code>, the "stream editor", which applies text editing
+    operations to its input, and <code>awk</code>, which splits lines into
+    "fields" and lets you do database-like operations on them.  (Simpler
+    programs that also split lines into fields include <code>sort</code>,
+    <code>uniq</code>, and <code>join</code>.)
+
+<blockquote style="font-size:small">
+    DOS and Windows look at the last three characters of a program's name
+    (e.g., "exe" for "executable" machine language and "bat" for "batch"
+    scripts) to determine what it contains and how to run it.  Unix, on the
+    other hand, looks at the first few characters of the file itself.  In
+    particular, if these are "<code>#!</code>" followed by the name of a
+    program (I'm simplifying a little), the file is passed to that program to
+    be run as a script.  The "<code>#!</code>" combination is usually
+    pronounced "<a
+    href="https://en.wikipedia.org/wiki/Shebang_(Unix)">shebang</a>".  This
+    accounts for the popularity of "<code>#</code>" to mark comments -- lines
+    that are meant to be ignored -- in most scripting languages.
+</blockquote>
+
+<p> The scripting programs we've seen so far -- <code>sh</code>,
+    <code>sed</code>, <code>awk</code>, and some others -- are all designed to
+    do one kind of thing.  Shells mostly just run commands, assign variables,
+    and substitute variables into commands, and rely on other programs like
+    <code>find</code> and <code>grep</code> to do most other things.  Wouldn't
+    it be nice if one could combine all these functions into one program, and
+    give it a better language to write programs in.  The first of these that
+    really took off was Larry Wall's <a
+    href="https://en.wikipedia.org/wiki/Perl" >Perl</a>.  Like the others it
+    allows you to put simple commands on the command line -- with <em>exactly
+    the same syntax as grep and awk</em>.
+
+<p> Perl's operations for searching and substituting text look just like the
+    ones in <code>sed</code> and <code>grep</code>.  It has associative arrays
+    (basically lookup tables) just like the ones in <code>awk</code>.  It can
+    run programs and get their results exactly the way <code>sh</code> does,
+    by enclosing them in backtick characters (`...` -- originally meant to be
+    used as left single quotes), and it can easily read lines out of files,
+    mess with them, and write them out.  It has has objects, methods, and
+    (more or less) first-class functions.  And just like <code>find</code> and
+    the Unix command line, it has a well-earned reputation for scripts that
+    are obscure and hard to read.
+
+<p> You've probably heard <a
+    href="https://en.wikipedia.org/wiki/Python_(programming_language)"
+    >Python</a> mentioned.  It was designed by Guido van Rossum in an attempt
+    to be a better scripting language Perl, with an emphasis on making
+    programs more readable, easier to write, and easier to maintain.  He
+    succeeded.  At this point Python has mostly replaced Perl as the most
+    popular scripting language, in addition to being a good first language for
+    learning programming.  (Which is the <em>best</em> language for learning
+    is a subject guaranteed to invoke strong opinions and heated discussions;
+    I'll avoid it for now.)  I avoided Python for many years, but I'm finally
+    learning it and finding it much better than I expected.
+
+<h3>Extension languages</h3>
+
+<p> The other major kind of scripting is done to extend a program that
+    <em>isn't</em> a shell.  In most cases this will be an interactive program
+    like an editor, but it doesn't have to be.  Extensions of this sort may 
+    also be called "plugins".
+
+<p> Extension languages are usually small, simple, and interpreted, because
+    nobody wants their text editor (for example) to include something as large
+    and complex as a compiler when its main purpose is defining keyboard
+    shortcuts.  There's an exception to this -- sometimes when a program is
+    written in a compiled language, the same language may be used for
+    extensions.  In that case the extensions have to be compiled in, which is
+    usually inconvenient, but they can be particularly powerful.  I've already
+    written about one such case -- the <a
+    href="https://mdlbear.dreamwidth.org/tag/xmonad" >Xmonad</a> window
+    manager, which is written and configured in Haskell. 
+
+<p> Everyone these days has at least heard of <a
+    href="https://en.wikipedia.org/wiki/JavaScript" >JavaScript</a>, which is
+    the scripting language used in web pages.  Like most scripting languages,
+    JavaScript has escaped from its enclosure in the browser and run wild, to
+    the point where text editors, whole web browsers, web <em>servers</em>,
+    and so on are built in it.
+
+<p> Other popular extension languages include various kinds of Lisp, <a
+    href="https://en.wikipedia.org/wiki/Tcl" >Tcl</a>, and
+    <a href="https://en.wikipedia.org/wiki/Lua_(programming_language)"
+    >Lua</a>.  Lua and Tcl were explicitly designed to be embedded in
+    programs.  Lua is particularly popular in games, although it has recently
+    turned up in other places, including the TeX typesetting system.
+
+<p> Lisp is an interesting case -- probably its earliest use as an extension
+    language was in the Emacs text editor, which is almost entirely written in
+    it.  (To the point where many people say that it's a very good Lisp
+    interpretor, but it needs a better text editor.  I'm not one of them:  I'm
+    passionately fond of Emacs, and I'll write about it at greater length
+    later on.)  Because of its radically simple structure, Lisp is
+    particularly easy to write an interpretor for.  Emacs isn't the only
+    example; there are Lisp variants in the Audacity audio workstation and the
+    Autodesk CAD program.  I used the one in Audacity for the sound effects in
+    my computer/horror crossover song <a
+    href="https://steve.savitzky.net/Songs/vampire/" >"Vampire Megabyte"</a>.
+
+<p> Emacs, Atom (a text editor written in JavaScript), and Xmonad are good
+    examples of interactive programs where the same language is used for
+    (most, if not all, of) the implementation as well as for the configuration
+    files and the extensions.  The boundaries can get very fuzzy in cases like
+    that; as a Mandelbear I find that particularly appealing.
+

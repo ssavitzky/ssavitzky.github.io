@@ -1,0 +1,165 @@
+---
+title: "Meta:  How to.do it"
+tags: [ meta, blogging, journaling, writing, how-i-work ]
+music: ""
+mood: "restless"
+access: "public"
+layout: post
+posted: "Sun Jan 22 13:36:31 PST 2017 https://mdlbear.dreamwidth.org/1587855.html"
+---
+
+<p> A few days ago I got a <a
+    href="http://mdlbear.dreamwidth.org/1587382.html?thread=4489654#cmt4489654"
+    >comment</a> on my weekly post that went <a
+    href="http://mdlbear.dreamwidth.org/1587382.html?thread=4489654#cmt4489654"
+    >Oohh, you're doing what looks to me like a bullet journal? Only
+    online.</a> So I wrote a quick explanation.  And then I realized that I
+    might be doing something unusual, that I ought to write up in more detail.
+    So here you are:
+
+<h2>The Legend</h2>
+
+<p> Let's start off with the file called <code>Journals/Dog/legend.do</code>:
+
+<pre>
+			       ===legend.do===
+
+= item flag notation for to.do and to.done files:
+
+= notation for to.do and to.done items:
+  = note: keep  o to do  * done  x abandoned  ~ modified  . in progress
+  & added after completion  (recurring items get * when completed)
+  $ financial transaction (flagged as  o before completion)
+  ? query/decision...  - choice  + chosen  ->chosen
+  @ link/research
+  ! emotion noted at the time, or soon after.  NOT added the next morning; 
+    I'm trying to pay more attention at the time
+  | body sensation worthy of note: pain, noticable change...
+    (more recently replaced by %; should maybe go back to |)
+  : observation or external event.  Weather, news, etc
+    + external observation with positive emotional content
+    - external observation with negative emotional content
+  % observation/insight about myself
+  # meta - flags, flist, filters, ...
+  &lt;b>...something I feel good about...&lt;/b> (may be added next day)
+  &lt;i>...something I feel bad about...&lt;/i>
+  [ ... ] delete from public posts
+  ... ongoing items
+  " quotation
+  ' interior dialog
+
+= Notation for meetings and conversations:
+  &lt;- point to bring up.  After meeting, point to bring up next time
+  *- point brought up
+  x- point not brought up
+  ~- point partially brought up, or brought up in different form
+  &- additional point raised  
+  -> information/point raised by someone else/consequence/resolution
+  => action item for me
+  =* action item done
+  <= action item for somebody else.
+
+===
+</pre>
+
+<h2>The History</h2>
+
+<p> My usage has shifted a little over the years.  I first started posting
+    "to.do" items around 2006, though I'd undoubtedly been using at least the
+    o and * flags for years before that.  At first, since I was part of a
+    support group working on procrastination and avoidance, I used it as an
+    accountability thing: I would post a list of open items, followed
+    (hopefully) by the items as they got checked in.  It was a little
+    discouraging, until somebody suggested just posting about what I'd
+    <em>done</em>.  That led to &, and my expanded use of the file as more a
+    log than a to-do list and calendar.
+
+<p> Whenever the list of "done" items got too long, I would move them into a
+    ".done" file -- the first one I have is 2006.done.  In 2009 I switched to
+    quarterly archives; by 2009/q4.done the file had most of its present
+    features.  By 2011 I was archiving monthly.  I don't remember offhand when
+    I stopped making daily posts in LJ and switched to weekly.
+
+<p> Sometime in September of 2011 I decided that the set of unfinished and
+    probably never-to-be-completed items had gotten too long, and moved it to
+    <code>wibnif.do</code>, as in "Wouldn't It Be Nice If..."  My present
+    Makefile plugin reports the current number of unfinished items in to.do
+    and wibnif.do; the current numbers are 70 and 126 respectively.
+
+<h2>The Files</h2>
+
+<p> So there's that.  The file is called <code>to.do</code>, and edited with
+    emacs.  There are a couple of important marker lines in it:
+
+<pre>
+=========================================================================================+
+Ongoing:                                                                             89->|
+<em>recurring items and long-term goals go here</em>
+=then===================================================================================>|
+<em>this contains entries from the first of the month to the present</em>
+=now===-^-===this-month-v-==============================================================>|
+<em>scheduled items for later this month</em>
+=later===-v-===this-month-^-============================================================>|
+<em>scheduled items after this month</em>
+=sometime===-V-===later-^-==============================================================>|
+<em>items with no specific due date</em>
+=Done-v-================================================================================>|
+</pre>
+<p> Dates, in the form mmddWw (e.g., 0122Su), start in the first column; flag
+    characters are indented two spaces.  The marker at column 89 makes it easy
+    to properly size the editor window when I first open it after rebooting;
+    it's where lines wrap.
+
+<p> I'll put approximately-scheduled items in the this-month and later
+    sections after the dated entries, and a few of the more important ones
+    <em>above</em> =now.  That doesn't keep me from procrastinating them, but
+    it does help keep them where they'll be noticed.
+
+<p> Note that, except for the breakpoint at =done, entries are in
+    chronological order from top to bottom.  That makes this a <em>log</em>,
+    not a blog or feed.  My to.do and its associated history (see below) are
+    one of a handful of journal-like collections under my Journals directory;
+    the to.Do lOG is kept in a a directory called Dog.
+
+<h2>The Archives</h2>
+
+<p> By now, I have a fairly well-established routine:
+<ul>
+  <li> I maintain the to.do file using emacs, of course.  
+  <li> Sometime on Sunday, I move the last week's worth of entries from the
+       working location near the top of the file, to the end.
+  <li> At this point I still have the week's entries in the Region (emacs
+       terminology for the current selection).  I move point down two lines to
+       scoop up the HTML boilerplate that I'll need for my weekly post, and
+       copy (M-w).
+  <li> Then I run <code>lj-update</code>, currently bound to M-L, and yank
+       into the body.  The boilerplate is arranged so that all I have to do is
+       move back up two lines, cut, down one, and yank.
+  <li> From there it's an easy step to go back to the first line (which is
+       invariably the start date) copy it, and yank it into the subject line.
+  <li> Write my summary.  Edit out any [...] sections, if necessary.
+  <li> Post.
+</ul>
+<p> Then,
+<ul>
+  <li> Every month -- actually, on the first Sunday of the month, after making
+       my weekly post -- I move the month's entries to yyyy/mm.done.
+  <li> Every so often I go through and pull out obsolete entries, marking them
+       with * or x as appropriate, and put them after the preceeding week's
+       entries at the end of the file.
+  <li> Every year, on New Year's Eve, I gather up my list of goals and make my
+       <a href="https://mdlbear.dreamwidth.org/1586341.html">end-of-the-year
+       post</a>.
+  <li> The next day, I cons up my new list of goals and make a <a
+       href="https://mdlbear.dreamwidth.org/1585429.html" >New Year's
+       post</a>.
+</ul>
+
+<h2>Variations</h2>
+
+<p> I keep other, project-specific, to.do files.  Most of them are much
+    simpler, with undated items above the =done line (which is usually just a
+    line of equal signs), and dated items after it in what I now call a "work
+    log".  It's convenient, because I can just go to the end of the file and
+    make an entry, but it wouldn't work nearly as well if I had to schedule
+    things. 

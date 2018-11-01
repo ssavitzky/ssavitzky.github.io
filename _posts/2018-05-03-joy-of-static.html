@@ -1,0 +1,150 @@
+---
+title: 'HTML for Poets: The Joy of Static Sites'
+tags: [ html, web, ]
+location: With the Rainbow Caravan on Whidbey Island
+mood: didactic
+music: 
+picture: technonerdmonster
+layout: post
+posted: Thu May  3 19:41:28 PDT 2018
+---
+<p> Recently I read a couple of blog posts that set me thinking in some
+    interesting directions.  Like most of the things I find on LinkedIn, they
+    were mostly a little annoying, with a few good points.  For example,
+    <cite><a href="https://cms2cms.com/blog/decisively-reject-using-wix/" >Why
+    You Should Decisively Reject Using Wix</a></cite> gives a lot of good
+    reasons not to use Wix, which is a free website builder and host that lets
+    you throw together a website in half an hour by simply picking a
+    template and dragging and dropping things into it.  What's not to like,
+    right?  Well,...
+
+<ol>
+  <li> You don't own it.  It's on their site.  It has <em>their</em> ads on
+       it.  Say what you like about ad-supported websites, it isn't
+       <em>your</em> website they're supporting..  It's free, so you're the
+       product, not the customer.
+  <li> But wait!  You can pay them to take the ads off!  But it's not cheap:
+       plans go from $4-$24 per month.  For that you can get a plan from, say,
+       <a href="https://www.hawkhost.com/">Hawkhost.com</a>, that will give
+       you full control over your site and its content, and a choice of
+       hundreds of different content management systems that you can switch
+       between any time you want.
+  <li> You don't have many choices in how your site looks.  Sure they have 500
+       site templates.  But once you pick one, you're stuck with it.  And they
+       have <em>millions</em> of users.  Your site is going to look like at
+       least a couple of thousand others.
+</ol>
+
+<p> The site that post is on, <a
+    href="https://cms2cms.com/blog/decisively-reject-using-wix/">CMS2CMS</a>,
+    is in the business of helping you migrate a website from one Content
+    Management System -- CMS -- to another.  They'll help you get off of Wix,
+    for example, and onto Wordpress or Joomla or...  Interesting thing is,
+    they won't just give you plain old HTML and build your site from scratch.
+    They'll happily get you <em>off</em> of a plain HTML site and onto a CMS.
+    They have this to say about HTML:
+
+<blockquote>
+<p> To create a static website may not cost you a thing but to maintain such
+    site can be very expensive. You will have to hire programmers each time
+    you want to perform some changes to your web project.
+
+<p> It is possible to develop and add any kind of functionality to your
+    website. It is a well-known fact that you have stricter control over the
+    file structure, design, and SEO.	Although it is possible to customise
+    your web project to fit your needs, there is the necessity to have deep
+    coding knowledge. But even then there is the risk to make a mistake and to
+    damage the code.
+
+<p> A static site is lighter than a website built on CMS and this makes it
+    faster.  Various plugins or extensions are not available for a static
+    HTML site. In case you want some, then you will have to code every piece
+    of functionality.
+
+<p> If the website is not very big, it is easier to make some changes,
+    modifications and to customise it according to your needs.	It is possible
+    to design each page of HTML site in a different way with the available
+    templates. But it will be your job to code in and around the template for
+    each page. 
+</blockquote>
+
+<p> Rubbish.
+
+<p> Let's look at their main points:
+
+<p> <em>You will have to hire programmers each time you want to perform some
+    changes to your web project.</em> Huh?  With HTML your content is <em>just
+    text</em>.  Nobody programs a web server from the ground up these days.
+    (I've done it -- it's fun.)  On a shared-hosting site like HawkHost, it's
+    <em>already there.</em>  All you have to do is tell them your site's
+    name.  
+
+<p> Your site is just text.  HTML and CSS stand for HyperText Markup Language
+    and Cascading Style Sheets, respectively.  They are <em>not</em>
+    programming languages, they're <em>markup</em>.  HTML tags say what parts
+    of a page <em>mean</em> -- a headline, a paragraph, a link, an emphasized
+    word, and so on.  You can print the basic cheat-sheet on a bookmark.
+    There are some more specialized tags, like the ones for images, tables,
+    and audio players.  But they're all simple.
+
+<p> <em>[I]t will be your job to code in and around the template for each
+    page. </em> No, if you're writing in HTML, the "code" is already there.
+    CSS is a description of what each part is supposed to <em>look like</em>:
+    a headline in bold sans-serif, a paragraph in Times Roman, a link red when
+    before you click on it and blue afterwards, emphasized text in italics or
+    boldface.  You can print <em>that</em> cheat-sheet on the other side of
+    the bookmark.  
+
+<p> Yes, there's more advanced CSS, too, and you can do strange and wonderful
+    things with it.  (Take a look at the <a
+    href="http://www.csszengarden.com/" >CSS Zen Garden</a>, for example.)
+    You can get one of thousands of the available CSS stylesheets, tweak it
+    with your favorite fonts and layouts, and add it to your site.
+    Complicated multi-column layouts that change to look great on everything
+    from a phone to a wide screen?  Easy -- go to <a
+    href="https://purecss.io/" >Pure CSS</a>, add one line to your basic page
+    template and a few words to some of your tags, and you've got it.
+
+<p> You don't even have to write HTML or CSS if you don't want to -- you can
+    write plain text in any of a variety of markup languages -- <a
+    href="https://daringfireball.net/projects/markdown/" >Markdown</a> is the
+    most popular at the moment -- and have it translated automatically to
+    HTML.  There are also dozens of <em>static site generators</em> that do it
+    for you.
+
+<p> <em>Various plugins or extensions are not available for a static
+    HTML site. In case you want some, then you will have to code every piece
+    of functionality.</em> As a matter of fact, people have <em>already
+    done</em> that coding, and it's available for free in nearly infinite
+    variety on sites like <a href="https://github.com">GitHub</a>.  And see
+    "static site generators" above.  They all have plugins and themes, and
+    templates.  Change one template, re-build your site with one command, and
+    deploy it.
+
+<p> You may be wondering where Javascript fits in.  That <em>is</em> a
+    programming language, but it runs <em>on the reader's browser.</em>  There
+    are thousands of available libraries and pre-built Javascript applications
+    -- plugins, effectively -- that you can add to your site to liven it up
+    with animation and other special effects.  About the only thing that you
+    can't do with a completely static site is add interactive features like
+    comments and user logins, and there are ways around that.  
+
+<p> But the best thing about static sites is the way you work on them, because
+    you do that <em>on your own computer.</em> Almost every CMS keeps your
+    site content in a database on the server, and I have another whole rant
+    about that.  A static site lives on your laptop; you can work on it
+    without having to have an internet connection, and deploy it only when
+    you have one and you're happy with the way it looks.
+
+<p> Not only can you use your favorite text editor (and there are some
+    <em>awesome</em> ones out there -- take a look at <a
+    href="https://atom.io/" >Atom</a> for example), but because you have a
+    complete copy of your site on your computer <em>and</em> on your web host,
+    they effectively back each other up.  And because you can use <a
+    href="https://git-scm.com/doc" >git</a> for version control, you not only
+    have backups but a complete history of every change you make to your site.
+
+<p> The next few posts in this series (did I mention that this is a series?) will
+    go into how to write HTML in more detail, including the tiny bit of CSS
+    magic that lets you embed poetry in <em>any</em> page including a DW post,
+    and teach you the basics of git. 

@@ -1,0 +1,78 @@
+---
+title: Uploading and showing an image on DW
+tags: [ blogging, html, dw, ]
+location: The Rainbow Caravan's North End on Whidbey Island
+mood: didactic
+music: 
+layout: post
+posted: Mon Sep  3 20:42:45 PDT 2018
+---
+<p> This started out in a comment, but I think enough people may be struggling
+    with DW's relatively new image upload feature that it's worth making it
+    into a post.  And it's a good excuse for posting.
+
+<blockquote>
+<p> (aside: The key to all of this is knowing enough about HTML to be able to
+    identify the correct URL and create the img tag to refer to it -- it
+    probably all looks like black magic to somebody who hasn't been doing this
+    stuff for the last few years.  Don't expect to get it all on one reading.)
+
+<p> You might also want to know some terminology.  Those things enclosed in
+    angle brackets are commonly called "tags".  The things with a name, an
+    equals sign, and something in quotes are called "attributes".  And single
+    and double quotes are identical in effect, but have to match: you can't
+    start with a single and end with a double.
+</blockquote>
+
+<p> So -- I uploaded an image; down at the bottom there's a box labeled Image
+    Code.  Copy, paste:
+<pre>
+  &lt;a href='https://mdlbear.dreamwidth.org/file/352.jpg'&gt;
+     &lt;img src='https://mdlbear.dreamwidth.org/file/100x100/352.jpg'
+         title='Cat and mouse'
+           alt='Grey tabby cat looking intently at a Logitech mouse.'  /&gt;&lt;/a&gt;
+</pre>
+
+<p> (That's what it looked like, except that I wrapped the lines to make it
+    clearer.)
+
+<p> Looking at that line of HTML I can see that there's an img tag that, from the
+    <code>/100x100/</code> in its URL, looks like a thumbnail.  It's wrapped
+    in a link -- an &lt;a...&gt tag.  The href attribute is
+    <code>https://mdlbear.dreamwidth.org/file/352.jpg</code>, which ought to be the
+    full-sized image, so I'll get a preview just to make sure... 
+
+<p> Then I clicked the "Preview" button, and it looked like this:
+<p>   <a href='https://mdlbear.dreamwidth.org/file/352.jpg'>
+     <img src='https://mdlbear.dreamwidth.org/file/100x100/352.jpg'
+         title='Cat and mouse'
+           alt='Grey tabby cat looking intently at a Logitech mouse.'  /></a>
+
+<p> Yup.  So <code>https://mdlbear.dreamwidth.org/file/352.jpg</code> -- the
+    <code>href</code> attribute of the <code>img</code> tag, is the URL of the
+    actual image.  (At that point I could just as well have copied it out of
+    the browser's location bar, since I was already looking at the full-sized
+    image.  I didn't think of that, and just copied it out of the comment I
+    was writing.)
+
+<p> I can put that into an <code>img</code> tag that looks like 
+    <pre>&lt:img src="https://mdlbear.dreamwidth.org/file/352.jpg" width="512"&gt;</pre>.
+
+<p> Chrome says (in the page title) that the image is 1024x719, so I'll try
+    cutting it down by adding a <code>width="512"</code> attribute.   
+    Here we go:
+<p> <img src="https://mdlbear.dreamwidth.org/file/352.jpg" width="512"> -- purrfect.
+
+<blockquote>
+<p> One final aside:  if you're following along and using a word processor
+    that automagically turns quotation marks into matching <q>curly
+    quotes</q>, you need to turn that feature <em>off</em> when you're editing
+    HTML, because they won't be recognized as quotes.  If you're creating your
+    post in your browser and you want to enter HTML directly, you need to
+    click the "HTML" tab (over on the upper right).  The "Rich Text" setting
+    will create HTML automatically and you'll need to click one of its little
+    icons to create an actual image tag.
+</blockquote>
+
+<p> Happy hacking!
+

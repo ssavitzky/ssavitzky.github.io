@@ -1,0 +1,328 @@
+---
+title: 'Languages: Imperative, Object-Oriented, and Functional'
+tags: [ computers, software, languages, oop, fp, programming, structured ]
+picture: technonerdmonster
+music: 'Savitzky: "When I Was a Lad"'
+mood: didactic
+location: Somewhere in cyberspace
+layout: post
+posted: Thu Jul  5 22:36:47 PDT 2018
+---
+<p> Even if you're not a programmer (and most of the people I expect to be
+    reading this aren't) you've probably heard one of your geek friends
+    mentioning "object-oriented" programming.  You might even have heard them
+    mention "functional" programming, and wondered how it differs from
+    non-functional programming.  The computer curmudgeon can help you.
+</p>
+<p> If you <em>are</em> a programmer, you probably know a lot of this.  You may
+    find a few items of historical interest, and it might be useful explaining
+    things to the non-programmers in your life.
+
+<h2>Imperative languages</h2>
+
+<p> As you may recall from last month's post on <a
+    href="https://mdlbear.dreamwidth.org/1621179.html" >computer
+    languages</a>, the first programming languages were assembly languages --
+    just sequences of things for the computer to do, one after another (with a
+    few side-trips).  This kind of language is called "imperative", because
+    each statement is a command telling the computer what to do next:  "load a
+    into register 2!" "add register 2 to register 3!" "roll over!"  "sit!"
+    You get the idea.
+
+<p> Most programmers use "statement" instead of "command" for these things
+    even though the latter might be more correct from a grammatical point of
+    view; a "command" is something one types at a terminal in order to run a
+    program (which is <em>also</em> called a "command").
+
+<p> Most of the earlier programming languages (with one notable exception that
+    we'll get to later) were also imperative.  Fortran, Cobol, and Algol were
+    the most prominent of these; most of today's languages descend
+    more-or-less from Algol.  (By the way, the <a
+    href="http://www.softwarepreservation.org/projects/ALGOL/report/Algol60_report_CACM_1960_June.pdf"
+    >Report on the Algorithmic Language Algol 60</a> is something I always
+    point to as an example of excellent technical writing.)
+
+<p> Imperative languages make a distinction between statements, which
+    <em>do</em> things (like "a := 2", which puts the number 2 into a variable
+    called "a"), and "expressions", which compute results.  Another way of
+    saying that is that an expression has a <em>value</em> (like 2+2, which
+    has a value of 4), and a statement doesn't.  In earlier languages that
+    value was always a number; later languages add things like lists of
+    symbols and strings of characters enclosed in quotes.
+
+<p> Algol and its descendents lend themselves to what's called "Structured
+    Programming" -- control structures like conditionals ("if this then {that}
+    else {something-else}") and loops (for x in some-collection do
+    {something}) let you build your program out of simple sections that nest
+    together but always have a single entrance and exit.  Notice the braces
+    around those sections.  Programming languages have different ways of
+    grouping statements; braces and indentation are probably the most common,
+    but some languages use "if ... fi" and "do ... done".
+
+<p> Languages also have ways of packaging up groups of statements so that they
+    can be used in different places in the program.  These are called either
+    "subroutines" or "functions"; if a language has both it means that a
+    function returns a value (like "sqrt(2)", which returns the square root of
+    2) and a subroutine doesn't (like "print('Hello world!')", which prints a
+    familiar greeting.)  Subroutines are statements, and functions are
+    expressions.  The expressions in parentheses are called either "arguments"
+    or "parameters" -- I was bemused to find out recently that <em>verbs</em>
+    have arguments, too.  (A verb's arguments are the subject, and the direct
+    and indirect objects.)
+
+<h2>Object-oriented languages</h2>
+
+<blockquote style="white-space: pre-wrap;"
+>Back when smalltalk was sports and the weather,
+And an object was what you could see,
+And we watched "Captain Video" in black-and-white,
+Before there was color TV.
+-- <a href="https://steve.savitzky.net/Songs/lad/">"When I Was a Lad"</a>
+</blockquote>
+
+<p> As long as we're on the subject of objects, ...
+
+<p> In the mid 1960s Ole-Johan Dahl and Kristen Nygaard, working at the
+    University of Oslo, developed a language called <a
+    href="https://en.wikipedia.org/wiki/Simula" >Simula</a>, designed for
+    simulating objects and events in the real world.  Objects are things like
+    cars, houses, people, and cats, and Simula introduced <em>software</em>
+    objects to represent them.  Objects have "attributes":  my car is blue, my
+    cats are both female, my wife has purple hair.  Some of these attributes
+    are objects in their own right:  a car has wheels, a cat has four legs and
+    a person has two legs and two arms.  Some of these are variables:
+    sometimes my driveway has a car in it, sometimes it doesn't, and sometimes
+    it has two or three.
+
+<p> What this means is that objects have <em>state.</em>  A car's speed and
+    direction vary all the time, as does the position of a cat's tail.  An
+    object is a natural way to bundle up a collection of state variables.
+
+<p> An object also can <em>do things</em>.  In a program, objects rarely do
+    things on their own, some other object <em>tells</em> them what to do.
+    This is a lot like sending the object a message.  "Hey, car -- turn left!"
+    "Hey, cat!  What color are your eyes?"  Software objects don't usually
+    have any of their state on the outside where other parts of the program
+    can see it; they have to be asked politely.  That means that the object
+    might be <em>computing</em> something that looks to the outside like a
+    simple state variable -- a car computes its speed from the diameter of its
+    tires and how fast its wheels are turning.  All these things are hidden
+    from the rest of the program.
+
+<p> An object has to have a <em>method</em> for handling any message thrown at
+    it, so the documentation of most languages refers to "calling a method"
+    rather than "sending a message".  It's the same thing in most cases.  As
+    seen from the outside, calling a method is just like calling a function or
+    subroutine, except that there's an extra argument that represents the
+    object.  If you think of the message as a command -- an imperative
+    sentence -- it has an implied subject, which is the object you're talking
+    to.  <em>Inside</em> the little program that handles the method, the
+    object is represented by a name that is usually either "self" or "this",
+    depending on the language.
+
+<p> One natural thing to do with objects is to classify them, so objects have
+    "classes", and classes tend to be arranged in hierarchies.  My cats are
+    cats -- we say that Ticia and Desti are <em>instances</em> of the class
+    "Cat".  All cats are animals, so Cat is a <em>subclass</em> of Animal, as
+    are Dog and Person.  (In programming languages, classes tend to have their
+    names capitalized.  Variables (like "x" or "cat") almost always start with
+    a lowercase letter.  Constants (like "Pi", "True", and "Ticia") can go
+    either way.)
+
+<p> An object's class contains everything the computer needs to determine the
+    behavior of its instances:  a list of the state variables, a list of the
+    methods it can handle, and so on.  Now we get to the fun part.
+
+<p> Simula was just objects and methods tacked on to a "traditional"
+    imperative language -- Algol in that case.  Most other "object-oriented"
+    languages work the same way -- C++ is just objects tacked on to C; Python
+    and Perl had objects from the beginning or close to it, but they still
+    include a lot of things -- numbers, strings, arrays, and so on, that
+    aren't objects or (like strings in Java) are pretending to be objects.  It
+    doesn't have to be that complicated.
+
+<p> Shortly after Simula was released, Alan Kay at Xerox PARC realized that
+    you could design a programming language where <em>everything</em> was an
+    object.  The result was Smalltalk, and it's still the best example of a
+    <em>pure</em> object-oriented language.  (It inspired C++ and Java, and
+    indeed almost all existing OO languages, but very few of them went all the
+    way.  Ruby comes closest of the languages I'm familiar with.)  Smalltalk
+    is <del>turtles</del> <ins>objects</ins> all the way down.
+
+<p> In Smalltalk numbers are objects -- you can add new methods to them, or
+    redefine existing methods.  (Your program will eventually stop working if
+    you redefine addition so that 2+2 is 5, but it will keep going for a
+    surprisingly long time.)  So are booleans.  True and False are instances
+    of different subclasses of Boolean, and they behave differently when given
+    messages like <code>ifTrue:</code> or <code>ifFalse:</code>.  (I'm not
+    going to go into the details here; Smalltalk warrants an article all by
+    itself).  Loops are methods, too.  The trickiest bit, though, is that
+    <em>classes</em> are objects.  A class is just an instance of Metaclass,
+    and Metaclass is an instance of <em>itself.</em>
+
+<p> Someone trying to implement Smalltalk has to cheat in a couple of places
+    -- the Metaclass weirdness is one of them -- but they have to hide their
+    tracks and not get caught.
+
+<h2>Functional languages</h2>
+
+<p> Smalltalk, for all its object orientation, is still an imperative language
+    underneath.  A program is still a sequence of statements, even if they're
+    all wrapped up in methods.  Objects have state -- lots of it; they're just
+    a good way of organizing it.  Alan Kay once remarked that programming in
+    Smalltalk was a lot like training a collection of animals to perform
+    tricks together.  Sometimes it's more like herding cats.
+
+<p> But it turns out that you don't need statements -- or even state -- at
+    all!  All you need is functions.
+
+<p> About the same time Alan Turing was inventing the <a
+    href="https://en.wikipedia.org/wiki/Turing_machine">Turing Machine</a>,
+    which is basically a computer stripped-down and simplified to something
+    that will just barely work, Alonzo Church was developing something he
+    called the <a href="https://en.wikipedia.org/wiki/Lambda_calculus" >Lambda
+    Calculus</a>, which did something similar to the mathematical concept of
+    <em>functions</em>.
+
+<p> A mathematical function takes a set of inputs, and produces an output.
+    The key thing about it is that a given set of inputs will always produce
+    exactly the same output.  It's like a meat grinder -- put in beef, and you
+    get ground beef.  Put in pork, and you get ground pork.  <em>A function
+    has no state, and no side-effects.</em>  State would be like a secret
+    compartment in the meat grinder, so that you get a little chicken mixed in
+    with your ground beef, and beef in your ground pork.  Ugh.  A side effect
+    would be like a hole in the side that lets a little of the ground meat
+    escape.
+
+<p> Objects are all about state and side effects.  You can call a method like
+    "turn left" on a car (in most languages that would look like
+    <code>car.turn(left)</code>) and as a side effect it will change the car's
+    direction state to something 90 degrees counterclockwise from where it
+    was.  That makes it hard to reason about what's going to happen when you
+    call a particular method.  It's even harder with cats.
+
+<p> Anyway, in lambda calculus, functions are things that you can pass around,
+    pass to other functions, and return from functions.  They're <em>first
+    class</em> values, just like numbers, strings, and lists.  It turns out
+    that you can use functions to compute anything that you can compute with a
+    Turing machine.
+
+<p> Lambda calculus gets its name from the way you represent functions:  To
+    define a function that squares a number, for example, we say something
+    like: 
+
+<blockquote><pre>square = &lambda; x: x*x
+</pre>
+</blockquote>
+
+<p> Now, this looks suspiciously like assigning a value to a variable, and
+    that's exactly what it's doing.  If you like, you can even think of
+    &lambda; as a funny kind of function that takes a list of symbols and
+    turns it into a function.  You find the value of an expression like
+    <code>square(3)</code> by plugging the value 3 into the function's
+    definition in place of <code>x</code>.  So,
+
+<blockquote><pre>square(3)
+  &rightarrow; (&lambda; x: x*x)(3)
+  &rightarrow; 3*3
+  &rightarrow; 9
+</pre>
+</blockquote>
+
+<blockquote><small>
+<p> Most functional languages don't allow you to redefine a name once you've
+    bound it to a value; if you have a function like <code>square</code> it
+    wouldn't make much sense to redefine it in another part of the program as
+    <code>x*x*x</code>.  This is vary different from imperative languages,
+    where variables represent state and vary all over the place.  (Names that
+    represent the arguments of functions are only defined inside any one call
+    to the function, so <code>x</code> can have different values in
+    <code>square(2)</code> and <code>square(3)</code> and nobody gets
+    confused.)
+</small></blockquote>
+
+<p> Lambda calculus lends itself to <em>recursive</em> functions -- functions
+    that call themselves -- and recursion is particularly useful when you're
+    dealing with lists.  You do something to the first thing on the list, and
+    then combine that with the result of doing the same thing to the rest of
+    the list.Suppose you have a list of numbers, like <code>(6 2 8 3)</code>.
+    If you want another list that contains the squares of those numbers, you
+    can use a function called <code>map</code> that takes two arguments: a
+    function and a list.  It returns the result of applying the function to
+    each element of the list.  So
+
+<blockquote><pre>map(square, (6, 2, 8, 3))
+ &rightarrow; (36, 4, 64, 9)
+</pre></blockquote>
+
+<p> It's pretty easy to define <code>map</code>, too.  It's just
+<blockquote><pre>
+map = &lambda; (f, l):
+	if isEmpty(l)
+           then l
+	   else cons(f(first(l)), map(f, rest(l)))
+</pre></blockquote>
+<blockquote><small>
+<p> The <code>cons</code> function constructs a new list that consists of its
+    first argument, which can be anything, tacked onto the front of its second
+    argument, which is a list.  Using <code>first</code> and <code>rest</code>
+    as the names of the functions that get the first item in a list, and the
+    remainder of the list after the first item, is pretty common tese days.
+    <a href="https://en.wikipedia.org/wiki/CAR_and_CDR" >Historically</a>, the
+    function that returns the first item in a list is called <code>car</code>,
+    and the function that returns the rest of the list is called
+    <code>cdr</code> (pronounced sort of like "could'r").
+
+<p> I know, the classic introduction to recursive functions is factorial.
+    Lists are more interesting.  Besides, I couldn't resist an excuse for
+    mentioning "car".  We'll see "cat" in a future post when I discuss
+    scripting languages.
+</small></blockquote>
+
+<p> We call <code>map</code> a "higher-level" function because it takes a
+    function as one of its arguments.  Other useful higher-level functions
+    include <code>filter</code>, which takes a boolean function (one that
+    returns true or false) and <code>flatmap</code>, which takes a function
+    that returns lists and flattens them out into into a single list.  (Some
+    languages call that <code>concatmap</code>.)  <strong>Higher-level
+    functions are what make functional languages powerful, beautiful, and easy
+    to program in.</strong>
+
+<p> Now, Church's lambda calculus was purely mathematical -- Church used it to
+    prove things about what kinds of functions were computable, and which
+    weren't, which is exactly what Alan Turing did with the Turing Machine.
+    We'll save that for another post, except to point out that <em>Church's
+    lambda calculus can compute anything that a Turing machine can compute,
+    and vice versa.</em>
+
+<p> But in 1958 John McCarthy at MIT invented a simple way of representing
+    lambda expressions as lists, so that they could be processed by a
+    computer:  just represent a function and its arguments as a list with the
+    function first, followed by its arguments.  Trivial?  Yes.  But
+    brilliant.  His paper included a simple function called <code>eval</code>
+    that takes a list representing a function and its arguments, and returns
+    the result.  Steve Russell realized that it wouldn't be hard to implement
+    <code>eval</code> in machine language (on an IBM 704).
+
+<p> I'll save the details for another post, but the result was a language
+    called <a href="https://en.wikipedia.org/wiki/Lisp_(programming_language)"
+    >Lisp</a>.  It's the second oldest programming language still in use.  The
+    post about LISP will explain how it works (elsewhere I've described
+    <code>eval</code> as <a
+    href="https://www.quora.com/What-is-the-most-amazing-piece-of-software-in-the-world/answer/Stephen-M-Bear"
+    >The most amazing piece of software in the world</a>), and hopefully show
+    you why Kanef's song <a
+    href="http://songworm.com/lyrics/songworm-parody/EternalFlame.html" >The
+    Eternal Flame</a> says that God wrote the universe in LISP.  Programmers
+    may want to take a look at <a
+    href="https://stephen.savitzky.net/Doc/single-link/" >"Sex and the Single
+    Link"</a>.
+
+<h2>And finally,</h2>
+
+<p> I'd be particularly interested in seeing comments from the
+    <em>non-</em>programmers among my readers, if I haven't lost you all by
+    now.  Was this post interesting?  Was it understandable?  Was it too long?
+    Were my examples sufficiently silly?  Inquiring minds...
+
+

@@ -1,0 +1,154 @@
+---
+title: 'Computer Languages: compiled, interpreted, and assembled.'
+tags: [ software, compilers, interpreters, assemblers ]
+location: With the Rainbow Caravan on Whidbey Island
+mood: didactic
+music: 'Savitzky: "The World Inside the Crystal"'
+picture: technonerdmonster
+posted: Fri May 25 21:52:48 PDT 2018
+layout: post
+---
+<p> A few months ago while waiting for a ferry with my sister I mentioned a
+    programming language called Elm, which I've been particularly interested
+    in because it's a functional language that compiles into Javascript.  Her
+    response, predictably, was something like "I have no idea what you just
+    said.  What does 'compiles' mean?"  So I explained the difference between
+    compilers and interpreters, and a few other things about programming
+    languages, and she said that it was the first time anyone had explained
+    how programming languages work in a way that made sense to her.  In the
+    back of my mind, I thought it might someday make an interesting blog post.
+    So here it is.
+
+<p> Inside of a computer, everything is a number.  These days, these numbers
+    are all represented in binary (base two -- just ones and zeroes), stored
+    in a couple of billion numbered locations each of which holds eight binary
+    digits.  (A binary digit is called a "bit", and eight of them together
+    make a "byte", which is the amount of data needed to represent a number
+    between 0 and 255, or a single character in a block of text.  Apart from
+    the numerical coincidence, computer bits have nothing to do with the bits
+    that were made by breaking apart "<a
+    href="https://en.wikipedia.org/wiki/Spanish_dollar" >pieces of
+    eight</a>".)
+
+<p> The numbers in the computer's memory are used for three different things.
+    First, some of them are used to represent the data that the computer is
+    going to be working on.  Second, some of them represent the
+    <em>location</em> of those data.  And finally, some of them are
+    instructions that tell the computer what to <em>do</em> with the
+    data.  Those instructions are called "machine language" because they're
+    the only thing the machine actually understands.  Nobody writes programs
+    in machine language if they can possibly avoid it.
+
+<p> <strong>The Details</strong>
+
+<p> The first thing people did so that they wouldn't have to write machine
+    language was to assemble instructions out of human-readable pieces:
+    mnemonics for the operation codes (opcodes), labels for the locations,
+    quoted strings for text, and so on.  The programs that did this were
+    called "assemblers", and the language was called "assembly language".
+    It looks something like this:
+
+<pre>REPEAT: LD  R1, N       # load the number in the location called N
+        MUL R2, R1
+        SUB R1, 1       # subtract 1
+        STO R1, N       # store the result back in N
+        JNZ REPEAT      # if the result was not zero, jump back to
+                        # the instruction labeled REPEAT
+</pre>
+
+<p> Can you spot the bug?
+
+<p> An assembler is a pretty simple program to write.  It has to look up each
+    mnemonic in a table, keep track of locations and labels, and convert
+    decimal numbers to binary.  Writing a program <em>in</em> assembly
+    language, however, is tedious and error-prone.  For example, think about
+    what happens if N starts out with a value of zero.
+
+<p> So people started writing "compilers", which are somewhat more complicated
+    programs that build programs out of something that looks more like
+
+<pre>while n > 0 do n := n - 1 done
+</pre>
+
+<p> ... which does almost exactly what that assembly-language program does,
+    but also fixes the bug by making sure that n is <em>greater than</em> zero
+    when we start.
+
+<p> A compiler works by reading a program written whatever language the
+    compiler is compiling, and writing out its translation into machine
+    language (or possibly assembly language).  That saves a lot of time when
+    you want to <em>run</em> the program, since it only has to be compiled
+    once and you can run the resulting "object file" as many times as you
+    like.  It's a good match for the way early computers worked, by reading in
+    a deck of punched cards and punching out a much smaller object deck.  You
+    would leave your program with the computer operators, and a couple of
+    hours (or days, if there were a lot of other people ahead of you) later
+    after the program had run get your deck back with a print-out of the
+    results.  Or, more often than not, a print-out of your program with dozens
+    of error messages from the compiler that you would have to correct before
+    trying again.
+
+<p> And of course, after your program compiled without errors you would still
+    have bugs to fix, often by looking at a printed-out dump of everything
+    that was in the computer's memory when it crashed.  But when you were all
+    done you would have a comparatively small deck of cards that you could
+    stack in front of new data and run any time you wanted to.
+
+<p> About the same time people started writing compilers (the early 1950s),
+    a few lucky people -- mostly either working for computer companies or at
+    universities -- had access to smaller computers that they could sit next
+    to and interact with by way of some kind of keyboard.  These were usually
+    teletypes, which used punched paper tape instead of cards, but that's
+    another story altogether.  The point is that the time spent starting up
+    the compiler, compiling your program, loading your object deck, and
+    running <em>that</em>, gets old pretty quickly.  It was made worse by the
+    fact that most compilers actually make two or more passes over your
+    program.  The first pass analyzes the syntax, turns all of the
+    human-readable symbols into numbers, and writes out an intermediate file
+    with all of the symbols in a table.  After that it can refer to symbols by
+    their position in the table, which after all is just a number.  Computers
+    are comfortable with numbers.
+
+<p> After that, the compiler would go back over the program and figure out
+    which sequence of machine-language instructions to use for everything, and
+    finally assign locations to all the labels now that it knew how much space
+    everything was going to take.
+
+<p> Some people realized that, instead of writing out the machine language
+    instructions that made up the program, the computer could simply
+    <em>do</em> them.  This kind of program is called an "interpreter".
+    Interpreters are a lot easier to write than compilers, but the main reason
+    they're popular is that they make it easier to <em>write programs.</em>
+
+<p> An interpreted program is going to take longer to run than a compiled
+    program.  The interpreter has to interpret each statement every time it
+    encounters it, so loops are especially slow.  It's not unusual for
+    compiled code to be ten times faster than interpreted code.  But a
+    programmer can save so much time debugging their program with an
+    interpreter -- hours or days -- that in most cases the program would have
+    to be run thousands of times before compiling it would make sense.
+
+<p> One of the other nice things about an interpreter is that you can type
+    little programs at it and see immediately what they do.  It's especially
+    useful when you're learning a language and you're still unsure of the
+    exact syntax.  This is called a "Read, Evaluate, Print Loop", which
+    quickly got shortened to "REPL" (and pronounced similarly to "ripple").
+
+<p> There's also a trick called "Just In Time" (JIT) compilation -- the
+    interpreter keeps track of how many times any given piece of code is run,
+    and after enough repetitions (five or ten), it compiles it down to machine
+    language.  It can actually do better than a separate compiler, because by
+    the time the code has run ten times the interpreter has a good idea of how
+    it's actually being used.
+
+<p> TL;DR: an <em>assembler</em> turns each line in a program directly into a
+    machine-language instruction.  A <em>compiler</em> takes a program written
+    in a more complicated (for the computer) but easier to write in (for
+    people) and turns it into a sequence of machine-language instructions,
+    that can then be read back in and run.  An <em>interpreter</em> skips that
+    last step -- instead of writing out the machine language instructions, it
+    just <em>does them</em> on the spot.
+
+<p> Teaser:  Next time I'll talk about different kinds of programming
+    languages:  functional, imperative, object-oriented, and scripting.  I'm
+    also open to suggestions -- what would <em>you</em> like me to write about?

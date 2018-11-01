@@ -1,0 +1,72 @@
+---
+title: "Making it"
+tags: [ tools, make, starport, blogging, web ]
+date: "2008-01-08 23:01"
+picture: "hacker glider"
+options: "preformatted backdated"
+itemid: "2940"
+layout: post
+---
+<p> "If you want something to get done, ask a busy person to do it."
+    I haven't been accomplishing much lately, so obviously I'm not busy
+    enough.  
+</p>
+<p> There are several seemingly-unrelated projects going on in the household
+    at the moment: I'm starting my next album, the <lj site="livejournal.com" user="chaoswolf"> is
+    starting an HTML class, the servers are getting re-organized, and people
+    have been after the <lj site="livejournal.com" user="flower_cat"> to write a cookbook.  Meanwhile
+    I've been thinking about writing my blog locally and mirroring it up to
+    LJ.
+</p>
+<p> They're all more closely related than one might think.  
+</p>
+
+<p> You see, I'm a geek.  I think nothing of writing <a
+    href="http://thestarport.com/Steve_Savitzky/Tools/" >a big pile of
+    Makefile templates and Perl scripts</a> to cobble an album, a songbook,
+    and multiple websites together from the same set of sources.  The Cat is
+    emphatically <em>not</em> a geek, she wants to be able to type recipes in,
+    maybe to a text editor or a blog client, and have them magically assembled
+    into a cookbook.  And a website, of course.  Hmmm.
+</p>
+<lj-cut text="some geeky details">
+<p> Meanwhile, I've been dissatisfied with the available "content management
+    systems" (a category which includes blogs and wikis as well as monstrous
+    enterprise document management systems like <a
+    href="http://www.alfresco.com/" >Alfresco</a> (which is pretty damned
+    cool, but then I <em>like</em> monsters, not just ponies and monkeys.  But
+    I digress).  Partly this is because most of them don't let me use my own
+    version-control tools and my own editor, and essentially <em>none</em> of
+    them take advantage of <code>make</code>.
+</p>
+<p> Not even <a href="http://ikiwiki.info/" >ikiwiki</a> and <a
+    href="blosxom.com" >blosxom</a>, which probably come closest to what I've
+    been working on.  
+</p>
+<p> I <em>like</em> my tools.  They pull together metadata from a variety of
+    places, including (for example) song lyric files, recording projects,
+    and local metadata files, and build CD masters, ripped files, playlists,
+    annotated track listings, and multiple web pages.  They could do that for
+    cookbooks, too.  Or blogs.
+</p>
+<p> What <code>make</code> is, fundamentally, a program for working out
+    dependencies  and following rules to run the commands that rebuild
+    whatever depends on the files that changed since the last time you did
+    it.  This is just what <a href="http://ikiwiki.info/" >ikiwiki</a> and <a
+    href="blosxom.com" >blosxom</a> do, only they do it with massive Perl
+    scripts that rumble over your directory tree and figure out what's been
+    changed and follow rules to...  Right.  Why reinvent <code>make</code>?
+</p>
+<p> The tools have to allow varying degrees of participation:  public comments
+    similar to blogs, but also more intense collaboration on editing and
+    recording.  I'm not going to be shipping pre-order bonus disks this time
+    around: I want to sell subscriptions to the development process. 
+</p>
+</lj-cut>
+<p> ... So that's the plan: to refactor my CD, concert, and web tools so that
+    they work for assembling books and blogs as well, publish to hardcopy as
+    well as on multiple websites, and do it in a way that's extensible (with
+    plug-ins), collaborative, and simple enough to be used by non-geeks.
+</p>
+<p> I'm probably going to need a lot of help with that last part.
+</p>

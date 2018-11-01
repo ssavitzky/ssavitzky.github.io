@@ -1,0 +1,189 @@
+---
+title: Git and GitHub, with a side of Microsoft
+tags: [ computers, git, github, microsoft, open-source, software ]
+picture: technonerdmonster
+music: The Times, They are A'Changing
+mood: didactic
+location: Somewhere in cyberspace
+layout: post
+posted: Tue Jun  5 10:44:09 PDT 2018
+---
+<p> If you develop software and haven't just returned from the moon, you've
+    undoubtedly heard that <a
+    href="https://blog.github.com/2018-06-04-github-microsoft/" >GitHub</a> is
+    being acquired by <a href=
+    "https://blogs.microsoft.com/blog/2018/06/04/microsoft-github-empowering-developers/"
+    >Microsoft</a>.  Depending on your affiliations you might be spelling
+    "being acquired by" as "selling out to".  The rest of you are probably
+    wondering what on Earth a GitHub is, and why Microsoft would want one.
+    Let me explain.
+
+<p> Please note:  this post isn't about my opinion of today's news.  It's
+    really too early to tell, though I may get into that a little toward the
+    end.  Instead, I'm going to explain what GitHub is, and why it matters.
+    But first I have to explain <a href="https://git-scm.com/" >Git</a>.
+
+<p> Git is a version-control system.  (Version-control systems are sometimes
+    called "source code management" (SCM) systems.  If you look closely you
+    might even have spotted "scm" in git's URL up there at the end of the last
+    paragraph.)  Basically, a version-control system lets you record the
+    complete history of a project, with what changes were made, who made the
+    each change, when they changed it, and their notes about what they did and
+    why.  It doesn't have to be a software project, either.  It can be
+    recipes, photographs, books, the papers you're writing for school, or even
+    blog entries.  (Yes, I do.)
+
+<p> Before git, most version-control systems kept track of changes in text
+    files (which of course is what all source code is) by recording which
+    lines are different from the previous version.  (It's usually done by a
+    program called <code>diff</code>.)  This was very compact, but it could
+    also be very slow if you had to undo all the changes between two versions
+    in order to see what the older one looked like.
+
+<p> Git, on the other hand, is blindingly fast in part because it works in the
+    stupidest way possible (which is <em>why</em> it's called "git").  It
+    simply takes the new version of each file that changed since the last
+    version, zips it up, and stuffs it whole into its repository.  So it takes
+    git about the same amount of time to roll a file back two versions or two
+    hundred.
+
+<p> The other thing that makes git fast is where it <em>keeps</em> all of its
+    version information.  Before git, most version-control systems used a
+    centralized repository on a server somewhere.  (Subversion, one of the
+    best of these, even lets you browse the repository with a web browser.)
+    That means that all the change information is going over a network.  Git
+    keeps its repository (these days everyone shortens that to "repo") on your
+    local disk, right next to your working copy, in a hidden subdirectory
+    called "<code>.git</code>".
+
+<p> Because its repo is local, and contains the entire history of your
+    project, you don't need a network connection to use git.  On the beach, in
+    an airplane, on a boat, <del>with a goat</del>, it doesn't matter to git.
+    It's <em>de</em>-centralized.  It gets a little more complicated when more
+    than one developer is working on a project.
+
+<p> Bob's been in the office all week working on a project.  When his boss,
+    Alice, comes back from the open source conference she's been at all week,
+    all she has to do is tell git to fetch all the changes that Bob made while
+    she was away.  Git gets them directly from Bob's repo.  If Alice didn't
+    make any changes, that's called a "fast-forward" merge -- git just takes
+    the changes that Bob made, copies those files into Alice's repo, updates
+    her working tree, and it's done.
+
+<p> It's a little trickier if Alice had time to make some changes, too.  Now
+    Alice has to merge the two sets of changes, and then let Bob pull the
+    merged files onto <em>his</em> computer.  By the way, a "pull" is just a
+    fetch followed by a merge, but it's so common that git has a shorthand way
+    of doing it. (I'm oversimplifying here, but this isn't the time to go into
+    the difference between merge and rebase.  It's also not a good time to
+    talk about branches -- maybe some other week.)  As you can imagine, this
+    gets out of hand pretty quickly, and it's even worse if there's a whole
+    team working on the project.
+
+<p> The obvious thing to do is for the group to have one repo on a server
+    somewhere that has what everyone agrees is the definitive set of files on
+    it.  Bob pushes his changes to the server, and when Alice tries to push
+    <em>her</em> changes, git balks and gives her an error message.  Now it's
+    Alice's responsibility to make any necessary fixes and push them to the
+    server.  Actually, in a real team, Alice would send her proposed changes
+    around by making a diff and sending email to the other team members to
+    review, and not actually push her changes until someone approves them.
+
+<p> In a large team, this is kind of a hub-and-spokes arrangement.  You can
+    see where this is going, right? 
+
+<p> <a href="https://github.com">GitHub</a> is a company that provides a place
+    for people and projects to put shared git repositories where other people
+    can see them, clone them, and contribute to them.  GitHub has become
+    wildly popular, because it's a great place to share software.  If you have
+    an open-source software project, putting a public repo on GitHub is the
+    most effective way to reach developers.  It's so popular that Google and
+    Microsoft shut down their own code-hosting sites (Google Code and CodePlex
+    respectively) and moved to GitHub.  Microsoft, it turns out, is GitHub's
+    biggest contributor.
+
+<p> Putting a public repository on GitHub is free.  If you want to set up
+    <em>private</em> repositories, GitHub will charge you for it, and if your
+    company wants to put a clone of GitHub on its own private servers they can
+    buy GitHub Enterprise, but if your software is free, so's your space on
+    GitHub.
+
+<p> That's a bit of a problem, because the software that runs GitHub is
+    <em>not</em> free.  That means that they need a steady stream of income to
+    pay their in-house developers, because they're not going to get any help
+    from the open-source developer community.  GitHub lost $66 million in
+    2016, and doesn't really have a sustainable business model that would make
+    them attractive to investors.  They needed to get acquired, or they had a
+    real risk of going under.  And when a service based on proprietary
+    software goes under, all of their customers have a big problem.  But their
+    users?  Heh.
+
+<p> Everybody knows the old adage, "if you're getting a service for free
+    you're not the customer, you're the product."  That's especially true for
+    companies like Google and Facebook, which sell their users' eyeballs to
+    advertisers.  It's a lot less true for a company whose users can leave any
+    time they want, painlessly, taking all their data <em>and their
+    readers</em> with them.  I'm sure most of my readers here on Dreamwidth
+    remember what happened to Livejournal when they got bought by the
+    Russians.  Well, GitHub is being bought by Microsoft.  It's not entirely
+    clear which is worse.
+
+<p> GitHub has an even worse problem than Livejournal did, because
+    "cross-posting" is basically the way git <em>works.</em> There's a company
+    called <a href="https://gitlab.com">GitLab</a> that looks a lot like
+    GitHub, except that their core software -- the stuff that wraps a slick
+    web interface around a git repository -- is open source.  (They do sell
+    extensions, but most projects aren't going to need them.)  If you want to
+    set up your own private GitLab site, it's free, and you can do it in ten
+    minutes with a one-line command.  If you find bugs, you can fix them
+    yourself.  You'll find a couple of great quotes from their blog at the end
+    of the notes, but the bottom line is that 100,000 repositories have moved
+    from GitHub to GitLab <em>in the last 24 hours.</em>
+
+<p> And once you've moved a project to GitLab, you don't have to worry about
+    what happens to it, because the open-source core of it will continue to be
+    maintained by its community.  That's what happened when a company called
+    Netscape went belly-up:  Mozilla Firefox is still around and doing fine.
+    And if the fact that GitLab is for profit is a problem for you, there's
+    Apache Allura, gitolite3, gitbucket, and gitweb (to name a few).  Go for
+    it! 
+
+<p> &nbsp;
+<p> This <em>so</em> wasn't what I was planning to write today.
+
+<pre><strong>Notes:</strong>
+  @ <a href="https://www.linuxjournal.com/content/microsoft-reportedly-acquire-github"
+    >Microsoft Reportedly Acquires GitHub | Linux Journal</a>
+    The article ends with a list of alternatives:
+    <a href="https://gitea.io/en-us/" >Gitea</a>
+    <a href="https://allura.apache.org/" >Apache Allura</a>
+    <a href="https://gitbucket.github.io/" >GitBucket: A Git platform</a>
+    <a href="https://about.gitlab.com/" >GitLab</a>
+  @ <a    href="http://www.tfir.io/microsoft-acquires-github-for-7-5-billion/"
+    >Microsoft acquires GitHub for $7.5 billion - TFiR</a>
+    " According to reports, GitHub lost over $66 millions in 2016. At the same time
+      GitLab, a fully open source and decentralized service is gaining momentum, giving
+      users a fully open source alternative. "
+  @ <a href=
+    "https://news.microsoft.com/2018/06/04/microsoft-to-acquire-github-for-7-5-billion/"
+    >Microsoft to acquire GitHub for $7.5 billion | Stories</a> official press release
+  @ <a href=
+    "https://blogs.microsoft.com/blog/2018/06/04/microsoft-github-empowering-developers/"
+    >Microsoft + GitHub = Empowering Developers - The Official Microsoft Blog</a>
+  @ <a href="https://blog.github.com/2018-06-04-github-microsoft/"
+    >A bright future for GitHub | The GitHub Blog</a>
+  @ <a href="https://about.gitlab.com/2018/06/03/microsoft-acquires-github/"
+    >Congratulations GitHub on the acquisition by Microsoft | GitLab</a>
+    " While we admire what's been done, our strategy differs in two key areas. First,
+      instead of integrating multiple tools together, we believe a single application,
+      built from the ground up to support the entire DevOps lifecycle is a better
+      experience leading to a faster cycle time. Second, it’s important to us that the
+      core of our product always remain open source itself as well. "
+  @ <a    href="https://about.gitlab.com/2018/06/05/gitlab-ultimate-and-gold-free-for-education-and-open-source/"
+    >GitLab Ultimate and Gold now free for education and open source | GitLab</a> 
+    " It has been a crazy 24 hours for GitLab. More than 2,000 people tweeted about
+      #movingtogitlab. We imported over 100,000 repositories, and we've seen a 7x increase
+      in orders. We went live on Bloomberg TV. And on top of that, Apple announced an
+      Xcode integration with GitLab. "
+</pre>
+

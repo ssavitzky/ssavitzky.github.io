@@ -1,0 +1,135 @@
+---
+title: "[I wrote a thing] Xmonad (part 2 of several)"
+tags: [ writing, linux, software, xmonad, 500-words ]
+date: "2016-06-28 21:10"
+mood: "productive"
+picture: ""
+location: "Rainbow's End"
+options: "preformatted"
+itemid: "6147"
+layout: post
+---
+<p> (You may want to start with <a
+    href="http://mdlbear.dreamwidth.org/1573035.html" >Part 1</a>)
+</p>
+<p> Xmonad is a <em>tiling</em> window manager.  That means that, with very
+    few exceptions, it lays out all of the windows in your workspace so that
+    they completely fill the screen.  You can have multiple layouts, and flip
+    between them with a single keystroke.  You can bring a workspace (there
+    are 9 by default, but you can add more) to your screen with a single
+    keystroke, or send a window to a workspace.
+</p>
+<p> And the whole thing is configured using a text file that is actually a
+    program, written in the functional language Haskell.  I'll get to that
+    later. 
+</p>
+
+
+<p> One of my main gripes about Gnome, etc., and one of the things I miss the
+    most about CTWM, is that when you first start a program its window shows
+    up at some random location on the screen, with whatever size the program
+    thinks is appropriate.  If you don't like those choices you have to move
+    and resize the window yourself, and then do it all over the next time you
+    log in.  (There are some exceptions -- many newer programs remember where
+    you put them last, and older programs, from the CTWM era, can be given a
+    starting geometry.)
+</p>
+<p> Xmonad's layouts are all deterministic, which is to say, predictable.
+    When you start a program, you know <em>exactly</em> where it's going to be
+    on the screen.  When you change the layout, you know where everything is
+    going to go.  If you want to move a window into the main position (most
+    layouts have one; e.g. the left-hand column) it's (as usual) just one
+    keystroke to put it there.
+</p>
+<p> But the best thing, and the reason I switched to xmonad in the first
+    place, is the way it treats multiple monitors: it simply assigns one
+    workspace to each monitor.
+</p>
+<p> Undock your laptop, and its screen stays exactly the same.  The workspaces
+    that were shown on the other screens simply go back into hiding with all
+    the others, and are still only a keystroke away.  When you have multiple
+    screens, you can move a window to another screen, or bring a workspace to
+    a screen, or <em>warp the pointer to another screen</em>, all with single
+    keystrokes. 
+</p>
+<p> When you go to a conference room and plug in a projector, a workspace
+    immediately shows up there and its layout automatically adjusts to the
+    projector's resolution and aspect ratio.  When you get a new computer --
+    all the developers at work got new laptops just a month or two ago -- just
+    copy your configuration files to it and everything will be exactly the
+    same as it was on the old one.  (Sometime later I'll write about my
+    portable configuration, which makes it possible for me to set up my entire
+    working environment in mere minutes.)
+</p>
+<p>&nbsp;</p>
+<p> So let's go a little deeper into those magic keystrokes.  First of all,
+    you have to know that all of the commands (you can't really call them
+    shortcuts) include a key that xmonad calls "Mod" (short for "modifier", of
+    course).  Mod is initially defined as Alt, but the first thing any Emacs
+    user is going to do is redefine it as something else, usually the "logo"
+    key.  (That's the one on the left between Ctrl and Alt that usually has a
+    Windows logo on it.  If your keyboard has replaceable keys you may be able
+    to get a penguin for it.)  On old laptops that don't have a logo key I use
+    Ctrl-Alt, but that's a matter of taste.
+</p>
+<p> You also probably want to know that Mod-? gets you a list of all the
+    commands.  And that there's a fantastic collection of tutorials,
+    documentation, and sample configuration files at <a
+    href="http://xmonad.org/" >xmonad.org</a>.
+</p>
+<p> When xmonad starts up, you see a totally empty, black screen.  Most
+    people, myself included, add a status/navigation bar at the top, but you
+    don't have to.  I'll get to that later.  You can start a program by typing
+    Mod-P, or open a terminal window with Mod-Shift-Enter.  You will
+    immediately notice that the first window you open fills the screen.  If
+    you open another, xmonad will tile the screen with them, showing them side
+    by side.
+</p>
+<p> If you start a third program, it will get added to the right-hand column.
+    You can probably see where this is going.  When you move the mouse pointer
+    into a window, it gets a thin red border to show you that it has "focus".
+</p>
+<p> If you decide that you started things in the wrong order, move the pointer
+    into the window you want to put in the left-hand column (the "master"
+    column) and hit Mod-Enter.  You close a window you're done with using
+    Mod-Shift-C. 
+</p>
+<p> Here's where it gets interesting: Mod-Space will switch you to a new
+    <em>layout</em>, with the master column turning into a master
+    <em>row</em>, and all the other windows across the bottom.  Hit Mod-Space
+    again, and the currently-focused window goes full-screen.  (I reconfigure
+    my full-screen layout to put a row of tabs across the top.  Wondering how
+    to see the hidden windows?  Mod-Tab moves focus to the next window in the
+    stack.  It also works in other layouts, so you don't need the mouse to
+    move focus around.  If you spend most of your time in a terminal and an
+    editor like vim or emacs, you can throw your mouse away and still be
+    productive.  Mod-Shift-Tab moves focus to the previous window.
+</p>
+<p> Mod-2 puts you into a second <em>workspace.</em>  There are nine of them.  (I
+    add two more -- 0 and -.)  If you want to move a window, say from
+    workspace 2 to workspace 1, use Mod-Shift-1.  That's kind of a recurring
+    theme in xmonad -- Mod-something does one thing, and Mod-Shift-something
+    does something related.
+</p>
+<p> You can see that in action if you add an(other) monitor.  Now, workspace 1
+    is in the left-hand screen, and 2 is in the right-hand screen.  Think of
+    the two of them as West and East.
+</p>
+<p> Now, Mod-w will move the focus (and the mouse pointer) into the West
+    screen, and Mod-e will move the focus into the East screen.  Mod-1 through
+    Mod-9 will bring that workspace into whatever screen has the focus.  If
+    the other workspace was already visible, they trade places.  (Some people
+    don't like that, so you can change it so that it just moves focus into the
+    other screen if you select a workspace that's already visible.)
+</p>
+<p> Add a third screen to the right of East, and call it Right.  Now, Mod-r
+    and Mod-Shift-R do exactly what you would expect.  (There are no bindings
+    for T, so I suppose that if you have space for a fourth screen you could
+    use it for that.)
+</p>
+<p> There are more key bindings, to move focus (Mod-j and Mod-k focus the next
+    and previous window, respectively; shifted, they swap the focused window
+    with the next or previous window), to shrink and enlarge the master area
+    (Mod-h and Mod-l respectively), or increase or decrease the number of
+    windows in the master area (Mod-Comma and Mod-Period respectively).
+</p>

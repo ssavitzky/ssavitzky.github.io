@@ -1,0 +1,112 @@
+---
+title: "The Mandelbear's Rough Guide to HTML"
+tags: [ web, reference, html ]
+date: "2006-08-19 22:01"
+mood: "pedantic"
+picture: ""
+location: "home"
+options: "preformatted backdated"
+itemid: "1737"
+layout: post
+---
+<p> Since I've noticed that a couple of new folks have either joined LJ, or
+    posted after a long absence, and
+    since I just spouted off a comment describing the basic HTML tags, here's
+    another take on it, with the rough edges smoothed off.  
+</p>
+<p> <b>Here are the essential tags for LJ.</b>  You can get away with nothing
+    but these, and let LJ's automatic formatting take care of everything else.
+</p>
+
+<p> Inside of paragraphs, &lt;em&gt; (emphasis), &lt;strong&gt; (bold), and
+    occasionally &lt;cite&gt; (italics, used for citations) &lt;code&gt;
+    (fixed-width), and &lt;del&gt; (strike-out). You can also use &lt;i&gt;,
+    &lt;b&gt;, &lt;tt&gt;, and &lt;s&gt;, but it's considered cheating.
+    &lt;u&gt; (underline) can also be used, but it's confusing given the
+    almost universal convention that <u>links</u> are underlined.  See what I
+    mean?   
+</p>
+<p> &lt;hr&gt; (horizontal rule) and &lt;img&gt; (image) have their uses; they
+    are  two of the three tags that do not need to be "closed" (see inside the cut).
+    &lt;img&gt; tags need two "attributes" between the "img" and the "&gt;":
+    <code>src="<em>url-of-image</em>"</code> to point to the image, and
+    <code>alt="<em>text</em>"</code> to specify the text that a blind person
+    or search engine will see <em>in place of</em> the image.  If an image is
+    just there as a spacer or decoration, you can use
+    <code>alt="&nbsp;"</code>.
+</p>
+<p> The final essential tag is
+    &lt;a&nbsp;href="<em>url</em>"&gt;anchor-text&lt;/a&gt;, which makes a
+    link.  The "a" comes from "anchor", for reasons that are now mainly
+    historical.  On Livejournal, there are two more handy tags that turn into
+    special kinds of link:  &lt;lj&nbsp;user="<em>username</em>"&gt; (which
+    doesn't need to be closed) links to a user's profile and journal, and
+    &lt;lj-cut&gt;...&lt;/lj-cut&gt; cuts out a long block of text and
+    replaces it with a link.  Add a <code>text="link-text"</code> attribute to
+    replace the default "details".
+</p>
+<lj-cut text="The rest is mostly useful outside of LJ.  This is long enough, and probably boring enough, that it needs a cut"> 
+<p> First of all, don't worry too much about the &lt;html&gt;, &lt;head&gt;,
+    &lt;title&gt;, and &lt;body&gt; tags.  If you're on LJ or some other
+    blogging system, they'll be supplied automagically.  Most editors will put
+    them in as well.  If not, you can always copy them from some other page.
+</p>
+<p> Secondly, almost all tags have to be "closed" -- if something starts with,
+    for example, &lt;foo&gt;, you have to close it with &lt;/foo&gt;,
+    otherwise the browser won't know where to stop fooing.  If you see a page
+    that's all italics or bold, that's probably why.  In practice you can get
+    away with not closing paragraphs and list items, but it's not advisable.  
+    Browsers handle it OK, but some templating systems -- including LJ's -- have trouble.
+    Tags like &lt;br&gt; that are "self-closing" can be marked with a slash before
+    the final "&gt;" (i.e.,  &lt;br /&gt;) to make them XML-compatible -- this hybrid
+    is called XHTML and you mostly don't need to worry about it.
+</p>
+<p></p>
+<p> The most essential tag is &lt;p&gt;, which sets off a paragraph.  You
+    mostly don't need it in LJ, which automatically turns the end of a line
+    into a &lt;br&gt; tag, which "breaks" a line.  &lt;br&gt; is one of the
+    three tags that don't have to be closed.  If you want to use &lt;p&gt;, or
+    <em>any</em> of the fancy stuff mentioned here, on LJ, <em>turn off 
+    auto-formatting</em> or you'll get lots of extra white space.
+</p>
+<p> The headings, &lt;h1&gt; thru &lt;h6&gt;. In practice I use &lt;h1&gt;
+    only for page titles, and rarely if ever go down as far as &lt;h4&gt;.
+</p>
+<p> The lists: &lt;ul&gt; and &lt;ol&gt; for bulletted (unordered) and
+    numbered (ordered) lists, using &lt;li&gt; for list items; &lt;dl&gt; for
+    "definition" lists, with &lt;dt&gt; for "defined terms" and &lt;dd&gt; for
+    "definition data".
+</p>
+<p> You can get an indented block of text, commonly used for long quotations,
+    by enclosing it in &lt;blockquote&gt;...&lt;/blockquote&gt;.
+</p>
+<p> Tables add a whole level of complication, and are rarely worth the trouble
+    unless (a) you really need a table, or (b) you want to make a pretty
+    layout without using css styles.  Just for reference, enclose the whole
+    table in a &lt;table&gt;...&lt;/table&gt;, and each row in
+    &lt;tr&gt;...&lt;/tr&gt;.  Table headings are enclosed in
+    &lt;th&gt;...&lt;/th&gt;, and ordinary table data in
+    &lt;td&gt;...&lt;/td&gt;.  You can spend lots of time tweaking tables to
+    get them to look right.  It's rarely worthwhile.
+</p>
+<p> One more attribute is often handy:  <code>align="..."</code>.  The value
+    can be <code>"left"</code>, <code>"right"</code>, or
+    <code>"center"</code>, and you can use them on images, paragraphs, or
+    table data.  To center a whole range of paragraphs, use
+    &lt;div&nbsp;align="center"&gt; 
+</p>
+<p> And just for completeness, there are these things called "entities" that are used
+    to get special characters (like "&lt;") into ordinary text.  They all start with 
+    an ampersand (&amp;) and end with a semicolon (;).  The most useful ones -- absolutely
+    essential, in fact -- are <code>&amp;amp;</code> for "ampersand" (&amp;),  
+    <code>&amp;lt;</code> for "less than" (&lt;), and
+    <code>&amp;gt;</code> for "greater than" (&gt;).  Another handy one is 
+    <code>&amp;nbsp;</code> for "non-breaking space" -- it looks like a space, but
+    the browser treats it as a letter and so won't allow it to turn into a line break.  Good if
+    you want to keep an entire phrase, computer command, or tag example on one line.
+</lj-cut>
+<p> So there you have it.  For more details, all the rest of the tags and
+    attributes I've left out, and an excellent reference, see <a
+    href="http://werbach.com/barebones/barebones.html" >The Bare Bones Guide
+    to HTML</a>.
+</p>

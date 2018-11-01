@@ -1,0 +1,87 @@
+---
+title: "[I wrote a thing] xmonad (part 1 of several, incomplete)"
+tags: [ 500-words, linux, writing, xmonad, software ]
+date: "2016-06-21 21:04"
+mood: "productive (productive)"
+picture: ""
+location: "Rainbow's End"
+options: "preformatted"
+itemid: "6144"
+layout: post
+---
+<p> As I mentioned about a week ago, I've been trying to write more.  And
+    since my current obsession is a program called <a
+    href="http://xmonad.org/documentation.html" >xmonad</a>, well, ...
+</p>
+<p> This is incomplete: it's about the first day's worth (I've been trying to
+    write about 500 words per day).  Comments and suggestions are, of course,
+    welcome. 
+</p>
+
+<p>&nbsp;</p>
+<p> My new 27" monitors arrived at work; I took advantage of the change to
+    rearrange my work space.  Before, it was the set-up I've had for most of
+    the last three years -- monitor in front on a stand, second monitor on the
+    right, and my laptop on the left.  The new laptop, however, has a decent
+    keyboard (with trackpoint and three buttons), and the monitors between
+    them occupy about 2/3 of the desk.
+</p>
+<p> The new arrangement has the laptop dock under the "middle" monitor; the
+    laptop, being a business-class Dell, has both a pointing stick and a
+    middle "mouse" button.  The laptop's keyboard is decent enough that it can
+    replace the thinkpad keyboard I've been using for the last couple of years
+    -- it's a high-end Dell, and has both a pointing stick and a middle
+    button.  (The middle button has part of the Unix desktop environment since
+    the mid 1980s; it means "paste", and I use it all the time.) The monitors
+    are about 50% bigger, pixel-wise, than the laptop, and are arranged
+    "traditionally" with the laptop on the left.
+</p>
+<p> You can probably see the problem with this arrangement.  The total
+    workspace is about 7000 pixels wide, and it's not even arranged in a
+    straight line -- to get from the laptop to the "middle" monitor you have
+    to move the cursor to the right, but the natural direction would be
+    straight up.  What's more, when you undock the laptop the whole thing
+    collapses down to a "mere" 1920x1080.  It's no wonder that most of the
+    programmers in my team have opted for a single 30" monitor, and keep their
+    laptop (almost invariably a mac) closed while they're using it.
+</p>
+<p> Fortunately, I anticipated this problem months ago, and started using a
+    window manager called xmonad.
+</p>
+<p> &nbsp; </p>
+<p> One of the things I love most about Linux is the fact that the program
+    that manages the layout of the screen and the behavior and appearance of
+    the windows on it is <em>not</em> part of the operating system.  It's a
+    separate program, sensibly called a "window manager", and it runs in user
+    space as a perfectly ordinary application that just happens to have a
+    couple of extra hooks into X, which is the (also ordinary) program that
+    actually controls the display, the keyboard, and the mouse.
+</p>
+<p> Being an ordinary program -- and not even a terribly complicated one --
+    anybody can write one, and many people have.  For a long time I was using
+    one called TWM (Tabbed Window Manager, but the T originally stood for
+    Tom's).  Later I started using CTWM (Claude's Tabbed Window Manager),
+    because it introduced the then unfamiliar notion of multiple workspaces.
+    (Before CTWM, these could only be found in an experimental system at Xerox
+    where they were called "rooms".  Apple introduced them decades later, as
+    part of MacOS X.)
+</p>
+<p> You've probably heard of Gnome, KDE, and Ubuntu's horrible Unity desktop
+    environments.  Down at the bottom, they're just window managers plus a
+    couple of utilities for doing things like putting up the familiar bar
+    (Gnome calls it a "panel") full of menus, launcher buttons, clocks and
+    other widgets.  You can, in fact, run <code>gnome-panel</code> under any
+    window manager, and I did for a while.  They also include a "session
+    manager", which handles things like starting the panel and making sure
+    that applications get notified when you log out, so that they can save
+    their state and exit cleanly.  I've been using Gnome for years, and loved
+    it for its configurability.
+</p>
+<p> But Gnome's configurability comes with a cost -- every time you move to a
+    new computer, you have to spend an hour clicking around in control panels
+    and property windows to get everything set up the way you like it.  And
+    every time there's a major upgrade, something is a little different.  It's
+    a cost I no longer have to pay.
+</p>
+<hr>
+<p> <a href="http://mdlbear.dreamwidth.org/1573683.html" >Part 2</a>
