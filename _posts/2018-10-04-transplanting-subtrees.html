@@ -188,7 +188,7 @@ href="http://stackoverflow.com/questions/4042816/how-can-i-rewrite-history-so-th
     random files and subtrees mixed together.  It looks like:
 
 <pre>    # see 
-    git log --pretty=email --reverse --full-index --binary -- PATHS > /tmp/patches
+    git log --pretty=email --patch-with-stat --reverse --full-index --binary -- PATHS > /tmp/patches
     # fix paths if necessary:
     sed -i -e 's@deep/path/that/you/want/shorter@short/path@g' /tmp/patches
     # apply the patches.
