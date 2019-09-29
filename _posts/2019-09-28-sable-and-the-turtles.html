@@ -1,0 +1,103 @@
+---
+location: "Somewhere in cyberspace"
+mood: "didactic"
+music: "Windward"
+picture: "technonerdmonster"
+posted: "2019-09-28 16:43 https://mdlbear.dreamwidth.org/1688029.html"
+tags: [ "curmudgeon, computers, configuration, linux, laptop, s4s" ]
+title: "Sable and the turtles: laptop configuration made easy"
+---
+
+<p> I recently bought a new-to-me <a
+    href="https://www.thinkwiki.org/wiki/Category:X230">Thinkpad X230</a>, and
+    in keeping with my ongoing theme of naming thinkpads after their color, I
+    called it <a href="https://en.wikipedia.org/wiki/Sable" >Sable</a>, which
+    in addition to being the heraldic name for the <a
+    href="https://en.wikipedia.org/wiki/Sable_(heraldry)" >colour black</a> is
+    also a small dark-brown animal in the <a
+    href="https://en.wikipedia.org/wiki/Mustelidae" >mustelid (weasel)</a>
+    family.
+
+<p> I've become quite fond of Sable.  It's only an inch wider than my former
+    laptop, Cygnus (named after <a
+    href="https://en.wikipedia.org/wiki/Cygnus_X-1" >Cygnus X-1</a>, the first
+    X-ray source to be widely accepted as a black hole), about ten times
+    faster, and the same weight.  The extra inch makes it <em>exactly</em> the
+    right size for me to put one of my Thinkpad USB keyboards flat on top of
+    it.  One may wonder why I would even want to do this, but I can move the
+    keyboard to my lap when one of the cats wants to sit on my desk. (The cat
+    is almost always Desti, who is also black, but naming a laptop after her
+    would be confusing.)
+
+<p> Anyway.
+
+<p> One of the problems with getting a new computer is getting it configured
+    the way I want it, which usually means "pretty much the same as the last
+    one".  Most people do this by copying as much as they can off the old one,
+    (on Linux that's typically their entire home directory), and then
+    installing the same collection of applications (packages, in Linux
+    terminology).  It's tedious, and when the architectures or operating
+    system versions are different it leads to a wide range of random glitches
+    and outright bugs that have to be tracked down individually over the
+    course of the next week or so.  Even if it doesn't, home directories tend
+    to include a large amount of random stuff, like downloads and the contents
+    of your browser cache, that you <em>don't</em> necessarily want.
+
+<p> And if you're trying to set up a home directory on your web host, or your
+    work machine, or something tiny like a <a
+    href="https://www.raspberrypi.org/" >Raspberry Pi</a>, well...  What you
+    really want to do is start afresh and just install what you really need.
+
+<p> That's where the turtles (<a
+    href="https://steve.savitzky.net/Songs/windward/" >because home is
+    wherever you carry your shell</a>, as it says in the song) come in.
+    Specifically, <a href="https://github.com/ssavitzky/Honu" >Honu</a>, which
+    is a collection of makefiles and scripts that does almost all of the setup
+    automagically.
+
+<p> Honu (Hawaiian for the <a
+    href="https://en.wikipedia.org/wiki/Green_sea_turtle" >green sea
+    turtle</a>) requires nothing more than a shell (the Linux/Unix
+    command-line processor, and anything Posix-compatible will work), an <a
+    href="https://linux.die.net/man/1/ssh" >SSH client</a>, the <a
+    href="https://kernel.org/pub/software/scm/git/docs/git.html" >git</a>
+    version-control system, and <a
+    href="https://www.gnu.org/software/make/manual/make.html" >make</a>.  In
+    fact, if you can install packages on your target system, the first thing
+    Honu's bootstrap script will do is install the ones you don't have.
+
+<p> Make was one of the first programs for building software automatically,
+    and I'm very fond of it.  It lets you define "recipes" -- actually, short
+    shell scripts -- for building files out of their "dependencies", and it's
+    clever enough to only build the things that are out of date.  It can also
+    follow rules, like the built-in one that tells it how to use the C
+    compiler to turn a <code>.c</code> file into a <code>.o</code> object
+    file, and the linker to turn a <code>.o</code> file to an executable file.
+    (On Windows the executable file would end in an extension of
+    <code>.exe</code>, but Unix and its descendents don't need it.)
+
+<p> Make can also follow chains of rules, so if your source file changes it
+    will rebuild the executable, and (unless you tell it not to) delete the
+    object file after it's sure nothing else needs it.  And rules don't have
+    to result in actual files -- if you give it a recipe for a "phony" target it
+    will simply notice that it isn't there, and run the recipe every time.
+    This is good for things like "install-pkgs" and "install", which are
+    Honu's main make targets.  
+
+<p> Turn it loose with a <code>make</code> command, and Honu's makefiles
+    happily go about installing packages, creating directories, and setting up
+    configuration files ; the whole process takes well under an hour.
+
+<p> I wrote Honu to be pretty generic -- it knows a lot of my preferences, but
+    it doesn't know my name, email address, current projects, or hosting
+    service.  I also have another package, Mathilda (our name for the
+    particular happy honu who narrates "<a
+    href="https://steve.savitzky.net/Songs/windward/" >Windward</a>").
+    Mathilda sets all of <em>that</em> up, pulling down the Git repositories
+    for my current projects, blog archives, websites, songbooks, build
+    systems, and so on; putting them in the right places so that I can sit
+    down in front of Sable, open the lid, and be right at home.
+
+<p> ...Except, as in most moving projects, for tracking down all the little
+    pieces that got left behind, but that only took a couple of days.
+
